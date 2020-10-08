@@ -1,10 +1,11 @@
 import { inject, observer } from "mobx-react";
 import React from "react";
+import Main from "../../components/Main";
 
 const MainContainer = () => {
   return (
     <>
-      <div></div>
+      <Main />
     </>
   );
 };
