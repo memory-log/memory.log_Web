@@ -4,12 +4,13 @@ export default withStyles(() => ({
   root: {
     color: "#FFFFFF",
     fontFamily: "Noto Sans KR",
-    fontWeight: 300,
-    fontSize: "1rem",
+    fontWeight: 500,
+    fontSize: "0.9rem",
     letterSpacing: "0.6px",
     backgroundColor: "#3C50E0",
-    width: "15.6rem",
-    height: "2.9rem",
+    borderRadius: "0.4rem",
+    width: "18rem",
+    height: "2.7rem",
     boxShadow: "none",
     "&:hover": {
       boxShadow: "none",
