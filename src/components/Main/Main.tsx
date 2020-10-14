@@ -17,12 +17,12 @@ const Main = () => {
               <p>롤링페이퍼에 작성해보세요.</p>
             </FadeIn>
           </div>
-          <FadeIn delay={400}>
+          <FadeIn delay={500}>
             <img className="Main-Container-Image" src={people} alt={people} />
           </FadeIn>
         </div>
         <div className="Main-Button">
-          <FadeIn delay={500}>
+          <FadeIn delay={600}>
             <MaterialButton onClick={() => {}}>롤링페이퍼 시작하기</MaterialButton>
           </FadeIn>
         </div>
