@@ -4,6 +4,8 @@ import people from "../../assets/images/people.svg";
 import MaterialButton from "../common/Material/MaterialButton";
 import FadeIn from "react-fade-in";
 
+interface MainProps {}
+
 const Main = () => {
   return (
     <>
@@ -21,20 +23,7 @@ const Main = () => {
         </div>
         <div className="Main-Button">
           <FadeIn delay={500}>
-            <MaterialButton
-              color="#FFFFFF"
-              fontWeight={500}
-              fontSize="0.9rem"
-              backgroundColor="#3C50E0"
-              hoverColor="#5669F3"
-              width="18rem"
-              height="2.7rem"
-              borderRadius="0.4rem"
-              variant="contained"
-              onClick={() => {}}
-            >
-              롤링페이퍼 시작하기
-            </MaterialButton>
+            <MaterialButton onClick={() => {}}>롤링페이퍼 시작하기</MaterialButton>
           </FadeIn>
         </div>
       </div>

@@ -19,10 +19,10 @@ const useStyles = makeStyles({
     color: (props: Props) => props.color || "#ffffff",
     backgroundColor: (props: Props) => props.backgroundColor || "#3C50E0",
     fontWeight: (props: Props) => props.fontWeight || 500,
-    fontSize: (props: Props) => props.fontSize || "0.9rem",
+    fontSize: (props: Props) => props.fontSize || "0.8rem",
     borderRadius: (props: Props) => props.borderRadius || "0.4rem",
     width: (props: Props) => props.width || "18rem",
-    height: (props: Props) => props.height || "2.7rem",
+    height: (props: Props) => props.height || "2.4rem",
     fontFamily: "Noto Sans KR",
     boxShadow: "none",
     "&:hover": {
