@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     fontWeight: (props: Props) => props.fontWeight || 500,
     fontSize: (props: Props) => props.fontSize || "0.8rem",
     borderRadius: (props: Props) => props.borderRadius || "0.4rem",
-    width: (props: Props) => props.width || "18rem",
+    width: (props: Props) => props.width || "100%",
     height: (props: Props) => props.height || "2.4rem",
     fontFamily: "Noto Sans KR",
     boxShadow: "none",

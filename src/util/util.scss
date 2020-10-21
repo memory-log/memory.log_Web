@@ -22,3 +22,24 @@ body {
   min-height: 100vh;
   margin: 0;
 }
+
+.Input-Style {
+  margin: 0 0.5rem;
+  border: none;
+  height: 2rem;
+  padding: 0.1rem 0.3rem;
+  font-size: 1rem;
+  transition: all ease-in-out 0.3s 0s;
+  border-bottom: 1.5px solid rgb(202, 202, 202);
+  width: 10rem;
+  &::placeholder {
+    font-size: 0.9rem;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:focus,
+  &:valid {
+    border-color: black;
+  }
+}
