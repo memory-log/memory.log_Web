@@ -1,5 +1,7 @@
 import React from "react";
+import FadeIn from "react-fade-in";
 import { Link } from "react-router-dom";
+import MaterialButton from "../common/Material/MaterialButton";
 import MaterialTextField from "../common/Material/MaterialTextField";
 import "./Register.scss";
 
@@ -28,6 +30,9 @@ const Register = () => {
           </div>
         </div>
         <div className="Register-Button">
+          <FadeIn delay={700}>
+            <MaterialButton>다음</MaterialButton>
+          </FadeIn>
           <div className="Register-Button-Text">
             <p className="Register-Button-Text-Comment">잘 생각해보니 있는 것 같아요...</p>
             <Link to="/login">

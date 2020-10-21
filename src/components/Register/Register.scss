@@ -1,8 +1,12 @@
 .Register {
   width: 100%;
   height: 100vh;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15rem;
   &-Title {
+    margin-bottom: 3rem;
     & > p {
       font-size: 1.4rem;
       font-weight: 700;
@@ -14,13 +18,36 @@
     flex-direction: column;
 
     &-TextField {
-      margin: 1rem 0;
+      margin: 1.3rem 0;
     }
   }
 
   &-Button {
+    position: absolute;
+    bottom: 1.2rem;
+
     &-Text {
       display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0.6rem;
+
+      & > p {
+        font-size: 0.6rem;
+        font-weight: 500;
+      }
+
+      &-Comment {
+        color: #777777;
+        margin-right: 0.2rem;
+      }
+
+      &-Login {
+        color: #3c50e0;
+        cursor: pointer;
+        font-size: 0.6rem;
+        font-weight: 500;
+      }
     }
   }
 }
