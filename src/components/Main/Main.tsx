@@ -3,10 +3,13 @@ import "./Main.scss";
 import people from "../../assets/images/people.svg";
 import MaterialButton from "../common/Material/MaterialButton";
 import FadeIn from "react-fade-in";
+import { useHistory, withRouter } from "react-router-dom";
 
 interface MainProps {}
 
 const Main = () => {
+  const history = useHistory();
+
   return (
     <>
       <div className="Main">
@@ -23,7 +26,13 @@ const Main = () => {
         </div>
         <div className="Main-Button">
           <FadeIn delay={600}>
-            <MaterialButton onClick={() => {}}>롤링페이퍼 시작하기</MaterialButton>
+            <MaterialButton
+              onClick={() => {
+                history.push("/login");
+              }}
+            >
+              롤링페이퍼 시작하기
+            </MaterialButton>
           </FadeIn>
         </div>
       </div>
@@ -31,4 +40,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default withRouter(Main);

@@ -4,11 +4,13 @@ import MaterialButton from "../common/Material/MaterialButton";
 import "./Login.scss";
 import lock from "../../assets/images/lock.svg";
 import FadeIn from "react-fade-in";
-import { Link } from "react-router-dom";
+import { Link, useHistory, withRouter } from "react-router-dom";
 
 interface LoginProps {}
 
 const Login = () => {
+  const history = useHistory();
+
   return (
     <>
       <div>
@@ -34,7 +36,14 @@ const Login = () => {
         <div className="Login-Button-Text">
           <span className="Login-Button-Text-Comment">앗 계정이 없는데 어떡하죠?</span>
           <Link to="/register">
-            <span className="Login-Button-Text-Register">회원가입</span>
+            <span
+              className="Login-Button-Text-Register"
+              onClick={() => {
+                history.push("/register");
+              }}
+            >
+              회원가입
+            </span>
           </Link>
         </div>
       </div>
@@ -42,4 +51,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

@@ -1,6 +1,6 @@
 import React from "react";
 import FadeIn from "react-fade-in";
-import { Link } from "react-router-dom";
+import { Link, useHistory, withRouter } from "react-router-dom";
 import MaterialButton from "../common/Material/MaterialButton";
 import MaterialTextField from "../common/Material/MaterialTextField";
 import "./Register.scss";
@@ -8,6 +8,7 @@ import "./Register.scss";
 interface RegisterProps {}
 
 const Register = () => {
+  const history = useHistory();
   return (
     <>
       <div>
@@ -35,7 +36,14 @@ const Register = () => {
         <div className="Register-Button-Text">
           <p className="Register-Button-Text-Comment">잘 생각해보니 있는 것 같아요...</p>
           <Link to="/login">
-            <p className="Register-Button-Text-Login">로그인</p>
+            <p
+              className="Register-Button-Text-Login"
+              onClick={() => {
+                history.push("/login");
+              }}
+            >
+              로그인
+            </p>
           </Link>
         </div>
       </div>
@@ -43,4 +51,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default withRouter(Register);
