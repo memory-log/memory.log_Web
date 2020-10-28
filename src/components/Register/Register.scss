@@ -1,10 +1,4 @@
 .Register {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 15rem;
   &-Title {
     margin-bottom: 3rem;
     & > p {
@@ -23,8 +17,7 @@
   }
 
   &-Button {
-    position: absolute;
-    bottom: 1.2rem;
+    width: 100%;
 
     &-Text {
       display: flex;

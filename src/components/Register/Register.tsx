@@ -10,7 +10,7 @@ interface RegisterProps {}
 const Register = () => {
   return (
     <>
-      <div className="Register">
+      <div>
         <div className="Register-Title">
           <p>간단한 회원가입 후 롤링페이퍼를</p>
           <p>작성하실 수 있어요.</p>
@@ -29,16 +29,14 @@ const Register = () => {
             <MaterialTextField label="비밀번호 확인" variant="outlined" type="password" width="19rem" size="small" />
           </div>
         </div>
-        <div className="Register-Button">
-          <FadeIn delay={700}>
-            <MaterialButton>다음</MaterialButton>
-          </FadeIn>
-          <div className="Register-Button-Text">
-            <p className="Register-Button-Text-Comment">잘 생각해보니 있는 것 같아요...</p>
-            <Link to="/login">
-              <p className="Register-Button-Text-Login">로그인</p>
-            </Link>
-          </div>
+      </div>
+      <div className="Register-Button">
+        <MaterialButton>다음</MaterialButton>
+        <div className="Register-Button-Text">
+          <p className="Register-Button-Text-Comment">잘 생각해보니 있는 것 같아요...</p>
+          <Link to="/login">
+            <p className="Register-Button-Text-Login">로그인</p>
+          </Link>
         </div>
       </div>
     </>

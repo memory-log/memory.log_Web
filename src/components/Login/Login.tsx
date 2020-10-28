@@ -11,44 +11,31 @@ interface LoginProps {}
 const Login = () => {
   return (
     <>
-      <div className="Login">
+      <div>
         <div className="Login-Title">
-          <FadeIn delay={100}>
-            <div className="Login-Title-Id">
-              <p>제 아이디는</p>
-              <div className="Login-Title-Id-TextField">
-                <MaterialTextField id="standard-password-input" label="아이디" type="text" width="10rem" height="1.4rem" />
-              </div>
-              <p>이며,</p>
-            </div>
-          </FadeIn>
-          <FadeIn delay={300}>
-            <div className="Login-Title-Password">
-              <p>비밀번호는</p>
-              <div className="Login-Title-Password-TextField">
-                <MaterialTextField id="standard-password-input" label="비밀번호" type="password" width="10rem" height="1.4rem" />
-              </div>
-              <p className="Login-Title-Password-End">입니다.</p>
-            </div>
-          </FadeIn>
-        </div>
-        <FadeIn delay={500}>
-          <div className="Login-Image">
-            <img src={lock} alt={lock} />
+          <div className="Login-Title-Id">
+            <span>제 아이디는</span>
+            <input className="Input-Style" placeholder="아이디" required />
+            <span>이며,</span>
           </div>
-        </FadeIn>
-        <div className="Login-Button">
-          <FadeIn delay={700}>
-            <MaterialButton>로그인</MaterialButton>
-          </FadeIn>
-          <FadeIn delay={800}>
-            <div className="Login-Button-Text">
-              <p className="Login-Button-Text-Comment">앗 계정이 없는데 어떡하죠?</p>
-              <Link to="/register">
-                <p className="Login-Button-Text-Register">회원가입</p>
-              </Link>
-            </div>
-          </FadeIn>
+          <div className="Login-Title-Password">
+            <span>비밀번호는</span>
+            <input className="Input-Style" type="password" placeholder="비밀번호" required />
+            <br />
+            <span className="Login-Title-Password-End">입니다.</span>
+          </div>
+        </div>
+        <div className="Login-Image">
+          <img src={lock} alt={lock} />
+        </div>
+      </div>
+      <div className="Login-Button">
+        <MaterialButton width="100%">로그인</MaterialButton>
+        <div className="Login-Button-Text">
+          <span className="Login-Button-Text-Comment">앗 계정이 없는데 어떡하죠?</span>
+          <Link to="/register">
+            <span className="Login-Button-Text-Register">회원가입</span>
+          </Link>
         </div>
       </div>
     </>
