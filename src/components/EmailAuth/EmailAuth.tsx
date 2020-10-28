@@ -1,6 +1,5 @@
 import React from "react";
 import "./EmailAuth.scss";
-import MaterialButton from "../common/Material/MaterialButton";
 import MaterialTextField from "../common/Material/MaterialTextField";
 
 interface EmailAuthProps {}
@@ -18,9 +17,7 @@ const EmailAuth = () => {
             <MaterialTextField label="인증번호" variant="outlined" type="text" width="19rem" size="small" />
           </div>
         </div>
-        <div className="EmailAuth-button">
-          <MaterialButton>완료</MaterialButton>
-        </div>
+        <div className="EmailAuth-button"></div>
       </div>
     </>
   );
