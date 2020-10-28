@@ -2,11 +2,13 @@ import React from "react";
 import "./Header.scss";
 import logo from "../../../assets/images/logo.svg";
 import title from "../../../assets/images/title.svg";
-import MaterialButton from "../Material/MaterialButton";
-import profile from "../../../assets/images/profile.svg";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+interface HeaderProps {
+  selectLoginModal: () => void;
+}
+
+const Header = ({ selectLoginModal }: HeaderProps) => {
   return (
     <>
       <div className="Header">
@@ -17,20 +19,9 @@ const Header = () => {
           </div>
         </Link>
         <div className="Header-Account">
-          <Link to="/login">
-            <MaterialButton
-              fontSize="0.2rem"
-              backgroundColor="#8D9BFF"
-              hoverColor="#AAB4FF"
-              width="4.5rem"
-              height="1.7rem"
-              borderRadius="0.3rem"
-              variant="contained"
-            >
-              로그인
-            </MaterialButton>
-          </Link>
-          <img className="Header-Account-Profile" src={profile} alt={profile} />
+          <button className="Header-Account-Login" onClick={() => selectLoginModal()}>
+            로그인
+          </button>
         </div>
       </div>
     </>

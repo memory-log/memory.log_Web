@@ -1,13 +1,19 @@
-import React from "react";
 import { inject, observer } from "mobx-react";
-import Login from "../../components/Login/Login";
-import AuthTemplate from "../../components/common/Template/AuthTemplate";
+import React from "react";
+import Login from "../../components/common/Login/Login";
+import Modal from "../../components/common/Modal/Modal";
+import stores from "../../stores";
 
 const LoginContainer = () => {
+  const { isModalSelected, selectLoginModal } = stores.LoginStore;
   return (
-    <AuthTemplate>
-      <Login />
-    </AuthTemplate>
+    <>
+      {isModalSelected && (
+        <Modal handleClose={selectLoginModal}>
+          <Login />
+        </Modal>
+      )}
+    </>
   );
 };
 

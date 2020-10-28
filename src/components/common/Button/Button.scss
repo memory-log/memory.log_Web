@@ -1,0 +1,19 @@
+.Button {
+  &-Template {
+    width: 100%;
+    height: 3rem;
+    border: none;
+    outline: none;
+    background-color: #3c50e0;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #6577f8;
+    }
+  }
+}

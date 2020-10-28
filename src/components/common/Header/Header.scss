@@ -1,13 +1,11 @@
 .Header {
   width: 100%;
-  height: 3rem;
-  padding: 0 1.4rem;
+  height: 4rem;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #ffffff;
-  position: absolute;
-  z-index: 10;
 
   &-Logo {
     display: flex;
@@ -15,13 +13,13 @@
     cursor: pointer;
 
     &-Icon {
-      width: 1.3rem;
-      height: 1.3rem;
-      margin-right: 0.4rem;
+      width: 1.6rem;
+      height: 1.6rem;
+      margin-right: 0.6rem;
     }
 
     &-Title {
-      height: 1.2rem;
+      height: 1.6rem;
     }
   }
 
@@ -29,11 +27,22 @@
     display: flex;
     align-items: center;
 
-    &-Profile {
-      border-radius: 50%;
-      width: 1.6rem;
-      height: 1.6rem;
-      margin-left: 1rem;
+    &-Login {
+      width: 6rem;
+      height: 2.3rem;
+      background-color: #3c50e0;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      outline: none;
+      border: none;
+      border-radius: 3rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #6577f8;
+      }
     }
   }
 }
