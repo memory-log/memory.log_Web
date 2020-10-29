@@ -1,5 +1,4 @@
-/* your css code */
-.Register {
+.Login {
   &-Content {
     width: 100%;
     display: flex;
@@ -12,11 +11,11 @@
     @keyframes fadeIn {
       0% {
         opacity: 0;
-        transform: translateY(3rem);
+        transform: translateX(3rem);
       }
       100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
       }
     }
 
@@ -25,19 +24,19 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      margin-bottom: 2rem;
+      margin-bottom: 2.2rem;
 
       &-Title {
         font-size: 1.6rem;
         font-weight: 700;
         color: #0b0f2d;
       }
-    }
 
-    &-Name {
-      width: 100%;
-      height: 3rem;
-      margin-bottom: 0.6rem;
+      &-Subtitle {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #6d6f77;
+      }
     }
 
     &-Email {
@@ -47,12 +46,6 @@
     }
 
     &-Password {
-      width: 100%;
-      height: 3rem;
-      margin-bottom: 0.6rem;
-    }
-
-    &-Check {
       width: 100%;
       height: 3rem;
       margin-bottom: 2.2rem;

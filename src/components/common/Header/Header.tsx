@@ -5,10 +5,10 @@ import title from "../../../assets/images/title.svg";
 import { Link } from "react-router-dom";
 
 interface HeaderProps {
-  selectLoginModal: () => void;
+  selectModal: () => void;
 }
 
-const Header = ({ selectLoginModal }: HeaderProps) => {
+const Header = ({ selectModal }: HeaderProps) => {
   return (
     <>
       <div className="Header">
@@ -19,7 +19,7 @@ const Header = ({ selectLoginModal }: HeaderProps) => {
           </div>
         </Link>
         <div className="Header-Account">
-          <button className="Header-Account-Login" onClick={() => selectLoginModal()}>
+          <button className="Header-Account-Login" onClick={() => selectModal()}>
             로그인
           </button>
         </div>

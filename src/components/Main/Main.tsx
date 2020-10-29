@@ -1,5 +1,5 @@
 import React from "react";
-import LoginContainer from "../../containers/Login/LoginContainer";
+import AuthContainer from "../../containers/Auth/AuthContainer";
 import "./Main.scss";
 
 interface MainProps {}
@@ -8,7 +8,7 @@ const Main = ({}: MainProps) => {
   return (
     <>
       <div className="Main">
-        <LoginContainer />
+        <AuthContainer />
       </div>
     </>
   );

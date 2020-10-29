@@ -1,20 +1,16 @@
-import { inject, observer } from "mobx-react";
 import React from "react";
-import Login from "../../components/common/Login/Login";
-import Modal from "../../components/common/Modal/Modal";
-import stores from "../../stores";
+import Login from "../../components/Login";
 
-const LoginContainer = () => {
-  const { isModalSelected, selectLoginModal } = stores.LoginStore;
+interface LoginContainerProps {
+  changePage: () => void;
+}
+
+const LoginContainer = ({ changePage }: LoginContainerProps) => {
   return (
     <>
-      {isModalSelected && (
-        <Modal handleClose={selectLoginModal}>
-          <Login />
-        </Modal>
-      )}
+      <Login changePage={changePage} />
     </>
   );
 };
 
-export default inject("store")(observer(LoginContainer));
+export default LoginContainer;

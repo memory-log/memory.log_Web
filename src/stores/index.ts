@@ -1,8 +1,8 @@
-import LoginStore from "./Login/LoginStore";
+import AuthStore from "./Auth/AuthStore";
 
 const stores = {
   //
-  LoginStore: new LoginStore()
+  AuthStore: new AuthStore()
 };
 
 export default stores;

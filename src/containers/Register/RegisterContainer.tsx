@@ -1,10 +1,14 @@
 import React from "react";
 import Register from "../../components/Register";
 
-const RegisterContainer = () => {
+interface RegisterContainerProps {
+  changePage: () => void;
+}
+
+const RegisterContainer = ({ changePage }: RegisterContainerProps) => {
   return (
     <>
-      <Register />
+      <Register changePage={changePage} />
     </>
   );
 };

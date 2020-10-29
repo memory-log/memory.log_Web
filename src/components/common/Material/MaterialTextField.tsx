@@ -20,10 +20,10 @@ const useStyles = makeStyles({
     height: (props: Props) => props.height || "1rem",
     fontFamily: "Noto Sans KR",
     "& label.Mui-focused": {
-      color: (props: Props) => props.color || "grey"
+      color: (props: Props) => props.color || "#3C50E0"
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: (props: Props) => props.color || "grey"
+      borderBottomColor: (props: Props) => props.color || "#3C50E0"
     }
   }
 });
