@@ -1,0 +1,74 @@
+.Login {
+  &-Content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.6rem;
+    animation: fadeIn ease 0.5s;
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateX(3rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    &-Text {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin-bottom: 2.2rem;
+
+      &-Title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #0b0f2d;
+      }
+
+      &-Subtitle {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #6d6f77;
+      }
+    }
+
+    &-Email {
+      width: 100%;
+      height: 3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    &-Password {
+      width: 100%;
+      height: 3rem;
+      margin-bottom: 2.2rem;
+    }
+
+    &-Register {
+      display: flex;
+      align-items: center;
+      margin-top: 0.6rem;
+
+      & > p {
+        font-size: 0.85rem;
+      }
+
+      &-Comment {
+        color: #0b0f2d;
+        margin-right: 0.2rem;
+      }
+
+      &-Link {
+        cursor: pointer;
+        color: #3c50e0;
+      }
+    }
+  }
+}
