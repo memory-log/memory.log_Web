@@ -4,10 +4,10 @@ import Header from "../../components/common/Header";
 import stores from "../../stores";
 
 const HeaderContainer = () => {
-  const { selectLoginModal } = stores.LoginStore;
+  const { selectModal } = stores.AuthStore;
   return (
     <>
-      <Header selectLoginModal={selectLoginModal} />
+      <Header selectModal={selectModal} />
     </>
   );
 };

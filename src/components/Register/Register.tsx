@@ -1,40 +1,37 @@
 import React from "react";
-import FadeIn from "react-fade-in";
-import { Link } from "react-router-dom";
+import Button from "../common/Button";
 import MaterialTextField from "../common/Material/MaterialTextField";
 import "./Register.scss";
 
-interface RegisterProps {}
+interface RegisterProps {
+  changePage: () => void;
+}
 
-const Register = () => {
+const Register = ({ changePage }: RegisterProps) => {
   return (
     <>
-      <div>
-        <div className="Register-Title">
-          <p>간단한 회원가입 후 롤링페이퍼를</p>
-          <p>작성하실 수 있어요.</p>
+      <div className="Register-Content">
+        <div className="Register-Content-Text">
+          <p className="Register-Content-Text-Title">회원가입</p>
         </div>
-        <div className="Register-TextFields">
-          <div className="Register-TextFields-TextField">
-            <MaterialTextField label="이름" variant="outlined" type="text" width="19rem" size="small" />
-          </div>
-          <div className="Register-TextFields-TextField">
-            <MaterialTextField label="아이디" variant="outlined" type="text" width="19rem" size="small" />
-          </div>
-          <div className="Register-TextFields-TextField">
-            <MaterialTextField label="비밀번호" variant="outlined" type="password" width="19rem" size="small" />
-          </div>
-          <div className="Register-TextFields-TextField">
-            <MaterialTextField label="비밀번호 확인" variant="outlined" type="password" width="19rem" size="small" />
-          </div>
+        <div className="Register-Content-Name">
+          <MaterialTextField label="이름" variant="outlined" type="text" width="100%" size="small" />
         </div>
-      </div>
-      <div className="Register-Button">
-        <div className="Register-Button-Text">
-          <p className="Register-Button-Text-Comment">잘 생각해보니 있는 것 같아요...</p>
-          <Link to="/login">
-            <p className="Register-Button-Text-Login">로그인</p>
-          </Link>
+        <div className="Register-Content-Email">
+          <MaterialTextField label="이메일" variant="outlined" type="text" width="100%" size="small" />
+        </div>
+        <div className="Register-Content-Password">
+          <MaterialTextField label="비밀번호" variant="outlined" type="password" width="100%" size="small" />
+        </div>
+        <div className="Register-Content-Check">
+          <MaterialTextField label="비밀번호 확인" variant="outlined" type="password" width="100%" size="small" />
+        </div>
+        <Button text="다음" height="2.6rem" />
+        <div className="Register-Content-Register">
+          <p className="Register-Content-Register-Comment">잘 생각해보니 있는 것 같아요...</p>
+          <p className="Register-Content-Register-Link" onClick={changePage}>
+            로그인
+          </p>
         </div>
       </div>
     </>

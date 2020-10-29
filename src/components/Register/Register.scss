@@ -1,45 +1,80 @@
+/* your css code */
 .Register {
-  &-Title {
-    margin-bottom: 3rem;
-    & > p {
-      font-size: 1.4rem;
-      font-weight: 700;
-    }
-  }
-
-  &-TextFields {
+  &-Content {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.6rem;
+    animation: fadeIn ease 0.5s;
 
-    &-TextField {
-      margin: 1.3rem 0;
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(3rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-  }
-
-  &-Button {
-    width: 100%;
 
     &-Text {
+      width: 100%;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin-bottom: 2rem;
+
+      &-Title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #0b0f2d;
+      }
+    }
+
+    &-Name {
+      width: 100%;
+      height: 3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    &-Email {
+      width: 100%;
+      height: 3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    &-Password {
+      width: 100%;
+      height: 3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    &-Check {
+      width: 100%;
+      height: 3rem;
+      margin-bottom: 2.2rem;
+    }
+
+    &-Register {
+      display: flex;
       align-items: center;
       margin-top: 0.6rem;
 
       & > p {
-        font-size: 0.6rem;
-        font-weight: 500;
+        font-size: 0.85rem;
       }
 
       &-Comment {
-        color: #777777;
+        color: #0b0f2d;
         margin-right: 0.2rem;
       }
 
-      &-Login {
-        color: #3c50e0;
+      &-Link {
         cursor: pointer;
-        font-size: 0.6rem;
-        font-weight: 500;
+        color: #3c50e0;
       }
     }
   }
