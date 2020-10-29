@@ -1,6 +1,8 @@
 import React from "react";
 import "./Auth.scss";
 import people from "../../assets/images/people.svg";
+import LoginContainer from "../../containers/Login/LoginContainer";
+import RegisterContainer from "../../containers/Register/RegisterContainer";
 import Login from "../Login";
 import Register from "../Register";
 
@@ -16,7 +18,7 @@ const Auth = ({ isPageChanged, changePage }: AuthProps) => {
         <div className="Auth-Picture">
           <img src={people} alt={people} />
         </div>
-        {isPageChanged ? <Login changePage={changePage} /> : <Register changePage={changePage} />}
+        {isPageChanged ? <LoginContainer changePage={changePage} /> : <RegisterContainer changePage={changePage} />}
       </div>
     </>
   );
