@@ -1,4 +1,4 @@
-import AuthStore from "./Auth/AuthStore";
+import AuthStore from "./Auth";
 
 const stores = {
   //

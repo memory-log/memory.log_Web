@@ -3,13 +3,16 @@ import "./Button.scss";
 
 interface ButtonProps {
   text: string;
-  height: string;
+  style?: React.CSSProperties;
+  id?: string;
+  className?: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button = ({ text, height }: ButtonProps) => {
+const Button = ({ text, style, className, id, onClick }: ButtonProps) => {
   return (
     <>
-      <button className="Button-Template" style={{ height: height }}>
+      <button id={id} className={`Button-Template ${className ? className : ""}`} style={style} onClick={onClick}>
         {text}
       </button>
     </>
