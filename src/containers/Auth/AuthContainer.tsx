@@ -13,15 +13,13 @@ interface StoreType {
 }
 
 const AuthContainer = ({ store }: AuthContainerProps) => {
-  const { isModalSelected, isPageChanged, selectModal, changePage } = store!.AuthStore;
+  const { show, open, page, showModal, changePage } = store!.AuthStore;
 
   return (
     <>
-      {isModalSelected && (
-        <Modal handleClose={selectModal} isModalSelected={isModalSelected}>
-          <Auth isPageChanged={isPageChanged} changePage={changePage} />
-        </Modal>
-      )}
+      <Modal close={showModal} show={show} open={open}>
+        <Auth page={page} changePage={changePage} />
+      </Modal>
     </>
   );
 };
