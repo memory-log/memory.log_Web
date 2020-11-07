@@ -1,25 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Modal.scss";
-import close from "../../../assets/images/close.svg";
+import exit from "../../../assets/images/close.svg";
 
 interface ModalProps {
-  handleClose: () => void;
-  isModalSelected: boolean;
+  close: () => void;
+  show: boolean;
+  open: boolean;
   children: React.ReactNode;
 }
 
-const Modal = ({ handleClose, isModalSelected, children }: ModalProps) => {
+const Modal = ({ close, show, open, children }: ModalProps) => {
+  useEffect(() => {
+    open ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "unset");
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [open]);
+
   return (
-    <div className="Modal">
-      <div
-        className={isModalSelected ? "Modal-Background-Enable Modal-Background" : "Modal-Background-Disable Modal-Background"}
-        onClick={handleClose}
-      ></div>
-      <div className={isModalSelected ? "Modal-Box-Enable Modal-Box" : "Modal-Box-Disable Modal-Box"}>
-        <img src={close} alt={close} onClick={handleClose} />
-        {children}
-      </div>
-    </div>
+    <>
+      {show && (
+        <div className="Modal">
+          <div
+            className={open ? "Modal-Background-Enable Modal-Background" : "Modal-Background-Disable Modal-Background"}
+            onClick={close}
+          ></div>
+          <div className={open ? "Modal-Box-Enable Modal-Box" : "Modal-Box-Disable Modal-Box"}>
+            <img src={exit} alt={exit} onClick={close} />
+            {children}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

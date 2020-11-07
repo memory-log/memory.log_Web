@@ -13,18 +13,26 @@ export interface LoginType {
 @autobind
 class AuthStore {
   @observable login: boolean = false;
-  @observable isModalSelected: boolean = false;
-  @observable isPageChanged: boolean = true;
+  @observable show: boolean = false;
+  @observable open: boolean = false;
+  @observable page: boolean = true;
 
   @action
-  selectModal() {
-    this.isModalSelected = !this.isModalSelected;
-    this.isPageChanged = true;
+  showModal() {
+    if (this.show) {
+      setTimeout(() => {
+        this.show = !this.show;
+      }, 500);
+    } else {
+      this.show = !this.show;
+    }
+    this.open = !this.open;
+    this.page = true;
   }
 
   @action
   changePage() {
-    this.isPageChanged = !this.isPageChanged;
+    this.page = !this.page;
   }
 
   @action
