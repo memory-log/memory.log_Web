@@ -2,17 +2,24 @@ import { inject, observer } from "mobx-react";
 import React from "react";
 import Auth from "../../components/Auth/Auth";
 import Modal from "../../components/common/Modal/Modal";
-import stores from "../../stores";
+import AuthStore from "../../stores/Auth/AuthStore";
 
-const AuthContainer = () => {
-  const { isModalSelected, isPageChanged, selectModal, changePage } = stores.AuthStore;
+interface AuthContainerProps {
+  store?: StoreType;
+}
+
+interface StoreType {
+  AuthStore: AuthStore;
+}
+
+const AuthContainer = ({ store }: AuthContainerProps) => {
+  const { show, open, page, showModal, changePage } = store!.AuthStore;
+
   return (
     <>
-      {isModalSelected && (
-        <Modal handleClose={selectModal}>
-          <Auth isPageChanged={isPageChanged} changePage={changePage} />
-        </Modal>
-      )}
+      <Modal close={showModal} show={show} open={open}>
+        <Auth page={page} changePage={changePage} />
+      </Modal>
     </>
   );
 };

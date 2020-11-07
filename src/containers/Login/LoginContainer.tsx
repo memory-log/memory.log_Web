@@ -2,14 +2,14 @@ import React, { useCallback, useEffect, useState } from "react";
 import Login from "../../components/Login";
 import { useHistory } from "react-router-dom";
 import { observer } from "mobx-react";
-import useStores from "../../lib/hooks/useSotres";
+import useStore from "../../lib/hooks/useStore";
 
 interface LoginContainerProps {
   changePage: () => void;
 }
 
 const LoginContainer = ({ changePage }: LoginContainerProps) => {
-  const { store } = useStores();
+  const { store } = useStore();
   const { tryLogin } = store.AuthStore;
 
   const history = useHistory();

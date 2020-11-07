@@ -1,14 +1,14 @@
 import React, { useCallback, useState } from "react";
 import Register from "../../components/Register";
 import { useHistory } from "react-router-dom";
-import useStores from "../../lib/hooks/useSotres";
+import useStore from "../../lib/hooks/useStore";
 
 interface RegisterContainerProps {
   changePage: () => void;
 }
 
 const RegisterContainer = ({ changePage }: RegisterContainerProps) => {
-  const { store } = useStores();
+  const { store } = useStore();
   const { tryRegister } = store.AuthStore;
 
   const history = useHistory();

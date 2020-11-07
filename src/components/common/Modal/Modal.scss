@@ -13,34 +13,67 @@
     height: 100%;
     position: fixed;
     z-index: 10;
-    background-color: rgba(0, 0, 0, 0.2);
-    animation: fadeInAnimation ease 0.6s;
+    background-color: rgba(255, 255, 255, 0.8);
 
-    @keyframes fadeInAnimation {
-      0% {
-        opacity: 0;
+    &-Enable {
+      animation: fadeIn ease 0.6s;
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
       }
-      100% {
-        opacity: 1;
+    }
+
+    &-Disable {
+      animation: fadeOut ease 0.6s;
+
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
       }
     }
   }
+
   &-Box {
     position: relative;
     z-index: 11;
     width: 45rem;
     height: 32rem;
     background-color: #ffffff;
-    box-shadow: 0 0 1.4rem 0 rgba(0, 0, 0, 0.25);
-    animation: risingUp ease 0.6s;
-    transform-origin: bottom;
+    box-shadow: 0 0 1.4rem 0 rgba(0, 0, 0, 0.15);
 
-    @keyframes risingUp {
-      0% {
-        transform: scale(1, 1) translateY(100rem);
+    &-Enable {
+      animation: risingUp ease 0.6s;
+      transform-origin: bottom;
+
+      @keyframes risingUp {
+        0% {
+          transform: translateY(100rem);
+        }
+        100% {
+          transform: translateY(0);
+        }
       }
-      100% {
-        transform: scale(1, 1) translateY(0);
+    }
+
+    &-Disable {
+      animation: risingDown ease 0.6s;
+
+      @keyframes risingDown {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(100rem);
+        }
       }
     }
 
