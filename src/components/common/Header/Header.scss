@@ -5,6 +5,20 @@
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
+  transition: 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 11;
+
+  &-Hide {
+    transform: translateY(-4rem);
+  }
+
+  &-Shadow {
+    box-shadow: 0 0 0.6rem 0 rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 0 0.6rem 0 rgba(0, 0, 0, 0.1);
+  }
 
   &-Container {
     width: 100%;

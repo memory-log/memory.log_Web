@@ -5,13 +5,15 @@ import title from "../../../assets/images/title.svg";
 import { Link } from "react-router-dom";
 
 interface HeaderProps {
+  shadow: boolean;
+  hide: boolean;
   showModal: () => void;
 }
 
-const Header = ({ showModal }: HeaderProps) => {
+const Header = ({ shadow, hide, showModal }: HeaderProps) => {
   return (
     <>
-      <div className="Header">
+      <div className={hide ? "Header-Hide Header" : shadow ? "Header-Shadow Header" : "Header"}>
         <div className="Header-Container">
           <Link to="/">
             <div className="Header-Logo">
