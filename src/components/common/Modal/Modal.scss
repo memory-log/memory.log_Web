@@ -13,7 +13,7 @@
     height: 100%;
     position: fixed;
     z-index: 10;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.8);
 
     &-Enable {
       animation: fadeIn ease 0.6s;
@@ -48,7 +48,7 @@
     width: 45rem;
     height: 32rem;
     background-color: #ffffff;
-    box-shadow: 0 0 1.4rem 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 1.4rem 0 rgba(0, 0, 0, 0.15);
 
     &-Enable {
       animation: risingUp ease 0.6s;
@@ -56,23 +56,23 @@
 
       @keyframes risingUp {
         0% {
-          transform: scale(1, 1) translateY(100rem);
+          transform: translateY(100rem);
         }
         100% {
-          transform: scale(1, 1) translateY(0);
+          transform: translateY(0);
         }
       }
+    }
 
-      &-Disable {
-        animation: risingDown ease 0.6s;
+    &-Disable {
+      animation: risingDown ease 0.6s;
 
-        @keyframes risingDown {
-          0% {
-            transform: scale(1, 1) translateY(100rem);
-          }
-          100% {
-            transform: scale(1, 1) translateY(0);
-          }
+      @keyframes risingDown {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(100rem);
         }
       }
     }
