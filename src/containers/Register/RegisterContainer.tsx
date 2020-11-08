@@ -9,11 +9,13 @@ interface RegisterContainerProps {
 
 const RegisterContainer = ({ changePage }: RegisterContainerProps) => {
   const { store } = useStore();
-  const { tryRegister } = store.AuthStore;
+  const { tryRegister, tryAccredit } = store.AuthStore;
 
   const history = useHistory();
 
   const [email, setEmail] = useState<string>("");
+  const [accredit, setAccredit] = useState<boolean>(false);
+
   const [name, setName] = useState<string>("");
   const [pw, setPw] = useState<string>("");
   const [checkPw, setCheckPw] = useState<string>("");
@@ -21,6 +23,10 @@ const RegisterContainer = ({ changePage }: RegisterContainerProps) => {
   const register = useCallback(async () => {
     if (!email || !pw || !name) {
       console.log("빈칸을 입력해 주세요");
+    } else if (pw === checkPw) {
+      console.log("비밀번호가 같지 않습니다.");
+    } else if (accredit === false) {
+      console.log("이메일 인증을 하지 않았습니다.");
     } else {
       tryRegister(email, name, pw)
         .then((res) => {
@@ -31,7 +37,21 @@ const RegisterContainer = ({ changePage }: RegisterContainerProps) => {
           console.log("가입실패");
         });
     }
-  }, [email, pw, name]);
+  }, [email, pw, name, accredit]);
+
+  const emailAccredit = () => {
+    if (!email) {
+      console.log("이메일을 적어주세요");
+    } else {
+      tryAccredit(email)
+        .then((res) => {
+          console.log("메일 발송");
+        })
+        .catch((err) => {
+          console.log("메일 발송 실패");
+        });
+    }
+  };
 
   return (
     <>
@@ -46,6 +66,8 @@ const RegisterContainer = ({ changePage }: RegisterContainerProps) => {
         checkPw={checkPw}
         setCheckPw={setCheckPw}
         register={register}
+        emailAccredit={emailAccredit}
+        setAccredit={setAccredit}
       />
     </>
   );

@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     fontWeight: (props: Props) => props.fontWeight || 500,
     fontSize: (props: Props) => props.fontSize || "0.9rem",
     width: (props: Props) => props.width || "18rem",
-    height: (props: Props) => props.height || "1rem",
+    height: (props: Props) => props.height || "",
     fontFamily: "Noto Sans KR",
     "& label.Mui-focused": {
       color: (props: Props) => props.color || "#3C50E0"
