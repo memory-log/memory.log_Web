@@ -27,10 +27,6 @@ const LoginContainer = ({ changePage }: LoginContainerProps) => {
       });
   }, [email, pw]);
 
-  useEffect(() => {
-    console.log(email, pw);
-  }, [email, pw]);
-
   return (
     <>
       <Login changePage={changePage} email={email} setEmail={setEmail} pw={pw} setPw={setPw} login={login} />

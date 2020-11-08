@@ -1,9 +1,7 @@
 import React from "react";
 import "./RegisterComplete.scss";
 
-interface RegisterCompleteProps {
-
-}
+interface RegisterCompleteProps {}
 
 const RegisterComplete = ({}: RegisterCompleteProps) => {
   return (

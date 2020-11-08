@@ -65,7 +65,20 @@ class AuthStore {
         resolve(response);
       });
     } catch (error) {
-      this.login = false;
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  };
+  @action
+  tryAccredit = async (email: string): Promise<ResponseType> => {
+    try {
+      const response: ResponseType = await AuthApi.Accredit(email);
+
+      return new Promise((resolve: (response: ResponseType) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
       return new Promise((resolve, reject: (error: Error) => void) => {
         reject(error);
       });
