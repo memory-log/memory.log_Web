@@ -2,7 +2,6 @@
   height: 100vh;
   display: flex;
   flex: 1 1 0%;
-  margin-top: 9rem;
 
   &-Container {
     width: 100%;
@@ -13,6 +12,7 @@
     &-List {
       width: 100%;
       max-width: 1200px;
+      padding-top: 9rem;
       position: relative;
       display: flex;
       flex-wrap: wrap;

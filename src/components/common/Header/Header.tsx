@@ -9,14 +9,11 @@ interface HeaderProps {
   shadow: boolean;
   hide: boolean;
   showModal: () => void;
+  tapState: number;
+  tapClickHandler: (idx: number) => void;
 }
 
-const Header = ({ shadow, hide, showModal }: HeaderProps) => {
-  const [tapState, setTapState] = useState<number>(0);
-  const tapClickHandler = (idx: number) => {
-    setTapState(idx);
-  };
-
+const Header = ({ shadow, hide, showModal, tapState, tapClickHandler }: HeaderProps) => {
   return (
     <>
       <div className={hide ? "Header-Hide Header" : shadow ? "Header-Shadow Header" : "Header"}>
