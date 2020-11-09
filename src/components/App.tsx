@@ -12,6 +12,7 @@ function App() {
         <Route exact path="/" component={MainPage} />
         <Route path="/email" component={EmailAuth} />
         <Route path="/write" component={WritePage} />
+        <Route path="/position" component={PositionPage} />
       </Switch>
     </div>
   );
