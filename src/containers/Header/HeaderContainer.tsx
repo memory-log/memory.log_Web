@@ -6,7 +6,7 @@ import useStore from "../../lib/hooks/useStore";
 const HeaderContainer = () => {
   const { store } = useStore();
   const { showModal } = store.AuthStore;
-  const { tapState, tapClickHandler } = store.PostStore;
+  const { isMain, tapState, tapClickHandler } = store.HeaderStore;
 
   const [hide, setHide] = useState<boolean>(false);
   const [shadow, setShadow] = useState<boolean>(false);
@@ -31,7 +31,14 @@ const HeaderContainer = () => {
 
   return (
     <>
-      <Header shadow={shadow} hide={hide} showModal={showModal} tapState={tapState} tapClickHandler={tapClickHandler} />
+      <Header
+        shadow={shadow}
+        hide={hide}
+        showModal={showModal}
+        isMain={isMain}
+        tapState={tapState}
+        tapClickHandler={tapClickHandler}
+      />
     </>
   );
 };

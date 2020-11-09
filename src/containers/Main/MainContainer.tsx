@@ -1,11 +1,16 @@
 import { observer } from "mobx-react";
-import React from "react";
+import React, { useEffect } from "react";
 import Main from "../../components/Main";
 import useStore from "../../lib/hooks/useStore";
 
 const MainContainer = () => {
   const { store } = useStore();
-  const { tapState } = store.PostStore;
+  const { tapState, isMainHandler } = store.HeaderStore;
+
+  useEffect(() => {
+    isMainHandler(true);
+  }, []);
+
   return (
     <>
       <Main tapState={tapState} />
