@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.scss";
-import logo from "../../../assets/images/logo.svg";
-import title from "../../../assets/images/title.svg";
+import { ReactComponent as Logo } from "../../../assets/images/logo.svg";
+import { ReactComponent as Title } from "../../../assets/images/title.svg";
 import { Link } from "react-router-dom";
+import taps from "../../../lib/models/tapModel";
 
 interface HeaderProps {
   shadow: boolean;
@@ -11,20 +12,49 @@ interface HeaderProps {
 }
 
 const Header = ({ shadow, hide, showModal }: HeaderProps) => {
+  const [tapState, setTapState] = useState<number>(0);
+  const tapClickHandler = (idx: number) => {
+    setTapState(idx);
+  };
+
   return (
     <>
       <div className={hide ? "Header-Hide Header" : shadow ? "Header-Shadow Header" : "Header"}>
         <div className="Header-Container">
-          <Link to="/">
-            <div className="Header-Logo">
-              <img className="Header-Logo-Icon" src={logo} alt={logo} />
-              <img className="Header-Logo-Title" src={title} alt={title} />
+          <div className="Header-Container-Content">
+            <Link to="/">
+              <div className="Header-Container-Content-Logo">
+                <Logo className="Header-Container-Content-Logo-Icon" />
+                <Title className="Header-Container-Content-Logo-Title" />
+              </div>
+            </Link>
+            <div className="Header-Container-Content-Account">
+              <button className="Header-Container-Content-Account-Login" onClick={() => showModal()}>
+                로그인
+              </button>
             </div>
-          </Link>
-          <div className="Header-Account">
-            <button className="Header-Account-Login" onClick={() => showModal()}>
-              로그인
-            </button>
+          </div>
+          <div className="Header-Container-Buttons">
+            {taps.map((tap, idx) => (
+              <div className="Header-Container-Buttons-Button" key={idx} onClick={() => tapClickHandler(idx)}>
+                <p
+                  className={
+                    tapState === idx
+                      ? "Header-Container-Buttons-Button-Name-Clicked Header-Container-Buttons-Button-Name"
+                      : "Header-Container-Buttons-Button-Name"
+                  }
+                >
+                  {tap}
+                </p>
+                <div
+                  className={
+                    tapState === idx
+                      ? "Header-Container-Buttons-Button-Line-Clicked Header-Container-Buttons-Button-Line"
+                      : "Header-Container-Buttons-Button-Line"
+                  }
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
