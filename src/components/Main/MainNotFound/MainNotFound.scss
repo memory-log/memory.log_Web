@@ -1,0 +1,80 @@
+.Main-NotFound {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &-Image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-Paper {
+      z-index: 11;
+      width: 13rem;
+      margin-right: 2rem;
+      animation: upAndDown ease 1s infinite;
+      @keyframes upAndDown {
+        0% {
+          transform: translateY(0rem);
+        }
+
+        50% {
+          transform: translateY(1rem);
+        }
+
+        100% {
+          transform: translateY(0rem);
+        }
+      }
+    }
+
+    &-Shadow {
+      width: 12rem;
+      animation: bigAndSmall ease 1s infinite;
+      @keyframes bigAndSmall {
+        0% {
+          transform: translateY(-3.2rem) scale(1, 1);
+        }
+
+        50% {
+          transform: translateY(-3.2rem) scale(0.9, 0.9);
+        }
+
+        100% {
+          transform: translateY(-3.2rem) scale(1, 1);
+        }
+      }
+    }
+  }
+
+  &-Title {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  &-Subtitle {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+  }
+
+  &-Button {
+    padding: 0.5rem 1.1rem;
+    background-color: #3c50e0;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    outline: none;
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #6577f8;
+    }
+  }
+}

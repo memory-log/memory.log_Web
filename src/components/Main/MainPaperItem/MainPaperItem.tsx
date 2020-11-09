@@ -13,7 +13,6 @@ const MainPaperItem = ({}: MainPaperItemProps) => {
           <div className="Main-Paper-Item-Info-Content">
             <p className="Main-Paper-Item-Info-Content-Date">2020년 11월 3일</p>
             <p className="Main-Paper-Item-Info-Content-Title">이것은 테스트용 타이틀입니다 승호야 나 잘했찌 낌모링</p>
-            <p className="Main-Paper-Item-Info-Content-Description">그리고 이거는 테스트용 설명이야요 이게 나야</p>
           </div>
           <div className="Main-Paper-Item-Info-Bottom">
             <div className="Main-Paper-Item-Info-Bottom-Profile">

@@ -1,11 +1,21 @@
 import { inject, observer } from "mobx-react";
 import React from "react";
 import Main from "../../components/Main";
+import PostStore from "../../stores/Post";
 
-const MainContainer = () => {
+interface MainContainerProps {
+  store?: StoreType;
+}
+
+interface StoreType {
+  PostStore: PostStore;
+}
+
+const MainContainer = ({ store }: MainContainerProps) => {
+  const { tapState } = store!.PostStore;
   return (
     <>
-      <Main />
+      <Main tapState={tapState} />
     </>
   );
 };
