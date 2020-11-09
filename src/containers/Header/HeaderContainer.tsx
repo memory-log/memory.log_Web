@@ -2,13 +2,26 @@ import { inject, observer } from "mobx-react";
 import React, { useEffect, useState, useRef } from "react";
 import Header from "../../components/common/Header";
 import stores from "../../stores";
+import AuthStore from "../../stores/Auth";
+import PostStore from "../../stores/Post";
 
-const HeaderContainer = () => {
-  const { showModal } = stores.AuthStore;
+interface HeaderContainerProps {
+  store?: StoreType;
+}
+
+interface StoreType {
+  AuthStore: AuthStore;
+  PostStore: PostStore;
+}
+
+const HeaderContainer = ({ store }: HeaderContainerProps) => {
+  const { showModal } = store!.AuthStore;
+  const { tapState, tapClickHandler } = store!.PostStore;
 
   const [hide, setHide] = useState<boolean>(false);
   const [shadow, setShadow] = useState<boolean>(false);
   const [pageY, setPageY] = useState<number>(0);
+
   const documentRef = useRef(document);
 
   const handleScroll = () => {
@@ -28,7 +41,7 @@ const HeaderContainer = () => {
 
   return (
     <>
-      <Header shadow={shadow} hide={hide} showModal={showModal} />
+      <Header shadow={shadow} hide={hide} showModal={showModal} tapState={tapState} tapClickHandler={tapClickHandler} />
     </>
   );
 };

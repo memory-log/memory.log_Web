@@ -8,7 +8,7 @@ const MainPaperItem = ({}: MainPaperItemProps) => {
   return (
     <>
       <div className="Main-Paper-Item">
-        <div className="Main-Paper-Item-Image"></div>
+        <div className="Main-Paper-Item-Image" />
         <div className="Main-Paper-Item-Info">
           <div className="Main-Paper-Item-Info-Content">
             <p className="Main-Paper-Item-Info-Content-Date">2020년 11월 3일</p>
@@ -17,7 +17,7 @@ const MainPaperItem = ({}: MainPaperItemProps) => {
           </div>
           <div className="Main-Paper-Item-Info-Bottom">
             <div className="Main-Paper-Item-Info-Bottom-Profile">
-              <div className="Main-Paper-Item-Info-Bottom-Profile-Avatar"></div>
+              <div className="Main-Paper-Item-Info-Bottom-Profile-Avatar" />
               <span className="Main-Paper-Item-Info-Bottom-Profile-Name">
                 <span>To. </span>홍길동
               </span>
