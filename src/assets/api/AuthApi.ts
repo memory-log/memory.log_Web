@@ -50,6 +50,34 @@ class AuthApi {
       throw new Error(`${error}`);
     }
   }
+
+  async GetInfo() {
+    try {
+      const url = `${server}/member/getinfo`;
+
+      const { data } = await axios.get(url);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async RefreshToken(refreshToken: string) {
+    try {
+      const url = `${server}/member/token`;
+
+      const body = {
+        refreshToken
+      };
+
+      const { data } = await axios.post(url, body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
 }
 
 export default new AuthApi();

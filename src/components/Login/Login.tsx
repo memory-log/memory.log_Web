@@ -42,7 +42,6 @@ const Login = ({ changePage, email, setEmail, pw, setPw, login }: LoginProps) =>
             onChange={(e) => setPw(e.target.value)}
           />
         </div>
-
         <Button text="로그인" style={{ height: "2.6rem" }} onClick={() => login()} />
         <div className="Login-Content-Register">
           <p className="Login-Content-Register-Comment">전 아직 회원이 아닌걸요...</p>

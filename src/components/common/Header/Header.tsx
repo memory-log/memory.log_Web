@@ -11,9 +11,11 @@ interface HeaderProps {
   showModal: () => void;
   tapState: number;
   tapClickHandler: (idx: number) => void;
+  login: boolean;
+  name: string;
 }
 
-const Header = ({ shadow, hide, showModal, tapState, tapClickHandler }: HeaderProps) => {
+const Header = ({ shadow, hide, showModal, tapState, tapClickHandler, login, name }: HeaderProps) => {
   return (
     <>
       <div className={hide ? "Header-Hide Header" : shadow ? "Header-Shadow Header" : "Header"}>
@@ -25,12 +27,22 @@ const Header = ({ shadow, hide, showModal, tapState, tapClickHandler }: HeaderPr
                 <Title className="Header-Container-Content-Logo-Title" />
               </div>
             </Link>
-            <div className="Header-Container-Content-Account">
-              <button className="Header-Container-Content-Account-Login" onClick={() => showModal()}>
-                로그인
-              </button>
-            </div>
+            {login ? (
+              <div className="Header-Container-Content-Account">
+                <div>{name}</div>
+                <button className="Header-Container-Content-Account-Login" onClick={() => showModal()}>
+                  로그인
+                </button>
+              </div>
+            ) : (
+              <div className="Header-Container-Content-Account">
+                <button className="Header-Container-Content-Account-Login" onClick={() => showModal()}>
+                  로그인
+                </button>
+              </div>
+            )}
           </div>
+
           <div className="Header-Container-Buttons">
             {taps.map((tap, idx) => (
               <div className="Header-Container-Buttons-Button" key={idx} onClick={() => tapClickHandler(idx)}>
