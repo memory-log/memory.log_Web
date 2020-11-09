@@ -1,18 +1,16 @@
-import { inject, observer } from "mobx-react";
-import React from "react";
+import { observer } from "mobx-react";
+import React, { useEffect } from "react";
 import Main from "../../components/Main";
-import PostStore from "../../stores/Post";
+import useStore from "../../lib/hooks/useStore";
 
-interface MainContainerProps {
-  store?: StoreType;
-}
+const MainContainer = () => {
+  const { store } = useStore();
+  const { tapState, isMainHandler } = store.HeaderStore;
 
-interface StoreType {
-  PostStore: PostStore;
-}
+  useEffect(() => {
+    isMainHandler(true);
+  }, []);
 
-const MainContainer = ({ store }: MainContainerProps) => {
-  const { tapState } = store!.PostStore;
   return (
     <>
       <Main tapState={tapState} />
@@ -20,4 +18,4 @@ const MainContainer = ({ store }: MainContainerProps) => {
   );
 };
 
-export default inject("store")(observer(MainContainer));
+export default observer(MainContainer);

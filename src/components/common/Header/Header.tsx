@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.scss";
 import { ReactComponent as Logo } from "../../../assets/images/logo.svg";
 import { ReactComponent as Title } from "../../../assets/images/title.svg";
@@ -9,13 +9,14 @@ interface HeaderProps {
   shadow: boolean;
   hide: boolean;
   showModal: () => void;
+  isMain: boolean;
   tapState: number;
   tapClickHandler: (idx: number) => void;
   login: boolean;
   name: string;
 }
 
-const Header = ({ shadow, hide, showModal, tapState, tapClickHandler, login, name }: HeaderProps) => {
+const Header = ({ shadow, hide, showModal, isMain, tapState, tapClickHandler, login, name }: HeaderProps) => {
   return (
     <>
       <div className={hide ? "Header-Hide Header" : shadow ? "Header-Shadow Header" : "Header"}>
@@ -42,29 +43,30 @@ const Header = ({ shadow, hide, showModal, tapState, tapClickHandler, login, nam
               </div>
             )}
           </div>
-
-          <div className="Header-Container-Buttons">
-            {taps.map((tap, idx) => (
-              <div className="Header-Container-Buttons-Button" key={idx} onClick={() => tapClickHandler(idx)}>
-                <p
-                  className={
-                    tapState === idx
-                      ? "Header-Container-Buttons-Button-Name-Clicked Header-Container-Buttons-Button-Name"
-                      : "Header-Container-Buttons-Button-Name"
-                  }
-                >
-                  {tap}
-                </p>
-                <div
-                  className={
-                    tapState === idx
-                      ? "Header-Container-Buttons-Button-Line-Clicked Header-Container-Buttons-Button-Line"
-                      : "Header-Container-Buttons-Button-Line"
-                  }
-                />
-              </div>
-            ))}
-          </div>
+          {isMain && (
+            <div className="Header-Container-Buttons">
+              {taps.map((tap, idx) => (
+                <div className="Header-Container-Buttons-Button" key={idx} onClick={() => tapClickHandler(idx)}>
+                  <p
+                    className={
+                      tapState === idx
+                        ? "Header-Container-Buttons-Button-Name-Clicked Header-Container-Buttons-Button-Name"
+                        : "Header-Container-Buttons-Button-Name"
+                    }
+                  >
+                    {tap}
+                  </p>
+                  <div
+                    className={
+                      tapState === idx
+                        ? "Header-Container-Buttons-Button-Line-Clicked Header-Container-Buttons-Button-Line"
+                        : "Header-Container-Buttons-Button-Line"
+                    }
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </>

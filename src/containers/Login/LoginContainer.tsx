@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import Login from "../../components/Login";
 import { useHistory } from "react-router-dom";
 import { observer } from "mobx-react";

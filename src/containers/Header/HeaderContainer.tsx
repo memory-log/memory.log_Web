@@ -8,7 +8,7 @@ import axios from "axios";
 const HeaderContainer = () => {
   const { store } = useStore();
   const { showModal, login, getInfo, name } = store.AuthStore;
-  const { tapState, tapClickHandler } = store.PostStore;
+  const { isMain, tapState, tapClickHandler } = store.HeaderStore;
 
   const [hide, setHide] = useState<boolean>(false);
   const [shadow, setShadow] = useState<boolean>(false);
@@ -56,6 +56,7 @@ const HeaderContainer = () => {
         shadow={shadow}
         hide={hide}
         showModal={showModal}
+        isMain={isMain}
         login={login}
         tapState={tapState}
         tapClickHandler={tapClickHandler}
