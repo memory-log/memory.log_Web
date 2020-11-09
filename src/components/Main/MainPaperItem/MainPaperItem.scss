@@ -12,6 +12,11 @@
   flex-direction: column;
   margin: 1rem;
   cursor: pointer;
+  transition: ease 0.2s;
+
+  &:hover {
+    transform: scale(1.05, 1.05);
+  }
 
   &-Image {
     width: 100%;
