@@ -14,9 +14,24 @@ interface RegisterProps {
   checkPw: string;
   setCheckPw: React.Dispatch<React.SetStateAction<string>>;
   register: () => Promise<void>;
+  emailAccredit: () => void;
+  setAccredit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Register = ({ changePage, email, setEmail, name, setName, pw, setPw, checkPw, setCheckPw, register }: RegisterProps) => {
+const Register = ({
+  changePage,
+  email,
+  setEmail,
+  name,
+  setName,
+  pw,
+  setPw,
+  checkPw,
+  setCheckPw,
+  register,
+  emailAccredit,
+  setAccredit
+}: RegisterProps) => {
   return (
     <>
       <div className="Register-Content">
@@ -38,6 +53,7 @@ const Register = ({ changePage, email, setEmail, name, setName, pw, setPw, check
         </div>
         <div className="Register-Content-Email">
           <MaterialTextField
+            className="Register-Content-Email-textField"
             label="이메일"
             variant="outlined"
             type="text"
@@ -48,6 +64,15 @@ const Register = ({ changePage, email, setEmail, name, setName, pw, setPw, check
               setEmail(e.target.value);
             }}
           />
+          <div
+            className="Register-Content-Email-divButton"
+            onClick={() => {
+              emailAccredit();
+              setAccredit(true);
+            }}
+          >
+            <span>메일 인증</span>
+          </div>
         </div>
         <div className="Register-Content-Password">
           <MaterialTextField

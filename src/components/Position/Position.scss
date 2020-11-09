@@ -1,0 +1,34 @@
+.position {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem;
+  font-weight: 600;
+
+  &-box {
+    max-width: 35rem;
+    width: 100%;
+
+    &-title {
+      font-size: 2rem;
+      margin-top: 4rem;
+    }
+
+    &-content {
+      width: 100%;
+      height: 43rem;
+      border: 1px solid #dcdcdc;
+      border-radius: 4px;
+      margin-top: 2rem;
+    }
+
+    &-btnarea {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      margin-top: 4rem;
+    }
+  }
+}

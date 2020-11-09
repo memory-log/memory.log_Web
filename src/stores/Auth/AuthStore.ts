@@ -2,13 +2,10 @@ import { action, observable } from "mobx";
 import { autobind } from "core-decorators";
 import AuthApi from "../../assets/api/AuthApi";
 import { sha256 } from "js-sha256";
-
-export interface LoginType {
-  message: number;
-  status: number;
-  refreshToken: string;
-  accessToken: string;
-}
+import { GetMyInfoResponse, LoginResponse, Response } from "../../util/types/Response";
+import axios from "axios";
+import cookie from "react-cookies";
+import { copyFileSync } from "fs";
 
 @autobind
 class AuthStore {
@@ -16,6 +13,8 @@ class AuthStore {
   @observable show: boolean = false;
   @observable open: boolean = false;
   @observable page: boolean = true;
+  @observable email: string = "";
+  @observable name: string = "";
 
   @action
   showModal() {
@@ -36,16 +35,20 @@ class AuthStore {
   }
 
   @action
-  tryLogin = async (email: string, pw: string): Promise<LoginType> => {
+  tryLogin = async (email: string, pw: string): Promise<LoginResponse> => {
     try {
-      const response: LoginType = await AuthApi.Login(email, sha256(pw));
+      const response: LoginResponse = await AuthApi.Login(email, sha256(pw));
 
       if (response.status === 200) {
         this.login = true;
-        localStorage.setItem("token", response.accessToken);
+        localStorage.setItem("accessToken", response.data.accessToken);
+        cookie.save("refreshToken", response.data.refreshToken, { path: "/", httpOnly: true });
+        axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.accessToken}`;
+
+        console.log(this.login);
       }
 
-      return new Promise((resolve: (response: LoginType) => void, reject) => {
+      return new Promise((resolve: (response: LoginResponse) => void, reject) => {
         resolve(response);
       });
     } catch (error) {
@@ -57,11 +60,46 @@ class AuthStore {
   };
 
   @action
-  tryRegister = async (email: string, name: string, pw: string): Promise<ResponseType> => {
+  tryRegister = async (email: string, name: string, pw: string): Promise<Response> => {
     try {
-      const response: ResponseType = await AuthApi.Register(email, name, sha256(pw));
+      const response: Response = await AuthApi.Register(email, name, sha256(pw));
 
-      return new Promise((resolve: (response: ResponseType) => void, reject) => {
+      return new Promise((resolve: (response: Response) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  };
+
+  @action
+  tryAccredit = async (email: string): Promise<Response> => {
+    try {
+      const response: Response = await AuthApi.Accredit(email);
+
+      return new Promise((resolve: (response: Response) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  };
+
+  @action
+  getInfo = async (): Promise<GetMyInfoResponse> => {
+    try {
+      const response: GetMyInfoResponse = await AuthApi.GetInfo();
+
+      if (response.status === 200) {
+        this.name = response.data.name;
+        this.email = response.data.email;
+      }
+
+      return new Promise((resolve: (response: GetMyInfoResponse) => void, reject) => {
         resolve(response);
       });
     } catch (error) {
