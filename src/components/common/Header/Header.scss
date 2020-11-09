@@ -1,7 +1,7 @@
 .Header {
   width: 100%;
   display: flex;
-  padding: 0.6rem 0;
+  padding-top: 1rem;
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
@@ -12,7 +12,7 @@
   z-index: 11;
 
   &-Hide {
-    transform: translateY(-4rem);
+    transform: translateY(-7rem);
   }
 
   &-Shadow {
@@ -24,45 +24,87 @@
     width: 100%;
     max-width: 1200px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     padding: 0 1rem;
-  }
-  &-Logo {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
 
-    &-Icon {
-      width: 1.6rem;
-      height: 1.6rem;
-      margin-right: 0.6rem;
+    &-Content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      &-Logo {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        &-Icon {
+          width: 2rem;
+          height: 2rem;
+          margin-right: 0.3rem;
+        }
+
+        &-Title {
+          height: 1.6rem;
+        }
+      }
+
+      &-Account {
+        display: flex;
+        align-items: center;
+
+        &-Login {
+          width: 6rem;
+          height: 2.3rem;
+          background-color: #3c50e0;
+          color: #ffffff;
+          font-size: 1rem;
+          font-weight: 600;
+          outline: none;
+          border: none;
+          border-radius: 3rem;
+          cursor: pointer;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: #6577f8;
+          }
+        }
+      }
     }
 
-    &-Title {
-      height: 1.6rem;
-    }
-  }
+    &-Buttons {
+      display: flex;
 
-  &-Account {
-    display: flex;
-    align-items: center;
+      &-Button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 1rem;
+        cursor: pointer;
 
-    &-Login {
-      width: 6rem;
-      height: 2.3rem;
-      background-color: #3c50e0;
-      color: #ffffff;
-      font-size: 1rem;
-      font-weight: 600;
-      outline: none;
-      border: none;
-      border-radius: 3rem;
-      cursor: pointer;
-      transition: background-color 0.2s;
+        &-Name {
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin-bottom: 0.4rem;
+          transition: color 0.2s;
+          color: #cfcfcf;
 
-      &:hover {
-        background-color: #6577f8;
+          &-Clicked {
+            font-weight: 700;
+            color: #3c50e0;
+          }
+        }
+
+        &-Line {
+          transition: all 0.2s;
+
+          &-Clicked {
+            width: 100%;
+            height: 0.2rem;
+            background-color: #3c50e0;
+          }
+        }
       }
     }
   }
