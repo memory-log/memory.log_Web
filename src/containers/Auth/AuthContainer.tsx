@@ -1,19 +1,12 @@
-import { inject, observer } from "mobx-react";
+import { observer } from "mobx-react";
 import React from "react";
 import Auth from "../../components/Auth/Auth";
 import Modal from "../../components/common/Modal/Modal";
-import AuthStore from "../../stores/Auth/AuthStore";
+import useStore from "../../lib/hooks/useStore";
 
-interface AuthContainerProps {
-  store?: StoreType;
-}
-
-interface StoreType {
-  AuthStore: AuthStore;
-}
-
-const AuthContainer = ({ store }: AuthContainerProps) => {
-  const { show, open, page, showModal, changePage } = store!.AuthStore;
+const AuthContainer = () => {
+  const { store } = useStore();
+  const { show, open, page, showModal, changePage } = store.AuthStore;
 
   return (
     <>
@@ -24,4 +17,4 @@ const AuthContainer = ({ store }: AuthContainerProps) => {
   );
 };
 
-export default inject("store")(observer(AuthContainer));
+export default observer(AuthContainer);

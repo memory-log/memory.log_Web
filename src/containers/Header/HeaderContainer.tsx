@@ -1,22 +1,12 @@
-import { inject, observer } from "mobx-react";
+import { observer } from "mobx-react";
 import React, { useEffect, useState, useRef } from "react";
 import Header from "../../components/common/Header";
-import stores from "../../stores";
-import AuthStore from "../../stores/Auth";
-import PostStore from "../../stores/Post";
+import useStore from "../../lib/hooks/useStore";
 
-interface HeaderContainerProps {
-  store?: StoreType;
-}
-
-interface StoreType {
-  AuthStore: AuthStore;
-  PostStore: PostStore;
-}
-
-const HeaderContainer = ({ store }: HeaderContainerProps) => {
-  const { showModal } = store!.AuthStore;
-  const { tapState, tapClickHandler } = store!.PostStore;
+const HeaderContainer = () => {
+  const { store } = useStore();
+  const { showModal } = store.AuthStore;
+  const { tapState, tapClickHandler } = store.PostStore;
 
   const [hide, setHide] = useState<boolean>(false);
   const [shadow, setShadow] = useState<boolean>(false);
@@ -46,4 +36,4 @@ const HeaderContainer = ({ store }: HeaderContainerProps) => {
   );
 };
 
-export default inject("store")(observer(HeaderContainer));
+export default observer(HeaderContainer);
