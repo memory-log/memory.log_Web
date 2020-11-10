@@ -1,10 +1,10 @@
 import axios from "axios";
-import Cookie from "js-cookie";
+import cookie from "react-cookies";
 import AuthApi from "../assets/api/AuthApi";
 import { RefreshTokenResponse } from "../util/types/Response";
 
 const refresh = async (): Promise<boolean> => {
-  const refreshToken = Cookie.get("refreshToken");
+  const refreshToken = cookie.load("refreshToken");
 
   if (!refreshToken) {
     return false;
@@ -17,7 +17,7 @@ const refresh = async (): Promise<boolean> => {
       return true;
     })
     .catch(() => {
-      Cookie.remove("refreshToken");
+      cookie.remove("refreshToken");
     });
 
   return false;
