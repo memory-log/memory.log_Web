@@ -3,6 +3,7 @@ import Button from "../../common/Button";
 import MaterialTextField from "../../common/Material/MaterialTextField";
 import "./Register.scss";
 
+
 interface RegisterProps {
   changePage: () => void;
   email: string;

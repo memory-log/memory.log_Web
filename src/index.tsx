@@ -6,15 +6,18 @@ import * as serviceWorker from "./serviceWorker";
 import stores from "./stores";
 import "./util/util.scss";
 import { BrowserRouter } from "react-router-dom";
+import { CookiesProvider } from "react-cookie";
 
 ReactDOM.render(
-  <Provider store={stores}>
-    <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </React.StrictMode>
-  </Provider>,
+  <CookiesProvider>
+    <Provider store={stores}>
+      <React.StrictMode>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </React.StrictMode>
+    </Provider>
+  </CookiesProvider>,
   document.getElementById("root")
 );
 

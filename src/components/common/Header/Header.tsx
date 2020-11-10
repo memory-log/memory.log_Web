@@ -32,7 +32,7 @@ const Header = ({ shadow, hide, showModal, isMain, tapState, tapClickHandler, lo
               <div className="Header-Container-Content-Account">
                 <div>{name}</div>
                 <button className="Header-Container-Content-Account-Login" onClick={() => showModal()}>
-                  로그인
+                  작성하기
                 </button>
               </div>
             ) : (
