@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-import Position from "../../components/Position/Position";
+import Position from "../../components/Paper/Position";
 
 const PositionContainer = ({}) => {
   return (

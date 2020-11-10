@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-import Write from "../../components/Write/Write";
+import Write from "../../components/Paper/Write";
 
 const WriteContainer = ({}) => {
   const [color, setColor] = useState("#707070");

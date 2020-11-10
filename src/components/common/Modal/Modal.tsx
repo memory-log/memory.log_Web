@@ -21,10 +21,7 @@ const Modal = ({ close, show, open, children }: ModalProps) => {
     <>
       {show && (
         <div className="Modal">
-          <div
-            className={open ? "Modal-Background-Enable Modal-Background" : "Modal-Background-Disable Modal-Background"}
-            onClick={close}
-          ></div>
+          <div className={open ? "Modal-Background-Enable Modal-Background" : "Modal-Background-Disable Modal-Background"}></div>
           <div className={open ? "Modal-Box-Enable Modal-Box" : "Modal-Box-Disable Modal-Box"}>
             <img src={exit} alt={exit} onClick={close} />
             {children}
