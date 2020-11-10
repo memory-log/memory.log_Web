@@ -3,9 +3,6 @@ import { autobind } from "core-decorators";
 import AuthApi from "../../assets/api/AuthApi";
 import { sha256 } from "js-sha256";
 import { GetMyInfoResponse, LoginResponse, Response } from "../../util/types/Response";
-import axios from "axios";
-import cookie from "react-cookies";
-import { copyFileSync } from "fs";
 
 @autobind
 class AuthStore {
@@ -41,11 +38,6 @@ class AuthStore {
 
       if (response.status === 200) {
         this.login = true;
-        localStorage.setItem("accessToken", response.data.accessToken);
-        cookie.save("refreshToken", response.data.refreshToken, { path: "/", httpOnly: true });
-        axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.accessToken}`;
-
-        console.log(this.login);
       }
 
       return new Promise((resolve: (response: LoginResponse) => void, reject) => {
@@ -97,6 +89,7 @@ class AuthStore {
       if (response.status === 200) {
         this.name = response.data.name;
         this.email = response.data.email;
+        this.login = true;
       }
 
       return new Promise((resolve: (response: GetMyInfoResponse) => void, reject) => {
