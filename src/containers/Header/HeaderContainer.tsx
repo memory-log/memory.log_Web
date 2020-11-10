@@ -29,15 +29,17 @@ const HeaderContainer = () => {
   const getInfoCallback = useCallback(() => {
     if (localStorage.getItem("accessToken")) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("accessToken")}`;
-      getInfo().catch(async (err: Error) => {
-        if (err.message.indexOf("410")) {
-          if (await refresh()) {
-            getInfo().catch((err: Error) => {
-              console.log("권한 없음");
-            });
+      setTimeout(() => {
+        getInfo().catch(async (err: Error) => {
+          if (err.message.indexOf("410")) {
+            if (await refresh()) {
+              getInfo().catch((err: Error) => {
+                console.log("권한 없음");
+              });
+            }
           }
-        }
-      });
+        });
+      }, 10);
     }
   }, [login]);
 
