@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { observer } from "mobx-react";
 import useStore from "../../lib/hooks/useStore";
 import { LoginResponse } from "../../util/types/Response";
+import { useCookies } from "react-cookie";
 import Swal from "sweetalert2";
 
 interface LoginContainerProps {
@@ -14,6 +15,8 @@ const LoginContainer = ({ changePage }: LoginContainerProps) => {
   const { store } = useStore();
   const { tryLogin, showModal } = store.AuthStore;
 
+  const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
+
   const history = useHistory();
   const [email, setEmail] = useState<string>("");
   const [pw, setPw] = useState<string>("");
@@ -21,6 +24,8 @@ const LoginContainer = ({ changePage }: LoginContainerProps) => {
   const login = useCallback(async () => {
     tryLogin(email, pw)
       .then((res: LoginResponse) => {
+        localStorage.setItem("accessToken", res.data.accessToken);
+        setCookie("refreshToken", res.data.refreshToken, { httpOnly: true, path: "/" });
         Swal.fire("로그인 성공", "롤링페이퍼로 좋은 추억 남기세요!", "success");
         showModal();
       })
