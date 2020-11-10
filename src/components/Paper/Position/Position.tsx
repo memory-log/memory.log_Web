@@ -1,6 +1,6 @@
 import React from "react";
 import "./Position.scss";
-import Button from "../common/Button/Button";
+import Button from "../../common/Button";
 
 interface PositionProps {}
 
