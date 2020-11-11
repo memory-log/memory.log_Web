@@ -1,38 +1,38 @@
 import React from "react";
 import AuthContainer from "../../containers/Auth/AuthContainer";
 import MainNotFound from "../Main/MainNotFound";
-import MainPaperItem from "./MainPaperItem/MainPaperItem";
+import MainPaperItem from "./MainPaperItem";
+import MainPaperLoading from "./MainPaperLoading";
+import PaperType from "../../util/types/Paper";
 import "./Main.scss";
 
 interface MainProps {
-  tapState: number;
+  papers: PaperType[];
+  notFound: boolean;
+  loading: boolean;
 }
 
-const Main = ({ tapState }: MainProps) => {
-  //NotFound 페이지 테스트 때문에 조건부 렌더링좀 괴상하게 해놨습니다 신경 안써두대양
+const Main = ({ papers, notFound, loading }: MainProps) => {
   return (
     <>
       <div className="Main">
         <div className="Main-Container">
-          {tapState === 2 ? (
+          {notFound ? (
             <MainNotFound />
           ) : (
             <div className="Main-Container-List">
-              <MainPaperItem />
-              <MainPaperItem />
-              <MainPaperItem />
-              <MainPaperItem />
-              <MainPaperItem />
-              <MainPaperItem />
-              <MainPaperItem />
-              <MainPaperItem />
-              <MainPaperItem />
-              <MainPaperItem />
-              <MainPaperItem />
-              <MainPaperItem />
-              <MainPaperItem />
-              <MainPaperItem />
-              <MainPaperItem />
+              {loading ? (
+                <>
+                  <MainPaperLoading />
+                  <MainPaperLoading />
+                  <MainPaperLoading />
+                  <MainPaperLoading />
+                  <MainPaperLoading />
+                  <MainPaperLoading />
+                </>
+              ) : (
+                papers.map((paper, idx) => <MainPaperItem key={idx} paper={paper} />)
+              )}
             </div>
           )}
         </div>

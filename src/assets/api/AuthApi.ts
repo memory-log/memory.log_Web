@@ -1,10 +1,10 @@
 import axios from "axios";
 import { SERVER } from "../../config/config.json";
 
-class AuthApi {
+class AuthAPI {
   async Login(email: string, pw: string) {
     try {
-      const url = `${SERVER}/member/signin`;
+      const url = `${SERVER}/member/signIn`;
 
       const body = {
         email,
@@ -20,7 +20,7 @@ class AuthApi {
   }
   async Register(email: string, name: string, pw: string) {
     try {
-      const url = `${SERVER}/member/signup`;
+      const url = `${SERVER}/member/signUp`;
       const body = {
         email,
         name,
@@ -53,7 +53,7 @@ class AuthApi {
 
   async GetInfo() {
     try {
-      const url = `${SERVER}/member/getinfo`;
+      const url = `${SERVER}/member/getInfo`;
 
       const { data } = await axios.get(url);
 
@@ -80,4 +80,4 @@ class AuthApi {
   }
 }
 
-export default new AuthApi();
+export default new AuthAPI();
