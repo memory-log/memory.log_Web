@@ -1,6 +1,5 @@
-import React, { useEffect, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import Register from "../../../components/Auth/Register";
-import { useHistory } from "react-router-dom";
 import useStore from "../../../lib/hooks/useStore";
 import Swal from "sweetalert2";
 
@@ -12,10 +11,9 @@ const RegisterContainer = ({ changePage }: RegisterContainerProps) => {
   const { store } = useStore();
   const { tryRegister, tryAccredit } = store.AuthStore;
 
-  const history = useHistory();
-
   const [email, setEmail] = useState<string>("");
   const [accredit, setAccredit] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [name, setName] = useState<string>("");
   const [pw, setPw] = useState<string>("");
@@ -41,11 +39,15 @@ const RegisterContainer = ({ changePage }: RegisterContainerProps) => {
   }, [email, pw, name, accredit, checkPw]);
 
   const handleEmailAccredit = () => {
+    setLoading(true);
     if (!email) {
+      Swal.fire({ icon: "error", title: "메일", text: "메일을 입력해 주세요" });
+      setLoading(false);
     } else {
       tryAccredit(email)
         .then((res) => {
-          Swal.fire({ icon: "success", title: "이메일 인증", text: "입력하신 이메일에서 인증을 완료해주세요!" });
+          setLoading(false);
+          Swal.fire("메일을 발송하였습니다!", "확인 버튼을 눌러 주세요!", "success");
         })
         .catch((err) => {
           Swal.fire({ icon: "error", title: "이메일 인증 실패", text: "유효하지 않은 이메일입니다!" });
@@ -68,6 +70,7 @@ const RegisterContainer = ({ changePage }: RegisterContainerProps) => {
         handleRegister={handleRegister}
         handleEmailAccredit={handleEmailAccredit}
         setAccredit={setAccredit}
+        loading={loading}
       />
     </>
   );

@@ -5,6 +5,7 @@ import { ReactComponent as Title } from "../../../assets/images/title.svg";
 import { Link } from "react-router-dom";
 import taps from "../../../lib/models/tapModel";
 import { ReactComponent as Profile } from "../../../assets/images/profile.svg";
+import HeaderProfile from "./HeaderProfile";
 
 interface HeaderProps {
   shadow: boolean;
@@ -15,9 +16,22 @@ interface HeaderProps {
   tapClickHandler: (idx: number) => void;
   login: boolean;
   create: () => void;
+  headerProfile: boolean;
+  setHeaderProfile: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Header = ({ shadow, hide, showModal, isMain, tapState, tapClickHandler, login, create }: HeaderProps) => {
+const Header = ({
+  shadow,
+  hide,
+  showModal,
+  isMain,
+  tapState,
+  tapClickHandler,
+  login,
+  create,
+  headerProfile,
+  setHeaderProfile
+}: HeaderProps) => {
   return (
     <>
       <div className={hide ? "Header-Hide Header" : shadow ? "Header-Shadow Header" : "Header"}>
@@ -31,10 +45,15 @@ const Header = ({ shadow, hide, showModal, isMain, tapState, tapClickHandler, lo
             </Link>
             {login ? (
               <div className="Header-Container-Content-Account">
-                <button className="Header-Container-Content-Account-Create" onClick={() => create()}>
+                <button className="Header-Container-Content-Account-Write" onClick={() => create()}>
                   작성하기
                 </button>
-                <Profile className="Header-Container-Content-Account-Profile" />
+                <Profile
+                  className="Header-Container-Content-Account-Profile"
+                  onClick={() => {
+                    setHeaderProfile(true);
+                  }}
+                />
               </div>
             ) : (
               <div className="Header-Container-Content-Account">
@@ -43,6 +62,7 @@ const Header = ({ shadow, hide, showModal, isMain, tapState, tapClickHandler, lo
                 </button>
               </div>
             )}
+            {headerProfile && login ? <HeaderProfile /> : <></>}
           </div>
           {isMain && (
             <div className="Header-Container-Buttons">

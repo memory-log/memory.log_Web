@@ -4,7 +4,7 @@ import Header from "../../components/common/Header";
 import useStore from "../../lib/hooks/useStore";
 import refresh from "../../lib/refresh";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 
 const HeaderContainer = () => {
   const { store } = useStore();
@@ -14,6 +14,7 @@ const HeaderContainer = () => {
   const [hide, setHide] = useState<boolean>(false);
   const [shadow, setShadow] = useState<boolean>(false);
   const [pageY, setPageY] = useState<number>(0);
+  const [headerProfile, setHeaderProfile] = useState<boolean>(false);
 
   const history = useHistory();
 
@@ -70,9 +71,11 @@ const HeaderContainer = () => {
         tapState={tapState}
         tapClickHandler={tapClickHandler}
         create={create}
+        headerProfile={headerProfile}
+        setHeaderProfile={setHeaderProfile}
       />
     </>
   );
 };
 
-export default observer(HeaderContainer);
+export default withRouter(observer(HeaderContainer));
