@@ -52,7 +52,7 @@ const CreatePaper = ({}: CreatePaperProps) => {
             </div>
           </div>
           <div className="create-paper-box-btnarea">
-            <Button text="롤링페이퍼 만들기" style={{ width: "35rem", height: "3.6rem" }} />
+            <Button text="롤링페이퍼 만들기" style={{ height: "3.6rem", fontSize: "1.2rem" }} />
           </div>
         </div>
       </div>
