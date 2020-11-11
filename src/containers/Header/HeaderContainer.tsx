@@ -29,9 +29,9 @@ const HeaderContainer = () => {
     setPageY(pageYOffset);
   };
 
-  const write = useCallback(() => {
-    history.push("/write");
-  }, []);
+  const create = () => {
+    history.push("/create");
+  };
 
   const getInfoCallback = useCallback(() => {
     if (localStorage.getItem("accessToken")) {
@@ -69,7 +69,7 @@ const HeaderContainer = () => {
         login={login}
         tapState={tapState}
         tapClickHandler={tapClickHandler}
-        write={write}
+        create={create}
       />
     </>
   );

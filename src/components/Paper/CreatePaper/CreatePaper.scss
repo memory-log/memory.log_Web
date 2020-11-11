@@ -1,4 +1,4 @@
-.make {
+.create-paper {
   width: 100%;
   height: auto;
   display: flex;
@@ -20,13 +20,14 @@
         border: none;
         width: 25rem;
         height: 3rem;
-        border-bottom: 1px solid #707070;
+        border-bottom: 1px solid #cccccc;
         padding-left: 0.2rem;
-        font-size: 2rem;
+        font-size: 1.4rem;
         margin-top: 4rem;
         font-family: "NotoSansKR";
         font-weight: 600;
         &::placeholder {
+          color: #b8b8b8;
           font-weight: 600;
         }
         &:focus {
@@ -38,13 +39,14 @@
         border: none;
         width: 100%;
         height: 3rem;
-        border-bottom: 1px solid #707070;
+        border-bottom: 1px solid #cccccc;
         padding-left: 0.2rem;
-        font-size: 2rem;
+        font-size: 1.4rem;
         margin-top: 1rem;
         font-family: "NotoSansKR";
         font-weight: 600;
         &::placeholder {
+          color: #b8b8b8;
           font-weight: 600;
         }
         &:focus {
@@ -55,10 +57,12 @@
       &-range {
         width: 100%;
         margin-top: 2rem;
+
         &-text {
-          color: #707070;
+          color: #0b0f2d;
           padding-left: 0.2rem;
-          font-size: 2rem;
+          font-size: 1.2rem;
+          margin-bottom: 0.4rem;
         }
 
         &-area {
@@ -111,9 +115,10 @@
         margin-top: 2rem;
 
         &-text {
-          color: #707070;
+          color: #0b0f2d;
           padding-left: 0.2rem;
-          font-size: 2rem;
+          font-size: 1.2rem;
+          margin-bottom: 0.4rem;
         }
 
         &-area {
@@ -148,9 +153,9 @@
         margin-top: 2rem;
 
         &-text {
-          color: #707070;
+          color: #0b0f2d;
           padding-left: 0.2rem;
-          font-size: 2rem;
+          font-size: 1.2rem;
         }
 
         &-area {
@@ -160,6 +165,7 @@
           justify-content: space-between;
 
           &-color {
+            cursor: pointer;
             width: 5rem;
             height: 5rem;
             box-shadow: 0 0 10px 2px #00000010;
