@@ -31,7 +31,7 @@ const Header = ({ shadow, hide, showModal, isMain, tapState, tapClickHandler, lo
             </Link>
             {login ? (
               <div className="Header-Container-Content-Account">
-                <button className="Header-Container-Content-Account-Login" onClick={() => write()}>
+                <button className="Header-Container-Content-Account-Write" onClick={() => write()}>
                   작성하기
                 </button>
                 <Person />

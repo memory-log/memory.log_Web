@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
 import Register from "../../components/Register";
-import { useHistory } from "react-router-dom";
 import useStore from "../../lib/hooks/useStore";
 import Swal from "sweetalert2";
 
@@ -12,10 +11,9 @@ const RegisterContainer = ({ changePage }: RegisterContainerProps) => {
   const { store } = useStore();
   const { tryRegister, tryAccredit } = store.AuthStore;
 
-  const history = useHistory();
-
   const [email, setEmail] = useState<string>("");
   const [accredit, setAccredit] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [name, setName] = useState<string>("");
   const [pw, setPw] = useState<string>("");
@@ -43,10 +41,13 @@ const RegisterContainer = ({ changePage }: RegisterContainerProps) => {
   }, [email, pw, name, accredit, checkPw]);
 
   const emailAccredit = () => {
+    setLoading(true);
     if (!email) {
+      Swal.fire({ icon: "error", title: "메일", text: "메일을 입력해 주세요" });
     } else {
       tryAccredit(email)
         .then((res) => {
+          setLoading(false);
           Swal.fire("메일을 발송하였습니다!", "확인 버튼을 눌러 주세요!", "success");
         })
         .catch((err) => {
@@ -70,6 +71,7 @@ const RegisterContainer = ({ changePage }: RegisterContainerProps) => {
         register={register}
         emailAccredit={emailAccredit}
         setAccredit={setAccredit}
+        loading={loading}
       />
     </>
   );
