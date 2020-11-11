@@ -23,11 +23,12 @@ const LoginContainer = ({ changePage }: LoginContainerProps) => {
     tryLogin(email, pw)
       .then((res: LoginResponse) => {
         localStorage.setItem("accessToken", res.data.accessToken);
-        setCookie("refreshToken", res.data.refreshToken, { httpOnly: true, path: "/" });
+        setCookie("refreshToken", res.data.refreshToken, { path: "/" });
         Swal.fire({ icon: "success", title: "로그인 성공", text: "성공적으로 로그인 되었습니다!" });
         showModal();
       })
       .catch((err: Error) => {
+        console.log("에러");
         Swal.fire({ icon: "error", title: "로그인 실패", text: "아이디 또는 비밀번호가 잘못되었습니다." });
       });
   }, [email, pw]);

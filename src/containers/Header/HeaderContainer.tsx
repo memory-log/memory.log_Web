@@ -51,6 +51,14 @@ const HeaderContainer = () => {
     }
   }, [login]);
 
+  const showProfileBox = () => {
+    if (headerProfile === true) {
+      setHeaderProfile(false);
+    } else {
+      setHeaderProfile(true);
+    }
+  };
+
   useEffect(() => {
     documentRef.current.addEventListener("scroll", handleScroll);
     return () => documentRef.current.removeEventListener("scroll", handleScroll);
@@ -72,7 +80,7 @@ const HeaderContainer = () => {
         tapClickHandler={tapClickHandler}
         create={create}
         headerProfile={headerProfile}
-        setHeaderProfile={setHeaderProfile}
+        showProfileBox={showProfileBox}
       />
     </>
   );

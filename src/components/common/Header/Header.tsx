@@ -17,7 +17,7 @@ interface HeaderProps {
   login: boolean;
   create: () => void;
   headerProfile: boolean;
-  setHeaderProfile: React.Dispatch<React.SetStateAction<boolean>>;
+  showProfileBox: () => void;
 }
 
 const Header = ({
@@ -30,7 +30,7 @@ const Header = ({
   login,
   create,
   headerProfile,
-  setHeaderProfile
+  showProfileBox
 }: HeaderProps) => {
   return (
     <>
@@ -51,7 +51,7 @@ const Header = ({
                 <Profile
                   className="Header-Container-Content-Account-Profile"
                   onClick={() => {
-                    setHeaderProfile(true);
+                    showProfileBox();
                   }}
                 />
               </div>

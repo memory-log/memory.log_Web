@@ -2,7 +2,13 @@
 .HeaderProfile {
   display: flex;
   flex-direction: column;
+  box-shadow: 0px 0px 20px rgb(163, 163, 163);
+  width: 10rem;
+  height: auto;
+  position: absolute;
+  z-index: 1;
   &-div {
+    padding: 0.5rem;
     &:hover {
       background: #f5f5f5;
     }
