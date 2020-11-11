@@ -1,7 +1,7 @@
 import axios from "axios";
 import { SERVER } from "../../config/config.json";
 
-class AuthAPI {
+class AuthApi {
   async Login(email: string, pw: string) {
     try {
       const url = `${SERVER}/member/signIn`;
@@ -80,4 +80,4 @@ class AuthAPI {
   }
 }
 
-export default new AuthAPI();
+export default new AuthApi();
