@@ -4,6 +4,7 @@ import Header from "../../components/common/Header";
 import useStore from "../../lib/hooks/useStore";
 import refresh from "../../lib/refresh";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const HeaderContainer = () => {
   const { store } = useStore();
@@ -13,6 +14,8 @@ const HeaderContainer = () => {
   const [hide, setHide] = useState<boolean>(false);
   const [shadow, setShadow] = useState<boolean>(false);
   const [pageY, setPageY] = useState<number>(0);
+
+  const history = useHistory();
 
   const documentRef = useRef(document);
 
@@ -25,6 +28,10 @@ const HeaderContainer = () => {
     setHide(hide);
     setPageY(pageYOffset);
   };
+
+  const write = useCallback(() => {
+    history.push("/write");
+  }, []);
 
   const getInfoCallback = useCallback(() => {
     if (localStorage.getItem("accessToken")) {
@@ -62,7 +69,7 @@ const HeaderContainer = () => {
         login={login}
         tapState={tapState}
         tapClickHandler={tapClickHandler}
-        name={name}
+        write={write}
       />
     </>
   );

@@ -17,7 +17,6 @@ const LoginContainer = ({ changePage }: LoginContainerProps) => {
 
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
 
-  const history = useHistory();
   const [email, setEmail] = useState<string>("");
   const [pw, setPw] = useState<string>("");
 
@@ -25,7 +24,7 @@ const LoginContainer = ({ changePage }: LoginContainerProps) => {
     tryLogin(email, pw)
       .then((res: LoginResponse) => {
         localStorage.setItem("accessToken", res.data.accessToken);
-        setCookie("refreshToken", res.data.refreshToken, { httpOnly: true, path: "/" });
+        setCookie("refreshToken", res.data.refreshToken, { path: "/" });
         Swal.fire("로그인 성공", "롤링페이퍼로 좋은 추억 남기세요!", "success");
         showModal();
       })
