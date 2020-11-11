@@ -3,7 +3,6 @@ import "./WriteComment.scss";
 import { FiPlus } from "react-icons/fi";
 import { writeColor } from "../../../models/colorTemplate";
 import Button from "../../common/Button/Button";
-import { Link } from "react-router-dom";
 
 interface WriteCommentProps {
   color: string;
