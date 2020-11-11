@@ -17,7 +17,6 @@ const LoginContainer = ({ changePage }: LoginContainerProps) => {
 
   const [cookie, setCookie, removeCookie] = useCookies(["refreshToken"]);
 
-  const history = useHistory();
   const [email, setEmail] = useState<string>("");
   const [pw, setPw] = useState<string>("");
 
