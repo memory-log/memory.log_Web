@@ -4,6 +4,7 @@ import { ReactComponent as Logo } from "../../../assets/images/logo.svg";
 import { ReactComponent as Title } from "../../../assets/images/title.svg";
 import { Link } from "react-router-dom";
 import taps from "../../../lib/models/tapModel";
+import { ReactComponent as Person } from "../../../assets/images/profile.svg";
 
 interface HeaderProps {
   shadow: boolean;
@@ -13,10 +14,10 @@ interface HeaderProps {
   tapState: number;
   tapClickHandler: (idx: number) => void;
   login: boolean;
-  name: string;
+  write: () => void;
 }
 
-const Header = ({ shadow, hide, showModal, isMain, tapState, tapClickHandler, login, name }: HeaderProps) => {
+const Header = ({ shadow, hide, showModal, isMain, tapState, tapClickHandler, login, write }: HeaderProps) => {
   return (
     <>
       <div className={hide ? "Header-Hide Header" : shadow ? "Header-Shadow Header" : "Header"}>
@@ -30,10 +31,10 @@ const Header = ({ shadow, hide, showModal, isMain, tapState, tapClickHandler, lo
             </Link>
             {login ? (
               <div className="Header-Container-Content-Account">
-                <div>{name}</div>
-                <button className="Header-Container-Content-Account-Login" onClick={() => showModal()}>
+                <button className="Header-Container-Content-Account-Login" onClick={() => write()}>
                   작성하기
                 </button>
+                <Person />
               </div>
             ) : (
               <div className="Header-Container-Content-Account">

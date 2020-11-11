@@ -4,7 +4,7 @@ import { server } from "../../config/config.json";
 class AuthApi {
   async Login(email: string, pw: string) {
     try {
-      const url = `${server}/member/signin`;
+      const url = `${server}/member/signIn`;
 
       const body = {
         email,
@@ -20,7 +20,7 @@ class AuthApi {
   }
   async Register(email: string, name: string, pw: string) {
     try {
-      const url = `${server}/member/signup`;
+      const url = `${server}/member/signUp`;
       const body = {
         email,
         name,
@@ -53,7 +53,7 @@ class AuthApi {
 
   async GetInfo() {
     try {
-      const url = `${server}/member/getinfo`;
+      const url = `${server}/member/getInfo`;
 
       const { data } = await axios.get(url);
 
