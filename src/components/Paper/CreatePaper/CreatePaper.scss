@@ -79,9 +79,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            position: relative;
+            padding: 0 1rem;
 
             input[type="radio"] {
               display: none;
@@ -100,8 +98,8 @@
             input[type="radio"]:checked ~ &-radio {
               &::after {
                 content: "";
-                width: 0.77rem;
-                height: 0.77rem;
+                width: 0.74rem;
+                height: 0.74rem;
                 border-radius: 50%;
                 background-color: #5669f3;
               }
