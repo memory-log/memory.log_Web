@@ -44,6 +44,7 @@ const RegisterContainer = ({ changePage }: RegisterContainerProps) => {
     setLoading(true);
     if (!email) {
       Swal.fire({ icon: "error", title: "메일", text: "메일을 입력해 주세요" });
+      setLoading(false);
     } else {
       tryAccredit(email)
         .then((res) => {

@@ -14,6 +14,7 @@ const HeaderContainer = () => {
   const [hide, setHide] = useState<boolean>(false);
   const [shadow, setShadow] = useState<boolean>(false);
   const [pageY, setPageY] = useState<number>(0);
+  const [headerProfile, setHeaderProfile] = useState<boolean>(false);
 
   const history = useHistory();
 
@@ -70,6 +71,8 @@ const HeaderContainer = () => {
         tapState={tapState}
         tapClickHandler={tapClickHandler}
         write={write}
+        headerProfile={headerProfile}
+        setHeaderProfile={setHeaderProfile}
       />
     </>
   );

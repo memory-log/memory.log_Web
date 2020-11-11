@@ -5,6 +5,7 @@ import { ReactComponent as Title } from "../../../assets/images/title.svg";
 import { Link } from "react-router-dom";
 import taps from "../../../lib/models/tapModel";
 import { ReactComponent as Person } from "../../../assets/images/profile.svg";
+import HeaderProfile from "./HeaderProfile";
 
 interface HeaderProps {
   shadow: boolean;
@@ -15,9 +16,22 @@ interface HeaderProps {
   tapClickHandler: (idx: number) => void;
   login: boolean;
   write: () => void;
+  headerProfile: boolean;
+  setHeaderProfile: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Header = ({ shadow, hide, showModal, isMain, tapState, tapClickHandler, login, write }: HeaderProps) => {
+const Header = ({
+  shadow,
+  hide,
+  showModal,
+  isMain,
+  tapState,
+  tapClickHandler,
+  login,
+  write,
+  headerProfile,
+  setHeaderProfile
+}: HeaderProps) => {
   return (
     <>
       <div className={hide ? "Header-Hide Header" : shadow ? "Header-Shadow Header" : "Header"}>
@@ -34,7 +48,11 @@ const Header = ({ shadow, hide, showModal, isMain, tapState, tapClickHandler, lo
                 <button className="Header-Container-Content-Account-Write" onClick={() => write()}>
                   작성하기
                 </button>
-                <Person />
+                <Person
+                  onClick={() => {
+                    setHeaderProfile(true);
+                  }}
+                />
               </div>
             ) : (
               <div className="Header-Container-Content-Account">
@@ -43,6 +61,7 @@ const Header = ({ shadow, hide, showModal, isMain, tapState, tapClickHandler, lo
                 </button>
               </div>
             )}
+            {headerProfile && login ? <HeaderProfile /> : <></>}
           </div>
           {isMain && (
             <div className="Header-Container-Buttons">
