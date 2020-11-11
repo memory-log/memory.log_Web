@@ -24,7 +24,7 @@ const WriteComment = ({ name, setColor, color }: WriteCommentProps) => {
             <div className="write-box-color-name">글자색</div>
             <div className="write-box-color-area">
               {writeColor.map((color: string, index: number) => (
-                <div key={index} style={{ backgroundColor: color }} onClick={() => setColor(color)} />
+                <div key={index} style={{ backgroundColor: color, cursor: "pointer" }} onClick={() => setColor(color)} />
               ))}
               <label htmlFor="write-color-picker">
                 <input
@@ -39,9 +39,9 @@ const WriteComment = ({ name, setColor, color }: WriteCommentProps) => {
           </div>
           <textarea autoFocus className="write-box-textbox" placeholder="글을 작성해주세요." style={{ color: color }} />
           <div className="write-box-btnarea">
-            <Link to="/position">
-              <Button text="다음" style={{ width: "40rem", height: "3.6rem" }} />
-            </Link>
+            {/* <Link to="/position"> */}
+            <Button text="다음" style={{ height: "3.6rem", fontSize: "1.2rem" }} />
+            {/* </Link> */}
           </div>
         </div>
       </div>

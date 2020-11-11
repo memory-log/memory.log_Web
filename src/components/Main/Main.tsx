@@ -37,7 +37,6 @@ const Main = ({ papers, notFound, loading }: MainProps) => {
           )}
         </div>
       </div>
-      <AuthContainer />
     </>
   );
 };
