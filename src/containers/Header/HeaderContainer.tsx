@@ -4,7 +4,7 @@ import Header from "../../components/common/Header";
 import useStore from "../../lib/hooks/useStore";
 import refresh from "../../lib/refresh";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 
 const HeaderContainer = () => {
   const { store } = useStore();
@@ -30,9 +30,9 @@ const HeaderContainer = () => {
     setPageY(pageYOffset);
   };
 
-  const write = useCallback(() => {
-    history.push("/write");
-  }, []);
+  const create = () => {
+    history.push("/create");
+  };
 
   const getInfoCallback = useCallback(() => {
     if (localStorage.getItem("accessToken")) {
@@ -70,7 +70,7 @@ const HeaderContainer = () => {
         login={login}
         tapState={tapState}
         tapClickHandler={tapClickHandler}
-        write={write}
+        create={create}
         headerProfile={headerProfile}
         setHeaderProfile={setHeaderProfile}
       />
@@ -78,4 +78,4 @@ const HeaderContainer = () => {
   );
 };
 
-export default observer(HeaderContainer);
+export default withRouter(observer(HeaderContainer));

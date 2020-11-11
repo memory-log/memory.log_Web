@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from "../../../assets/images/logo.svg";
 import { ReactComponent as Title } from "../../../assets/images/title.svg";
 import { Link } from "react-router-dom";
 import taps from "../../../lib/models/tapModel";
-import { ReactComponent as Person } from "../../../assets/images/profile.svg";
+import { ReactComponent as Profile } from "../../../assets/images/profile.svg";
 import HeaderProfile from "./HeaderProfile";
 
 interface HeaderProps {
@@ -15,7 +15,7 @@ interface HeaderProps {
   tapState: number;
   tapClickHandler: (idx: number) => void;
   login: boolean;
-  write: () => void;
+  create: () => void;
   headerProfile: boolean;
   setHeaderProfile: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -28,7 +28,7 @@ const Header = ({
   tapState,
   tapClickHandler,
   login,
-  write,
+  create,
   headerProfile,
   setHeaderProfile
 }: HeaderProps) => {
@@ -45,10 +45,11 @@ const Header = ({
             </Link>
             {login ? (
               <div className="Header-Container-Content-Account">
-                <button className="Header-Container-Content-Account-Write" onClick={() => write()}>
+                <button className="Header-Container-Content-Account-Write" onClick={() => create()}>
                   작성하기
                 </button>
-                <Person
+                <Profile
+                  className="Header-Container-Content-Account-Profile"
                   onClick={() => {
                     setHeaderProfile(true);
                   }}

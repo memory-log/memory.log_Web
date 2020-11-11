@@ -4,6 +4,9 @@ import MainPage from "../pages/MainPage";
 import WritePage from "../pages/WritePage";
 import PositionPage from "../pages/PositionPage";
 import ProfilePage from "../pages/ProfilePage";
+import WriteCommentPage from "../pages/WriteCommentPage";
+import ChangePositionPage from "../pages/ChangePositionPage";
+import CreatePaperPage from "../pages/CreatePaperPage";
 
 function App() {
   return (
@@ -13,6 +16,9 @@ function App() {
         <Route path="/write" component={WritePage} />
         <Route path="/position" component={PositionPage} />
         <Route path="/profile" component={ProfilePage} />
+        <Route path="/create" component={CreatePaperPage} />
+        <Route path="/position" component={ChangePositionPage} />
+        <Route path="/write" component={WriteCommentPage} />
       </Switch>
     </div>
   );

@@ -1,17 +1,17 @@
 import React from "react";
-import "./Write.scss";
+import "./WriteComment.scss";
 import { FiPlus } from "react-icons/fi";
-import colorTemplate from "../../models/colorTemplate";
-import Button from "../common/Button/Button";
+import { writeColor } from "../../../models/colorTemplate";
+import Button from "../../common/Button/Button";
 import { Link } from "react-router-dom";
 
-interface WriteProps {
+interface WriteCommentProps {
   color: string;
   setColor: React.Dispatch<React.SetStateAction<string>>;
   name: string;
 }
 
-const Write = ({ name, setColor, color }: WriteProps) => {
+const WriteComment = ({ name, setColor, color }: WriteCommentProps) => {
   return (
     <>
       <div className="write">
@@ -23,7 +23,7 @@ const Write = ({ name, setColor, color }: WriteProps) => {
           <div className="write-box-color">
             <div className="write-box-color-name">글자색</div>
             <div className="write-box-color-area">
-              {colorTemplate.map((color: string, index: number) => (
+              {writeColor.map((color: string, index: number) => (
                 <div key={index} style={{ backgroundColor: color }} onClick={() => setColor(color)} />
               ))}
               <label htmlFor="write-color-picker">
@@ -49,4 +49,4 @@ const Write = ({ name, setColor, color }: WriteProps) => {
   );
 };
 
-export default Write;
+export default WriteComment;

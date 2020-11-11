@@ -1,10 +1,10 @@
 import React from "react";
-import "./Position.scss";
-import Button from "../common/Button/Button";
+import "./ChangePosition.scss";
+import Button from "../../common/Button";
 
-interface PositionProps {}
+interface ChangePositionProps {}
 
-const Position = ({}: PositionProps) => {
+const ChangePosition = ({}: ChangePositionProps) => {
   return (
     <>
       <div className="position">
@@ -20,4 +20,4 @@ const Position = ({}: PositionProps) => {
   );
 };
 
-export default Position;
+export default ChangePosition;

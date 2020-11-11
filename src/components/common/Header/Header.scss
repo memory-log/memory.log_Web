@@ -39,9 +39,9 @@
         cursor: pointer;
 
         &-Icon {
-          width: 2rem;
-          height: 2rem;
-          margin-right: 0.3rem;
+          width: 1.8rem;
+          height: 1.8rem;
+          margin-right: 0.2rem;
         }
 
         &-Title {
@@ -52,6 +52,24 @@
       &-Account {
         display: flex;
         align-items: center;
+
+        &-Create {
+          padding: 0.4rem 1.1rem;
+          background-color: transparent;
+          color: #3c50e0;
+          font-size: 1rem;
+          font-weight: 700;
+          outline: none;
+          border: 2px #3c50e0 solid;
+          border-radius: 3rem;
+          cursor: pointer;
+          transition: background-color 0.2s;
+
+          &:hover {
+            color: #ffffff;
+            background-color: #3c50e0;
+          }
+        }
 
         &-Login {
           padding: 0.4rem 1.1rem;
@@ -85,6 +103,12 @@
             color: white;
             transition: 0.3s;
           }
+
+        &-Profile {
+          width: 2.6rem;
+          height: 2.6rem;
+          border-radius: 50%;
+          margin-left: 1rem;
         }
       }
     }

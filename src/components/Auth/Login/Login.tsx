@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../common/Button";
-import MaterialTextField from "../common/Material/MaterialTextField";
+import Button from "../../common/Button";
+import MaterialTextField from "../../common/Material/MaterialTextField";
 import "./Login.scss";
 
 interface LoginProps {
@@ -9,10 +9,10 @@ interface LoginProps {
   setEmail: React.Dispatch<React.SetStateAction<string>>;
   pw: string;
   setPw: React.Dispatch<React.SetStateAction<string>>;
-  login: () => Promise<void>;
+  handleLogin: () => Promise<void>;
 }
 
-const Login = ({ changePage, email, setEmail, pw, setPw, login }: LoginProps) => {
+const Login = ({ changePage, email, setEmail, pw, setPw, handleLogin }: LoginProps) => {
   return (
     <>
       <div className="Login-Content">
@@ -42,7 +42,7 @@ const Login = ({ changePage, email, setEmail, pw, setPw, login }: LoginProps) =>
             onChange={(e) => setPw(e.target.value)}
           />
         </div>
-        <Button text="로그인" style={{ height: "2.6rem" }} onClick={() => login()} />
+        <Button text="로그인" style={{ height: "2.6rem" }} onClick={() => handleLogin()} />
         <div className="Login-Content-Register">
           <p className="Login-Content-Register-Comment">전 아직 회원이 아닌걸요...</p>
           <p className="Login-Content-Register-Link" onClick={changePage}>

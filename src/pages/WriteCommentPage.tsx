@@ -1,12 +1,12 @@
 import React from "react";
 import HeaderContainer from "../containers/Header/HeaderContainer";
-import WriteContainer from "../containers/Write/WriteContainer";
+import WriteCommentContainer from "../containers/Paper/WriteComment/WriteCommentContainer";
 
 const WritePage = () => {
   return (
     <>
       <HeaderContainer />
-      <WriteContainer />
+      <WriteCommentContainer />
     </>
   );
 };
