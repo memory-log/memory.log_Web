@@ -1,12 +1,12 @@
 import AuthStore from "./Auth";
 import HeaderStore from "./Header/HeaderStore";
-import PostStore from "./Post";
+import PaperStore from "./Paper";
 
 const stores = {
   //
   AuthStore: new AuthStore(),
   HeaderStore: new HeaderStore(),
-  PostStore: new PostStore()
+  PaperStore: new PaperStore()
 };
 
 export default stores;

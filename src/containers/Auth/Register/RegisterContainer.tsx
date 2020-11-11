@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useState } from "react";
-import Register from "../../components/Auth/Register";
+import Register from "../../../components/Auth/Register";
 import { useHistory } from "react-router-dom";
-import useStore from "../../lib/hooks/useStore";
+import useStore from "../../../lib/hooks/useStore";
 import Swal from "sweetalert2";
 
 interface RegisterContainerProps {

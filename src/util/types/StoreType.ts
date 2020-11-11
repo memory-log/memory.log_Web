@@ -1,12 +1,12 @@
 import AuthStore from "../../stores/Auth";
 import HeaderStore from "../../stores/Header/HeaderStore";
-import PostStore from "../../stores/Post";
+import PaperStore from "../../stores/Paper";
 
 type StoreType = {
   store: {
     AuthStore: AuthStore;
     HeaderStore: HeaderStore;
-    PostStore: PostStore;
+    PaperStore: PaperStore;
   };
 };
 
