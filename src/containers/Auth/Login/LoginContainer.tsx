@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Login from "../../../components/Auth/Login";
-import { useHistory } from "react-router-dom";
 import { observer } from "mobx-react";
 import useStore from "../../../lib/hooks/useStore";
 import { LoginResponse } from "../../../util/types/Response";

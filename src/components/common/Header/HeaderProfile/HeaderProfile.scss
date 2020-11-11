@@ -1,0 +1,10 @@
+/* your css code */
+.HeaderProfile {
+  display: flex;
+  flex-direction: column;
+  &-div {
+    &:hover {
+      background: #f5f5f5;
+    }
+  }
+}

@@ -87,6 +87,22 @@
             background-color: #6577f8;
           }
         }
+        &-Write {
+          padding: 0.4rem 1.1rem;
+          color: #3c50e0;
+          background-color: #ffffff;
+          font-size: 1rem;
+          font-weight: 700;
+          outline: none;
+          border: 1.2px solid #3c50e0;
+          border-radius: 3rem;
+          cursor: pointer;
+          // transition: background-color 0.2s;
+          &:hover {
+            background-color: #3c50e0;
+            color: white;
+            transition: 0.3s;
+          }
 
         &-Profile {
           width: 2.6rem;
