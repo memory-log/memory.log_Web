@@ -1,7 +1,7 @@
 import React from "react";
 import "./Write.scss";
 import { FiPlus } from "react-icons/fi";
-import colorTemplate from "../../models/colorTemplate";
+import { writeColor } from "../../models/colorTemplate";
 import Button from "../common/Button/Button";
 import { Link } from "react-router-dom";
 
@@ -23,7 +23,7 @@ const Write = ({ name, setColor, color }: WriteProps) => {
           <div className="write-box-color">
             <div className="write-box-color-name">글자색</div>
             <div className="write-box-color-area">
-              {colorTemplate.map((color: string, index: number) => (
+              {writeColor.map((color: string, index: number) => (
                 <div key={index} style={{ backgroundColor: color }} onClick={() => setColor(color)} />
               ))}
               <label htmlFor="write-color-picker">
