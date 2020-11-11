@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../common/Button";
-import MaterialTextField from "../common/Material/MaterialTextField";
+import Button from "../../common/Button";
+import MaterialTextField from "../../common/Material/MaterialTextField";
 import "./Register.scss";
 
 
@@ -14,8 +14,8 @@ interface RegisterProps {
   setPw: React.Dispatch<React.SetStateAction<string>>;
   checkPw: string;
   setCheckPw: React.Dispatch<React.SetStateAction<string>>;
-  register: () => Promise<void>;
-  emailAccredit: () => void;
+  handleRegister: () => Promise<void>;
+  handleEmailAccredit: () => void;
   setAccredit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -29,8 +29,8 @@ const Register = ({
   setPw,
   checkPw,
   setCheckPw,
-  register,
-  emailAccredit,
+  handleRegister,
+  handleEmailAccredit,
   setAccredit
 }: RegisterProps) => {
   return (
@@ -68,7 +68,7 @@ const Register = ({
           <div
             className="Register-Content-Email-divButton"
             onClick={() => {
-              emailAccredit();
+              handleEmailAccredit();
               setAccredit(true);
             }}
           >
@@ -99,7 +99,7 @@ const Register = ({
             onChange={(e) => setCheckPw(e.target.value)}
           />
         </div>
-        <Button text="다음" style={{ height: "2.6rem" }} onClick={() => register()} />
+        <Button text="다음" style={{ height: "2.6rem" }} onClick={() => handleRegister()} />
         <div className="Register-Content-Register">
           <p className="Register-Content-Register-Comment">잘 생각해보니 있는 것 같아요...</p>
           <p className="Register-Content-Register-Link" onClick={changePage}>

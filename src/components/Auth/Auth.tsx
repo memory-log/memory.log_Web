@@ -1,8 +1,8 @@
 import React from "react";
 import "./Auth.scss";
 import people from "../../assets/images/people.svg";
-import LoginContainer from "../../containers/Login/LoginContainer";
-import RegisterContainer from "../../containers/Register/RegisterContainer";
+import LoginContainer from "../../containers/Auth/Login/LoginContainer";
+import RegisterContainer from "../../containers/Auth/Register/RegisterContainer";
 
 interface AuthProps {
   page: boolean;

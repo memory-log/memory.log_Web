@@ -1,8 +1,8 @@
 import React from "react";
 import "./Write.scss";
 import { FiPlus } from "react-icons/fi";
-import { writeColor } from "../../models/colorTemplate";
-import Button from "../common/Button/Button";
+import { writeColor } from "../../../models/colorTemplate";
+import Button from "../../common/Button/Button";
 import { Link } from "react-router-dom";
 
 interface WriteProps {
