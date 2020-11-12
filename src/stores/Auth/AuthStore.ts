@@ -102,6 +102,11 @@ class AuthStore {
       });
     }
   };
+
+  @action
+  tryLogOut = () => {
+    this.login = false;
+  };
 }
 
 export default AuthStore;
