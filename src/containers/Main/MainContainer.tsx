@@ -15,6 +15,7 @@ interface GetPapersResponse {
 
 const MainContainer = () => {
   const { store } = useStore();
+  const { login } = store.AuthStore;
   const { isMainHandler, tapState } = store.HeaderStore;
   const { papers, handleGetPapers, handleGetMyPapers } = store.PaperStore;
 
@@ -31,20 +32,24 @@ const MainContainer = () => {
       }
       setLoading(false);
     });
-  }, []);
+  }, [login]);
 
   const requestHandleGetMyPapers = useCallback(async () => {
-    setLoading(true);
-    axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("accessToken")}`;
-    await handleGetMyPapers().then((res: GetPapersResponse) => {
-      if (res.data.Papers.length > 0) {
-        setNotFound(false);
-      } else {
-        setNotFound(true);
-      }
-      setLoading(false);
-    });
-  }, []);
+    if (login) {
+      setLoading(true);
+      axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("accessToken")}`;
+      await handleGetMyPapers().then((res: GetPapersResponse) => {
+        if (res.data.Papers.length > 0) {
+          setNotFound(false);
+        } else {
+          setNotFound(true);
+        }
+        setLoading(false);
+      });
+    } else {
+      setNotFound(true);
+    }
+  }, [login]);
 
   useEffect(() => {
     isMainHandler(true);
@@ -54,7 +59,7 @@ const MainContainer = () => {
     } else {
       requestHandleGetMyPapers();
     }
-  }, [tapState]);
+  }, [tapState, login]);
 
   return (
     <>
