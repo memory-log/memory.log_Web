@@ -25,6 +25,18 @@ class PaperAPI {
       throw new Error(`${error}`);
     }
   }
+
+  async SearchPaper(target: string) {
+    try {
+      const url = `${SERVER}/paper/searchPaper/?target=${target}`;
+
+      const { data } = await axios.get(url);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
 }
 
 export default new PaperAPI();
