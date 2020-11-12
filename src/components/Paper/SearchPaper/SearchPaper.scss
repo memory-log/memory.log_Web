@@ -1,0 +1,27 @@
+.Search-Paper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem;
+
+  &-Container {
+    &-Bar {
+      width: 35rem;
+      height: 3.6rem;
+      border: 0.1rem #b8b8b8 solid;
+      padding-left: 0.8rem;
+      font-size: 1.2rem;
+      margin-top: 3rem;
+      font-family: "NotoSansKR";
+      outline: none;
+      border-radius: 0.4rem;
+      font-weight: 600;
+
+      &::placeholder {
+        color: #b8b8b8;
+        font-weight: 600;
+      }
+    }
+  }
+}
