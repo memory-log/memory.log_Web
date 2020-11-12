@@ -27,7 +27,7 @@
       padding: 0.4rem;
 
       &-Date {
-        width: 14rem;
+        width: 60%;
         height: 1rem;
         background-color: #efefef;
         border-radius: 0.3rem;
@@ -35,7 +35,7 @@
       }
 
       &-Title {
-        width: 17rem;
+        width: 80%;
         height: 1.4rem;
         background-color: #efefef;
         border-radius: 0.3rem;
@@ -69,6 +69,26 @@
           border-radius: 0.3rem;
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 1216px) {
+  .Main-Paper-Loading {
+    width: 47%;
+
+    &-Image {
+      padding: 16rem 8rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1084px) {
+  .Main-Paper-Loading {
+    width: 100%;
+
+    &-Image {
+      padding: 24rem 8rem;
     }
   }
 }
