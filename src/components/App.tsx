@@ -8,6 +8,7 @@ import WriteCommentPage from "../pages/WriteCommentPage";
 import ChangePositionPage from "../pages/ChangePositionPage";
 import CreatePaperPage from "../pages/CreatePaperPage";
 import AuthContainer from "../containers/Auth/AuthContainer";
+import WritePage from "../pages/WriteCommentPage";
 
 function App() {
   return (
@@ -15,8 +16,8 @@ function App() {
       <AuthContainer />
       <Switch>
         <Route exact path="/" component={MainPage} />
-        {/* <Route path="/write" component={WritePage} />
-        <Route path="/position" component={PositionPage} /> */}
+        <Route path="/write" component={WritePage} />
+        {/* <Route path="/position" component={PositionPage} /> */}
         <Route path="/profile" component={ProfilePage} />
         <Route path="/create" component={CreatePaperPage} />
         <Route path="/position" component={ChangePositionPage} />

@@ -1,16 +1,26 @@
-import React from "react";
+import React, { MouseEvent, useEffect } from "react";
 import "./HeaderProfile.scss";
 
-interface HeaderProfileProps {}
+interface HeaderProfileProps {
+  logOut: () => void;
+  MyProfile: () => void;
+  onClose: () => void;
+}
 
-const HeaderProfile = ({}: HeaderProfileProps) => {
+const HeaderProfile = ({ logOut, MyProfile, onClose }: HeaderProfileProps) => {
+  useEffect(() => {
+    document.addEventListener("click", onClose);
+    return () => document.removeEventListener("click", onClose);
+  }, []);
+
   return (
     <>
+      {/* <div className="background" onClick={() => headerProfileClick()} /> */}
       <div className="HeaderProfile">
-        <div className="HeaderProfile-div profile">
+        <div className="HeaderProfile-div profile" onClick={() => MyProfile()}>
           <span>내 프로필</span>
         </div>
-        <div className="HeaderProfile-div logout">
+        <div className="HeaderProfile-div logout" onClick={() => logOut()}>
           <span>로그아웃</span>
         </div>
       </div>
