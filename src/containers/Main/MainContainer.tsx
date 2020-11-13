@@ -16,7 +16,7 @@ interface GetPapersResponse {
 const MainContainer = () => {
   const { store } = useStore();
   const { login } = store.AuthStore;
-  const { isMainHandler, tapState } = store.HeaderStore;
+  const { tapState } = store.HeaderStore;
   const { papers, handleGetPapers, handleGetMyPapers } = store.PaperStore;
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -52,8 +52,6 @@ const MainContainer = () => {
   }, [login]);
 
   useEffect(() => {
-    isMainHandler(true);
-
     if (tapState !== 2) {
       requestHandleGetPapers();
     } else {
