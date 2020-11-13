@@ -5,16 +5,20 @@ import useStore from "../../lib/hooks/useStore";
 import refresh from "../../lib/refresh";
 import axios from "axios";
 import { useHistory, withRouter } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const HeaderContainer = () => {
   const { store } = useStore();
-  const { showModal, login, getInfo, name } = store.AuthStore;
+  const { showModal, login, getInfo, tryLogOut } = store.AuthStore;
   const { isMain, tapState, tapClickHandler } = store.HeaderStore;
+
+  const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
 
   const [hide, setHide] = useState<boolean>(false);
   const [shadow, setShadow] = useState<boolean>(false);
   const [pageY, setPageY] = useState<number>(0);
-  const [headerProfile, setHeaderProfile] = useState<boolean>(false);
+
+  const [showOption, setShowOption] = useState<boolean>(false);
 
   const history = useHistory();
 
@@ -28,6 +32,21 @@ const HeaderContainer = () => {
     setShadow(shadow);
     setHide(hide);
     setPageY(pageYOffset);
+  };
+
+  const logOut = () => {
+    localStorage.clear();
+    removeCookie("refreshToken");
+    setShowOption(false);
+    tryLogOut();
+  };
+
+  const onClose = () => {
+    setShowOption(false);
+  };
+
+  const MyProfile = () => {
+    history.push("/profile");
   };
 
   const create = () => {
@@ -71,8 +90,11 @@ const HeaderContainer = () => {
         tapState={tapState}
         tapClickHandler={tapClickHandler}
         create={create}
-        headerProfile={headerProfile}
-        setHeaderProfile={setHeaderProfile}
+        showOption={showOption}
+        setShowOption={setShowOption}
+        onClose={onClose}
+        logOut={logOut}
+        MyProfile={MyProfile}
       />
     </>
   );

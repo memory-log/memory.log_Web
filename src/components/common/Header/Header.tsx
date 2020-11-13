@@ -16,8 +16,11 @@ interface HeaderProps {
   tapClickHandler: (idx: number) => void;
   login: boolean;
   create: () => void;
-  headerProfile: boolean;
-  setHeaderProfile: React.Dispatch<React.SetStateAction<boolean>>;
+  showOption: boolean;
+  setShowOption: React.Dispatch<React.SetStateAction<boolean>>;
+  logOut: () => void;
+  MyProfile: () => void;
+  onClose: () => void;
 }
 
 const Header = ({
@@ -29,8 +32,11 @@ const Header = ({
   tapClickHandler,
   login,
   create,
-  headerProfile,
-  setHeaderProfile
+  showOption,
+  setShowOption,
+  onClose,
+  logOut,
+  MyProfile
 }: HeaderProps) => {
   return (
     <>
@@ -51,7 +57,7 @@ const Header = ({
                 <Profile
                   className="Header-Container-Content-Account-Profile"
                   onClick={() => {
-                    setHeaderProfile(true);
+                    setShowOption((prevState) => !prevState);
                   }}
                 />
               </div>
@@ -62,7 +68,7 @@ const Header = ({
                 </button>
               </div>
             )}
-            {headerProfile && login ? <HeaderProfile /> : <></>}
+            {showOption && login && <HeaderProfile logOut={logOut} MyProfile={MyProfile} onClose={onClose} />}
           </div>
           {isMain && (
             <div className="Header-Container-Buttons">

@@ -10,7 +10,6 @@
   top: 0;
   left: 0;
   z-index: 11;
-
   &-Hide {
     transform: translateY(-7rem);
   }
@@ -32,6 +31,7 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1rem;
+      position: relative;
 
       &-Logo {
         display: flex;

@@ -11,8 +11,8 @@
     max-width: 35rem;
 
     &-title {
-      font-size: 2rem;
-      margin-top: 4rem;
+      font-size: 1.8rem;
+      margin-top: 2rem;
     }
 
     &-content {
@@ -23,7 +23,7 @@
         border-bottom: 1px solid #cccccc;
         padding-left: 0.2rem;
         font-size: 1.4rem;
-        margin-top: 4rem;
+        margin-top: 3rem;
         font-family: "NotoSansKR";
         font-weight: 600;
         &::placeholder {
@@ -79,9 +79,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            position: relative;
+            padding: 0 1rem;
 
             input[type="radio"] {
               display: none;
@@ -100,8 +98,8 @@
             input[type="radio"]:checked ~ &-radio {
               &::after {
                 content: "";
-                width: 0.8rem;
-                height: 0.8rem;
+                width: 0.74rem;
+                height: 0.74rem;
                 border-radius: 50%;
                 background-color: #5669f3;
               }
@@ -177,7 +175,6 @@
 
     &-btnarea {
       width: 100%;
-      height: auto;
       display: flex;
       justify-content: center;
       margin-top: 4rem;
