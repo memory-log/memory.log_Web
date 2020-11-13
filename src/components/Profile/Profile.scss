@@ -1,1 +1,67 @@
 /* your css code */
+.Profile{
+    &-Content{
+        width: 100%;
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // justify-content: center;
+        justify-content: space-around;
+
+        padding: 2rem 0;  
+
+        &-Logo{
+            &-Icon{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        &-middle{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: column;
+            height: 12rem;
+            &-Text{
+                text-align: center;
+                &-Name{
+                    font-size: 2.1rem;
+                    font-weight: bold;
+                }
+                &-Email{
+                    font-size: 1.1rem;
+                    color: #94959E;
+                }
+            }
+        }
+
+        &-Button{
+            &-Change{
+                height: 2.9rem;
+                width: 8.6rem;
+                font-size: 1.2rem;
+                border-radius: 1rem;
+                color: #ffffff;
+                background-color: #3c50e0;
+                border: none;
+                margin-bottom: 2.2rem;
+            }
+        }
+
+        &-Input{
+            &-Writing{
+                width: 45rem;
+                height: 6rem;
+                background-color: #F5F5F5;
+                border: none;
+                border-radius: 1rem;
+                font-size: 2rem;
+            }
+
+        }
+
+    }
+
+}
