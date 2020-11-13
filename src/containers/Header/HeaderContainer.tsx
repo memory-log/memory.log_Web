@@ -4,16 +4,17 @@ import Header from "../../components/common/Header";
 import useStore from "../../lib/hooks/useStore";
 import refresh from "../../lib/refresh";
 import axios from "axios";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory, useLocation, withRouter } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 const HeaderContainer = () => {
   const { store } = useStore();
   const { showModal, login, getInfo, tryLogOut } = store.AuthStore;
-  const { isMain, tapState, tapClickHandler } = store.HeaderStore;
+  const { tapState, tapClickHandler } = store.HeaderStore;
 
   const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
 
+  const [isMain, setIsMain] = useState<boolean>(false);
   const [hide, setHide] = useState<boolean>(false);
   const [shadow, setShadow] = useState<boolean>(false);
   const [pageY, setPageY] = useState<number>(0);
@@ -21,6 +22,7 @@ const HeaderContainer = () => {
   const [showOption, setShowOption] = useState<boolean>(false);
 
   const history = useHistory();
+  const location = useLocation();
 
   const documentRef = useRef(document);
 
@@ -53,6 +55,12 @@ const HeaderContainer = () => {
     history.push("/create");
   };
 
+  const handleIsMain = () => {
+    if (location.pathname === "/") {
+      setIsMain(true);
+    }
+  };
+
   const getInfoCallback = useCallback(() => {
     if (localStorage.getItem("accessToken")) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("accessToken")}`;
@@ -78,6 +86,10 @@ const HeaderContainer = () => {
   useEffect(() => {
     getInfoCallback();
   }, [getInfoCallback]);
+
+  useEffect(() => {
+    handleIsMain();
+  }, [handleIsMain]);
 
   return (
     <>

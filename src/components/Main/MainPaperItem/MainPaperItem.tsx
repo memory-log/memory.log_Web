@@ -22,7 +22,7 @@ const MainPaperItem = ({ paper }: MainPaperItemProps) => {
             <div className="Main-Paper-Item-Info-Bottom-Profile">
               <div className="Main-Paper-Item-Info-Bottom-Profile-Avatar" />
               <span className="Main-Paper-Item-Info-Bottom-Profile-Name">
-                <span>From. </span>
+                <span>To. </span>
                 {paper.member.name}
               </span>
             </div>
