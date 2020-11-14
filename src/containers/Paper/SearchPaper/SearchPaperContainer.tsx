@@ -15,10 +15,11 @@ interface SearchPaperResponse {
 
 const SearchPaperContainer = ({}) => {
   const { store } = useStore();
-  const { papers, handleSearchPaper } = store.PaperStore;
+  const { search, handleSearchPaper } = store.PaperStore;
   const [loading, setLoading] = useState<boolean>(false);
   const [notFound, setNotFound] = useState<boolean>(false);
   const [target, setTarget] = useState<string>("");
+  const [filter, setFilter] = useState<string>("");
 
   const requestHandleSearchPaper = useCallback(async () => {
     setLoading(true);
@@ -29,17 +30,24 @@ const SearchPaperContainer = ({}) => {
         setNotFound(true);
       }
       setLoading(false);
-      console.log(papers);
     });
-  }, []);
+  }, [target, filter]);
 
-  useEffect(() => {
-    requestHandleSearchPaper();
-  }, []);
+  const keyPressListener = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" || e.key === "NumpadEnter") {
+      requestHandleSearchPaper();
+    }
+  };
 
   return (
     <>
-      <SearchPaper papers={papers} loading={loading} notFound={notFound} setTarget={setTarget} />
+      <SearchPaper
+        search={search}
+        loading={loading}
+        notFound={notFound}
+        setTarget={setTarget}
+        keyPressListener={keyPressListener}
+      />
     </>
   );
 };

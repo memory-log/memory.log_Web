@@ -1,15 +1,18 @@
 import React from "react";
 import PaperType from "../../../util/types/Paper";
+import MainPaperItem from "../../Main/MainPaperItem";
+import MainPaperLoading from "../../Main/MainPaperLoading";
 import "./SearchPaper.scss";
 
 interface SearchPaperProps {
-  papers: PaperType[];
+  search: PaperType[];
   loading: boolean;
   notFound: boolean;
   setTarget: React.Dispatch<React.SetStateAction<string>>;
+  keyPressListener: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const SearchPaper = ({ papers, loading, notFound, setTarget }: SearchPaperProps) => {
+const SearchPaper = ({ search, loading, notFound, setTarget, keyPressListener }: SearchPaperProps) => {
   return (
     <>
       <div className="Search-Paper">
@@ -17,11 +20,18 @@ const SearchPaper = ({ papers, loading, notFound, setTarget }: SearchPaperProps)
           <input
             className="Search-Paper-Container-Bar"
             placeholder="검색어를 입력해주세요."
-            onChange={(e) => {
-              setTarget(e.target.value);
-            }}
+            onChange={(e) => setTarget(e.target.value)}
+            onKeyPress={(e) => keyPressListener(e)}
           />
-          <button onClick={() => {}}>검색띠</button>
+          <div className="Search-Paper-Container-List">
+            {loading ? (
+              <>
+                <MainPaperLoading />
+              </>
+            ) : (
+              search.map((paper, idx) => <MainPaperItem key={idx} paper={paper} />)
+            )}
+          </div>
         </div>
       </div>
     </>
