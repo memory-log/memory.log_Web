@@ -11,6 +11,15 @@ interface GetPapersResponse {
   };
 }
 
+interface SearchPaperResponse {
+  status: number;
+  message: string;
+  data: {
+    SearchedByName: PaperType[];
+    SearchedByTitle: PaperType[];
+  };
+}
+
 @autobind
 class PaperStore {
   @observable papers: PaperType[] = [];
@@ -38,6 +47,22 @@ class PaperStore {
       this.papers = response.data.Papers;
 
       return new Promise((resolve: (response: GetPapersResponse) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  }
+
+  @action
+  async handleSearchPaper(target: string): Promise<SearchPaperResponse> {
+    try {
+      const response: SearchPaperResponse = await PaperAPI.SearchPaper(target);
+      this.papers = response.data.SearchedByName || response.data.SearchedByTitle;
+
+      return new Promise((resolve: (response: SearchPaperResponse) => void, reject) => {
         resolve(response);
       });
     } catch (error) {
