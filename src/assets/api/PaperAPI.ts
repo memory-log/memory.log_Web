@@ -2,9 +2,15 @@ import axios from "axios";
 import { SERVER } from "../../config/config.json";
 
 class PaperAPI {
-  async GetPapers() {
+  async GetPapers(idx?: number, code?: string) {
     try {
-      const url = `${SERVER}/paper/showPaper`;
+      let url = `${SERVER}/paper/showPaper`;
+
+      if (idx) {
+        url += `?paper_idx=${idx}`
+      } else if (code) {
+        url += `?code=${code}`
+      }
 
       const { data } = await axios.get(url);
 
