@@ -59,6 +59,11 @@ class PaperStore {
   }
 
   @action
+  handleFilter(state: string) {
+    this.filter = state;
+  }
+
+  @action
   async handleSearchPaper(target: string): Promise<SearchPaperResponse> {
     try {
       const response: SearchPaperResponse = await PaperAPI.SearchPaper(target);

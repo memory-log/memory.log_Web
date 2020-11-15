@@ -19,10 +19,11 @@ const SearchPaper = ({ search, loading, notFound, setTarget, keyPressListener }:
         <div className="Search-Paper-Container">
           <input
             className="Search-Paper-Container-Bar"
-            placeholder="검색어를 입력해주세요."
+            placeholder="제목 또는 이름으로 검색"
             onChange={(e) => setTarget(e.target.value)}
             onKeyPress={(e) => keyPressListener(e)}
           />
+          {search.length ? <p>{search.length}개의 롤링페이퍼를 찾았어요.</p> : null}
           <div className="Search-Paper-Container-List">
             {loading ? (
               <>
