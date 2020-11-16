@@ -27,9 +27,9 @@ class PaperStore {
   @observable searchedByTitle: PaperType[] = [];
 
   @action
-  async handleGetPapers(): Promise<GetPapersResponse> {
+  async handleGetPapers(hit?: boolean): Promise<GetPapersResponse> {
     try {
-      const response: GetPapersResponse = await PaperAPI.GetPapers();
+      const response: GetPapersResponse = await PaperAPI.GetPapers(hit && hit);
       this.papers = response.data.Papers;
 
       return new Promise((resolve: (response: GetPapersResponse) => void, reject) => {

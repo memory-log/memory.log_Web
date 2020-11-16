@@ -22,17 +22,20 @@ const MainContainer = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [notFound, setNotFound] = useState<boolean>(false);
 
-  const requestHandleGetPapers = useCallback(async () => {
-    setLoading(true);
-    await handleGetPapers().then((res: GetPapersResponse) => {
-      if (res.data.Papers.length > 0) {
-        setNotFound(false);
-      } else {
-        setNotFound(true);
-      }
-      setLoading(false);
-    });
-  }, [login]);
+  const requestHandleGetPapers = useCallback(
+    async (hit?: boolean) => {
+      setLoading(true);
+      await handleGetPapers(hit && hit).then((res: GetPapersResponse) => {
+        if (res.data.Papers.length > 0) {
+          setNotFound(false);
+        } else {
+          setNotFound(true);
+        }
+        setLoading(false);
+      });
+    },
+    [login]
+  );
 
   const requestHandleGetMyPapers = useCallback(async () => {
     if (login) {
@@ -52,10 +55,16 @@ const MainContainer = () => {
   }, [login]);
 
   useEffect(() => {
-    if (tapState !== 2) {
-      requestHandleGetPapers();
-    } else {
-      requestHandleGetMyPapers();
+    switch (tapState) {
+      case 0:
+        requestHandleGetPapers();
+        break;
+      case 1:
+        requestHandleGetPapers(true);
+        break;
+      case 2:
+        requestHandleGetMyPapers();
+        break;
     }
   }, [tapState, login]);
 
