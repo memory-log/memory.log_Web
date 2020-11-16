@@ -3,7 +3,7 @@ import "./Header.scss";
 import { ReactComponent as Logo } from "../../../assets/images/logo.svg";
 import { ReactComponent as Title } from "../../../assets/images/title.svg";
 import { Link } from "react-router-dom";
-import taps from "../../../lib/models/tapModel";
+import taps from "../../../models/tapModel";
 import { ReactComponent as Profile } from "../../../assets/images/profile.svg";
 import { ReactComponent as Search } from "../../../assets/images/search.svg";
 import HeaderProfile from "./HeaderProfile";

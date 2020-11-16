@@ -12,7 +12,9 @@ const MainPaperItem = ({ paper }: MainPaperItemProps) => {
   return (
     <>
       <div className="Main-Paper-Item">
-        <div className="Main-Paper-Item-Image" />
+        <div className="Main-Paper-Item-Thumbnail">
+          <div className="Main-Paper-Item-Thumbnail-Image" />
+        </div>
         <div className="Main-Paper-Item-Info">
           <div className="Main-Paper-Item-Info-Content">
             <p className="Main-Paper-Item-Info-Content-Date">{moment(paper.created_at).format("YYYY년 MM월 DD일")}</p>
@@ -28,7 +30,7 @@ const MainPaperItem = ({ paper }: MainPaperItemProps) => {
             </div>
             <div className="Main-Paper-Item-Info-Bottom-Like">
               <Like className="Main-Paper-Item-Info-Bottom-Like-Icon" />
-              <span className="Main-Paper-Item-Info-Bottom-Like-Count">30</span>
+              <span className="Main-Paper-Item-Info-Bottom-Like-Count">{paper.likeCount}</span>
             </div>
           </div>
         </div>
