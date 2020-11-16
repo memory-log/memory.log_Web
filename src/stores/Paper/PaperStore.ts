@@ -23,8 +23,8 @@ interface SearchPaperResponse {
 @autobind
 class PaperStore {
   @observable papers: PaperType[] = [];
-  @observable search: PaperType[] = [];
-  @observable filter: string = "";
+  @observable searchedByName: PaperType[] = [];
+  @observable searchedByTitle: PaperType[] = [];
 
   @action
   async handleGetPapers(): Promise<GetPapersResponse> {
@@ -59,33 +59,12 @@ class PaperStore {
   }
 
   @action
-  handleFilter(state: string) {
-    this.filter = state;
-  }
-
-  @action
   async handleSearchPaper(target: string): Promise<SearchPaperResponse> {
     try {
       const response: SearchPaperResponse = await PaperAPI.SearchPaper(target);
 
-      if (this.filter === "") {
-        this.search = response.data.SearchedByTitle;
-
-        const promise: Promise<void>[] = [];
-        response.data.SearchedByName.map((name) => {
-          promise.push(
-            new Promise((resolve, reject) => {
-              this.search = [...this.search, name];
-              resolve();
-            })
-          );
-        });
-        await Promise.all(promise);
-      } else if (this.filter === "title") {
-        this.search = response.data.SearchedByTitle;
-      } else if (this.filter === "name") {
-        this.search = response.data.SearchedByName;
-      }
+      this.searchedByName = response.data.SearchedByName;
+      this.searchedByTitle = response.data.SearchedByTitle;
 
       return new Promise((resolve: (response: SearchPaperResponse) => void, reject) => {
         resolve(response);
