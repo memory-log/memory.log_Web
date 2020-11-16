@@ -2,6 +2,7 @@ import React from "react";
 import PaperType from "../../../util/types/Paper";
 import MainPaperLoading from "../../Main/MainPaperLoading";
 import "./SearchPaper.scss";
+import filters from "../../../models/filterModel";
 import SearchPaperItem from "./SearchPaperItem";
 
 interface SearchPaperProps {
@@ -11,9 +12,20 @@ interface SearchPaperProps {
   setTarget: React.Dispatch<React.SetStateAction<string>>;
   setFilter: React.Dispatch<React.SetStateAction<string>>;
   keyPressListener: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  filterState: number;
+  setFilterState: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const SearchPaper = ({ search, loading, notFound, setTarget, setFilter, keyPressListener }: SearchPaperProps) => {
+const SearchPaper = ({
+  search,
+  loading,
+  notFound,
+  setTarget,
+  setFilter,
+  keyPressListener,
+  filterState,
+  setFilterState
+}: SearchPaperProps) => {
   return (
     <>
       <div className="Search-Paper">
@@ -24,8 +36,26 @@ const SearchPaper = ({ search, loading, notFound, setTarget, setFilter, keyPress
             onChange={(e) => setTarget(e.target.value)}
             onKeyPress={(e) => keyPressListener(e)}
           />
-          {/* <button onClick={() => setFilter("title")}>제목만</button>
-          <button onClick={() => setFilter("name")}>이름만</button> */}
+          <div className="Search-Paper-Container-Filter">
+            <div className="Search-Paper-Container-Filter-List">
+              {filters.map((filter, idx) => (
+                <div
+                  className={
+                    filterState === idx
+                      ? "Search-Paper-Container-Filter-List-Item-Clicked Search-Paper-Container-Filter-List-Item"
+                      : "Search-Paper-Container-Filter-List-Item"
+                  }
+                  key={idx}
+                  onClick={() => {
+                    setFilterState(idx);
+                    setFilter(filter.value);
+                  }}
+                >
+                  <p>{filter.title}</p>
+                </div>
+              ))}
+            </div>
+          </div>
           {notFound ? (
             <h1>아무것도 없음 ㅋ</h1>
           ) : (

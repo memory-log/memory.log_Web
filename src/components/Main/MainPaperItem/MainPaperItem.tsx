@@ -30,7 +30,7 @@ const MainPaperItem = ({ paper }: MainPaperItemProps) => {
             </div>
             <div className="Main-Paper-Item-Info-Bottom-Like">
               <Like className="Main-Paper-Item-Info-Bottom-Like-Icon" />
-              <span className="Main-Paper-Item-Info-Bottom-Like-Count">30</span>
+              <span className="Main-Paper-Item-Info-Bottom-Like-Count">{paper.likeCount}</span>
             </div>
           </div>
         </div>

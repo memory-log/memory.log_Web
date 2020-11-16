@@ -30,12 +30,46 @@
       }
     }
 
+    &-Filter {
+      width: 75%;
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 0.6rem;
+      margin-bottom: 1.4rem;
+
+      &-List {
+        display: flex;
+        align-items: center;
+        width: auto;
+
+        &-Item {
+          cursor: pointer;
+          padding: 0.3rem 0.82rem;
+          background-color: #dcdcdc;
+          border-radius: 0.4rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 0.6rem;
+          transition: background-color 0.2s;
+
+          &-Clicked {
+            background-color: #3c50e0;
+          }
+
+          & > p {
+            font-size: 0.8rem;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+
     &-Result {
-      font-size: 1rem;
+      font-size: 1.2rem;
       font-weight: 500;
       color: #0b0f2d;
-      margin-bottom: 0.4rem;
-      width: 75%;
+      width: 100%;
       padding: 0.5rem;
     }
 
