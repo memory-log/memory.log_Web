@@ -2,14 +2,7 @@ import { autobind } from "core-decorators";
 import { action, observable } from "mobx";
 import PaperAPI from "../../assets/api/PaperAPI";
 import PaperType from "../../util/types/Paper";
-
-interface GetPapersResponse {
-  status: number;
-  message: string;
-  data: {
-    Papers: PaperType[];
-  };
-}
+import { GetPaperResponse, GetPapersResponse } from "../../util/types/Response";
 
 interface SearchPaperResponse {
   status: number;
@@ -25,6 +18,7 @@ class PaperStore {
   @observable papers: PaperType[] = [];
   @observable searchedByName: PaperType[] = [];
   @observable searchedByTitle: PaperType[] = [];
+  @observable paperInfo?: PaperType;
 
   @action
   async handleGetPapers(hit?: boolean): Promise<GetPapersResponse> {
@@ -67,6 +61,25 @@ class PaperStore {
       this.searchedByTitle = response.data.SearchedByTitle;
 
       return new Promise((resolve: (response: SearchPaperResponse) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  }
+
+  @action
+  async handlePaperInfo(idx?: number, code?: string): Promise<GetPaperResponse> {
+    try {
+      if (!idx && !code) {
+        throw new Error();
+      }
+      const response: GetPaperResponse = await PaperAPI.GetPapers(idx, code);
+      this.paperInfo = response.data.Papers;
+
+      return new Promise((resolve: (response: GetPaperResponse) => void, reject) => {
         resolve(response);
       });
     } catch (error) {

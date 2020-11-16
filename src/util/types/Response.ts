@@ -1,3 +1,6 @@
+import PaperType from "./Paper";
+import PaperCommentType from "./PaperComment";
+
 export type Response = {
   status: number;
   message: string;
@@ -21,4 +24,22 @@ export interface GetMyInfoResponse extends Response {
     email: string;
     name: string;
   };
+}
+
+export interface GetPapersResponse extends Response {
+  data: {
+    Papers: PaperType[];
+  };
+}
+
+export interface GetPaperResponse extends Response {
+  data: {
+    Papers: PaperType;
+  }
+}
+
+export interface GetCommentsResponse extends Response {
+  data: {
+    paperComments: PaperCommentType[];
+  }
 }

@@ -1,3 +1,5 @@
+import MemberType from "./Member";
+
 export default interface PaperType {
   idx: number;
   member: MemberType;
@@ -8,10 +10,4 @@ export default interface PaperType {
   end_time: any;
   created_at: Date;
   updated_at: Date;
-}
-
-interface MemberType {
-  idx: number;
-  name: string;
-  email: string;
 }
