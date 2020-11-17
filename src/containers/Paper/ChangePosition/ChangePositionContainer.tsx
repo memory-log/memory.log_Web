@@ -10,17 +10,21 @@ const ChangePositionContainer = ({}) => {
   const { store } = useStore();
   const { paperInfo } = store.PaperStore;
   const { handlePaperComments, paperComments } = store.PaperCommentStore;
+  const { color } = store.PaperCommentStore;
+  const { write } = store.PaperCommentStore;
+  const { font } = store.PaperCommentStore;
+  const { comment } = store.PaperCommentStore;
+  const { locationX, handleLocationX } = store.PaperCommentStore;
+  const { locationY, handleLocationY } = store.PaperCommentStore;
+  const { imageUrl, handleImageUrl } = store.PaperCommentStore;
 
   const history = useHistory();
-
-  const [locationX, setLocationX] = useState<number>(0);
-  const [locationY, setLocationY] = useState<number>(0);
 
   useBeforeunload((event: Event) => event.preventDefault());
 
   const handleOnMove = (e: DraggableEvent, data: DraggableData) => {
-    setLocationX(data.x);
-    setLocationY(data.y);
+    handleLocationX(data.x);
+    handleLocationY(data.y);
   };
 
   const handlePaperCommentsCallback = useCallback(() => {
@@ -43,7 +47,16 @@ const ChangePositionContainer = ({}) => {
 
   return (
     <>
-      <ChangePosition paperComments={paperComments} handleOnMove={handleOnMove} onSubmit={onSubmit} />
+      <ChangePosition
+        paperComments={paperComments}
+        handleOnMove={handleOnMove}
+        onSubmit={onSubmit}
+        color={color}
+        font={font}
+        write={write}
+        comment={comment}
+        imageUrl={imageUrl}
+      />
     </>
   );
 };
