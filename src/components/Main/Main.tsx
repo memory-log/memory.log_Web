@@ -1,6 +1,5 @@
 import React from "react";
-import AuthContainer from "../../containers/Auth/AuthContainer";
-import MainNotFound from "../Main/MainNotFound";
+import MainNotFoundContainer from "../../containers/Main/MainNotFound/MainNotFoundContainer";
 import MainPaperItem from "./MainPaperItem";
 import MainPaperLoading from "./MainPaperLoading";
 import PaperType from "../../util/types/Paper";
@@ -18,7 +17,7 @@ const Main = ({ papers, notFound, loading }: MainProps) => {
       <div className="Main">
         <div className="Main-Container">
           {notFound ? (
-            <MainNotFound />
+            <MainNotFoundContainer />
           ) : (
             <div className="Main-Container-List">
               {loading ? (
