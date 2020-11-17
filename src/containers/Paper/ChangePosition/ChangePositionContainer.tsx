@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
 import ChangePosition from "../../../components/Paper/ChangePosition";
 import useStore from "../../../lib/hooks/useStore";
+import useQuery from "../../../lib/hooks/useQuery";
 import { useBeforeunload } from "react-beforeunload";
 import { useHistory, withRouter } from "react-router-dom";
 import { DraggableData, DraggableEvent } from "react-draggable";
@@ -11,14 +12,15 @@ const ChangePositionContainer = ({}) => {
   const { paperInfo } = store.PaperStore;
   const { handlePaperComments, paperComments } = store.PaperCommentStore;
   const { color } = store.PaperCommentStore;
-  const { write } = store.PaperCommentStore;
   const { font } = store.PaperCommentStore;
   const { comment } = store.PaperCommentStore;
   const { locationX, handleLocationX } = store.PaperCommentStore;
   const { locationY, handleLocationY } = store.PaperCommentStore;
-  const { imageUrl, handleImageUrl } = store.PaperCommentStore;
+  const { image, imageUrl, handleImageUrl } = store.PaperCommentStore;
+  const { creaetePaperComment } = store.PaperCommentStore;
 
   const history = useHistory();
+  const query = useQuery();
 
   useBeforeunload((event: Event) => event.preventDefault());
 
@@ -37,6 +39,10 @@ const ChangePositionContainer = ({}) => {
       });
   }, [paperInfo]);
 
+  const creaetePaperCommenctCallBack = useCallback(() => {
+    creaetePaperComment(color, comment, font, imageUrl, locationX, locationY, Number(query.get("idx")!));
+  }, [color, comment, font, imageUrl, locationX, locationY]);
+
   useEffect(() => {
     handlePaperCommentsCallback();
   }, [handlePaperCommentsCallback]);
@@ -44,7 +50,8 @@ const ChangePositionContainer = ({}) => {
   const onSubmit = useCallback(() => {
     console.log(locationX, locationY);
     console.log(imageUrl);
-  }, [locationX, locationY]);
+    creaetePaperCommenctCallBack();
+  }, [color, comment, font, imageUrl, locationX, locationY]);
 
   return (
     <>
@@ -54,7 +61,6 @@ const ChangePositionContainer = ({}) => {
         onSubmit={onSubmit}
         color={color}
         font={font}
-        write={write}
         comment={comment}
         imageUrl={imageUrl}
       />

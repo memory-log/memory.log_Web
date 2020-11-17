@@ -12,4 +12,5 @@ export default interface PaperCommentType {
     location_y: number;
     created_at: Date;
     updated_at?: Date;
+    color?: string;
 }

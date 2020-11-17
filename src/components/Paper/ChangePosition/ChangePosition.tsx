@@ -10,22 +10,12 @@ interface ChangePositionProps {
   handleOnMove: DraggableEventHandler;
   onSubmit: () => void;
   color: string;
-  write: string;
   font: string;
   comment: string;
   imageUrl: string;
 }
 
-const ChangePosition = ({
-  paperComments,
-  handleOnMove,
-  onSubmit,
-  color,
-  write,
-  font,
-  comment,
-  imageUrl
-}: ChangePositionProps) => {
+const ChangePosition = ({ paperComments, handleOnMove, onSubmit, color, font, comment, imageUrl }: ChangePositionProps) => {
   return (
     <>
       <div className="position">
@@ -34,7 +24,15 @@ const ChangePosition = ({
           <div className="position-box-content">
             {paperComments.map((item: PaperCommentType, idx: number) => {
               return (
-                <div style={{ transform: `translate(${item.location_x}px, ${item.location_y}px` }} key={idx}>
+                <div
+                  className="position-box-content-map"
+                  style={{
+                    transform: `translate(${item.location_x}px, ${item.location_y}px`,
+                    fontFamily: item.fontFamily,
+                    color: item.color
+                  }}
+                  key={idx}
+                >
                   {item.image ? <img src={generateURL(item.image)} /> : <div>{item.comment}</div>}
                 </div>
               );
