@@ -2,7 +2,7 @@ import axios from "axios";
 import { SERVER } from "../../config/config.json";
 
 class PaperCommentAPI {
-  async CreateComment(paperIdx: number, locationX: number, locationY: number, comment?: string, fontFamily?: string, image?: string) {
+  async CreateComment(paperIdx: number, locationX: number, locationY: number, comment?: string, color?: string, fontFamily?: string, image?: string) {
     try {
       const url = `${SERVER}/paperComment/createPaperComment`;
 
@@ -10,6 +10,7 @@ class PaperCommentAPI {
         paperIdx, 
         comment,
         fontFamily,
+        color,
         image,
         locationX,
         locationY
