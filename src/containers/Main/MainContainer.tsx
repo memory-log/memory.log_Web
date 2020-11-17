@@ -4,6 +4,7 @@ import Main from "../../components/Main";
 import useStore from "../../lib/hooks/useStore";
 import PaperType from "../../util/types/Paper";
 import axios from "axios";
+import refresh from "../../lib/refresh";
 
 interface GetPapersResponse {
   status: number;
@@ -41,14 +42,31 @@ const MainContainer = () => {
     if (login) {
       setLoading(true);
       axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("accessToken")}`;
-      await handleGetMyPapers().then((res: GetPapersResponse) => {
-        if (res.data.Papers.length > 0) {
-          setNotFound(false);
-        } else {
-          setNotFound(true);
-        }
-        setLoading(false);
-      });
+      setTimeout(async () => {
+        await handleGetMyPapers()
+          .then((res: GetPapersResponse) => {
+            if (res.data.Papers.length > 0) {
+              setNotFound(false);
+            } else {
+              setNotFound(true);
+            }
+            setLoading(false);
+          })
+          .catch(async (err: Error) => {
+            if (err.message.indexOf("410")) {
+              if (await refresh()) {
+                await handleGetMyPapers().then((res: GetPapersResponse) => {
+                  if (res.data.Papers.length > 0) {
+                    setNotFound(false);
+                  } else {
+                    setNotFound(true);
+                  }
+                  setLoading(false);
+                });
+              }
+            }
+          });
+      }, 10);
     } else {
       setNotFound(true);
     }
