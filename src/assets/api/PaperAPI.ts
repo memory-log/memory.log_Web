@@ -6,10 +6,10 @@ class PaperAPI {
     try {
       let url = `${SERVER}/paper/showPaper`;
 
-      if (idx) {
-        url += `?paper_idx=${idx}`
-      } else if (code) {
-        url += `?code=${code}`
+      if (idx && code) {
+        url += `?paper_idx=${idx}&code=${code}`
+      } else if (idx) {
+        url += `?idx=${idx}`
       }
 
       const { data } = await axios.get(url);

@@ -46,8 +46,8 @@ const WriteCommentContainer = ({}) => {
   };
 
   const handlePaperInfoCallback = useCallback(() => {
-    if (query.get("idx")) {
-      handlePaperInfo(Number(query.get("idx")))
+    if (query.get("code") && query.get("idx")) {
+      handlePaperInfo(Number(query.get("idx")), query.get("code")!)
         .then((res: GetPaperResponse) => {
           if (!res.data.Papers || !res.data.Papers.member) {
             history.push("/");
@@ -56,8 +56,8 @@ const WriteCommentContainer = ({}) => {
         .catch(() => {
           history.push("/");
         });
-    } else if (query.get("code")) {
-      handlePaperInfo(undefined, query.get("code") || undefined)
+    } else if (query.get("idx")) {
+      handlePaperInfo(Number(query.get("idx")))
         .then((res: GetPaperResponse) => {
           if (!res.data.Papers || !res.data.Papers.member) {
             history.push("/");
