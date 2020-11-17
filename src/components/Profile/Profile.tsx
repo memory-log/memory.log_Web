@@ -1,35 +1,51 @@
-import React from "react"
-import "./Profile.scss"
-import { ReactComponent as Person } from "../../assets/images/profilePage.svg"
-import Button from "../common/Button"
-
+import React, { ChangeEvent } from "react";
+import "./Profile.scss";
+import EditProfile from "./EditProfile";
+import MyProfile from "./MyProfile";
 
 interface ProfileProps {
-
+  name: string;
+  email: string;
+  modify: boolean;
+  changeName: string;
+  setChangeName: React.Dispatch<React.SetStateAction<string>>;
+  tryProfileModify: () => void;
+  handleModifyProfileCallback: () => Promise<void>;
+  handleImageChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  profileImg: string;
+  preview: string | ArrayBuffer | null;
+  idxFact: boolean;
 }
 
-const Profile = ({ }: ProfileProps) => {
-    return (
-        <div className="Profile-Content">
-            <div className="Profile-Content-Logo">
-                <Person className="Profile-Content-Logo-Icon" />
-            </div>
-            <div className="Profile-Content-middle">
-                <div className="Profile-Content-middle-Text">
-                    <p className="Profile-Content-middle-Text-Name">김진호</p>
-                    <p className="Profile-Content-middle-Text-Email">jhkim6831@gmail.com</p>
-                </div>
-                <div className="Profile-Content-middle-Button">
-                    {/* <input type="file" accept="" className="Profile-Content-middle-Button-Change">프로필 변경</input> */}
-                    <Button text="프로필 변경" style={{ width: "8.6rem" }} className="Profile-Content-middle-Button"></Button>
-                </div>
-            </div>
-
-            <div className="Profile-Content-Input">
-                <input className="Profile-Content-Input-Writing" />
-            </div>
-        </div>
-    )
-}
+const Profile = ({
+  name,
+  email,
+  modify,
+  changeName,
+  setChangeName,
+  tryProfileModify,
+  handleModifyProfileCallback,
+  handleImageChange,
+  profileImg,
+  preview,
+  idxFact
+}: ProfileProps) => {
+  return (
+    <>
+      {modify ? (
+        <EditProfile
+          email={email}
+          changeName={changeName}
+          setChangeName={setChangeName}
+          handleModifyProfileCallback={handleModifyProfileCallback}
+          handleImageChange={handleImageChange}
+          preview={preview}
+        />
+      ) : (
+        <MyProfile name={name} email={email} tryProfileModify={tryProfileModify} profileImg={profileImg} idxFact={idxFact} />
+      )}
+    </>
+  );
+};
 
 export default Profile;

@@ -76,7 +76,7 @@ class PaperStore {
       if (!idx && !code) {
         throw new Error();
       }
-      const response: GetPaperResponse = await PaperAPI.GetPapers(idx, code);
+      const response: GetPaperResponse = await PaperAPI.GetPapers(undefined, idx, code);
       this.paperInfo = response.data.Papers;
 
       return new Promise((resolve: (response: GetPaperResponse) => void, reject) => {
