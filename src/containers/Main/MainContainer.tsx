@@ -26,14 +26,18 @@ const MainContainer = () => {
   const requestHandleGetPapers = useCallback(
     async (hit?: boolean) => {
       setLoading(true);
-      await handleGetPapers(hit && hit).then((res: GetPapersResponse) => {
-        if (res.data.Papers.length > 0) {
-          setNotFound(false);
-        } else {
-          setNotFound(true);
-        }
-        setLoading(false);
-      });
+      await handleGetPapers(hit && hit)
+        .then((res: GetPapersResponse) => {
+          if (res.data.Papers.length > 0) {
+            setNotFound(false);
+          } else {
+            setNotFound(true);
+          }
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     [login]
   );

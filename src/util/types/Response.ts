@@ -21,8 +21,10 @@ export interface RefreshTokenResponse extends Response {
 
 export interface GetMyInfoResponse extends Response {
   data: {
-    email: string;
+    idx?: number;
     name: string;
+    profileImage: string;
+    email?: string;
   };
 }
 
@@ -45,6 +47,14 @@ export interface GetCommentsResponse extends Response {
 }
 
 export interface UploadImageResponse extends Response {
+  data: {
+    fileName: string;
+  };
+}
+
+export interface ModifyProfileImgResponse {
+  status: number;
+  message: string;
   data: {
     fileName: string;
   };

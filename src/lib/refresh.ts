@@ -5,7 +5,7 @@ import { RefreshTokenResponse } from "../util/types/Response";
 
 const refresh = async (): Promise<boolean> => {
   const refreshToken = Cookie.get("refreshToken");
-
+  let flag = false;
   if (!refreshToken) {
     return false;
   }
@@ -14,13 +14,13 @@ const refresh = async (): Promise<boolean> => {
     .then((res: RefreshTokenResponse) => {
       localStorage.setItem("accessToken", res.data.accessToken);
       axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.accessToken}`;
-      return true;
+      flag = true;
     })
     .catch(() => {
       Cookie.remove("refreshToken");
     });
 
-  return false;
+  return flag;
 };
 
 export default refresh;

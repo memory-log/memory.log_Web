@@ -15,7 +15,6 @@ const HeaderProfile = ({ logOut, MyProfile, onClose }: HeaderProfileProps) => {
 
   return (
     <>
-      {/* <div className="background" onClick={() => headerProfileClick()} /> */}
       <div className="HeaderProfile">
         <div className="HeaderProfile-div profile" onClick={() => MyProfile()}>
           <span>내 프로필</span>
