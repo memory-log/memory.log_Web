@@ -35,17 +35,17 @@ export interface GetPapersResponse extends Response {
 export interface GetPaperResponse extends Response {
   data: {
     Papers: PaperType;
-  }
+  };
 }
 
 export interface GetCommentsResponse extends Response {
   data: {
     paperComments: PaperCommentType[];
-  }
+  };
 }
 
 export interface UploadImageResponse extends Response {
   data: {
     fileName: string;
-  }
+  };
 }
