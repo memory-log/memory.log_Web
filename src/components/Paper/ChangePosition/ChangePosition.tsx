@@ -3,14 +3,29 @@ import "./ChangePosition.scss";
 import Button from "../../common/Button";
 import PaperCommentType from "../../../util/types/PaperComment";
 import Draggable, { DraggableEventHandler } from "react-draggable";
+import generateURL from "../../../lib/generateURL";
 
 interface ChangePositionProps {
   paperComments: PaperCommentType[];
   handleOnMove: DraggableEventHandler;
   onSubmit: () => void;
+  color: string;
+  write: string;
+  font: string;
+  comment: string;
+  imageUrl: string;
 }
 
-const ChangePosition = ({ paperComments, handleOnMove, onSubmit }: ChangePositionProps) => {
+const ChangePosition = ({
+  paperComments,
+  handleOnMove,
+  onSubmit,
+  color,
+  write,
+  font,
+  comment,
+  imageUrl
+}: ChangePositionProps) => {
   return (
     <>
       <div className="position">
@@ -20,12 +35,18 @@ const ChangePosition = ({ paperComments, handleOnMove, onSubmit }: ChangePositio
             {paperComments.map((item: PaperCommentType, idx: number) => {
               return (
                 <div style={{ transform: `translate(${item.location_x}px, ${item.location_y}px` }} key={idx}>
-                  {item.image ? <img src={item.image} /> : <div>{item.comment}</div>}
+                  {item.image ? <img src={generateURL(item.image)} /> : <div>{item.comment}</div>}
                 </div>
               );
             })}
             <Draggable bounds="parent" onStop={handleOnMove}>
-              <div className="position-box-content-drag">Asdfsd</div>
+              {imageUrl ? (
+                <img className="position-box-content-drag" src={generateURL(imageUrl)} alt="image" />
+              ) : (
+                <div className="position-box-content-drag" style={{ color: color, fontFamily: font }}>
+                  {comment}
+                </div>
+              )}
             </Draggable>
           </div>
           <div className="position-box-btnarea">
