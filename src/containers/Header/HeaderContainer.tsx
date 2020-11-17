@@ -62,7 +62,7 @@ const HeaderContainer = () => {
   };
 
   const getInfoCallback = useCallback(() => {
-    if (localStorage.getItem("accessToken")) {
+    if (!login && localStorage.getItem("accessToken")) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("accessToken")}`;
       setTimeout(() => {
         getInfo().catch(async (err: Error) => {

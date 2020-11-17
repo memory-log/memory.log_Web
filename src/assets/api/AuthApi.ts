@@ -51,9 +51,10 @@ class AuthApi {
     }
   }
 
-  async GetInfo() {
+  async GetInfo(idx?: number) {
     try {
-      const url = `${SERVER}/member/getInfo`;
+      let url = "";
+      idx ? (url = `${SERVER}/member/getOtherInfo?idx=${idx}`) : (url = `${SERVER}/member/getInfo`);
 
       const { data } = await axios.get(url);
 

@@ -1,7 +1,7 @@
-@import "../../../util/lib.scss";
+@import "../../../../util/lib.scss";
 
-.Main-Paper-Item {
-  width: 23rem;
+.Search-Paper-Item {
+  width: 100%;
   -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
   border-radius: 0.8rem;
@@ -14,15 +14,7 @@
   transition: ease 0.2s;
 
   &:hover {
-    transform: scale(1.05, 1.05);
-  }
-
-  @media screen and (max-width: 1216px) {
-    width: calc(50% - 2rem);
-  }
-
-  @media screen and (max-width: 1084px) {
-    width: 100%;
+    transform: scale(1.02, 1.02);
   }
 
   &-Thumbnail {
@@ -78,7 +70,7 @@
         &-Avatar {
           width: 2rem;
           height: 2rem;
-          // background-color: gray;
+          background-color: gray;
           border-radius: 50%;
           margin-right: 0.6rem;
         }

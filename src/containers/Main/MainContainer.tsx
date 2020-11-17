@@ -4,6 +4,7 @@ import Main from "../../components/Main";
 import useStore from "../../lib/hooks/useStore";
 import PaperType from "../../util/types/Paper";
 import axios from "axios";
+import refresh from "../../lib/refresh";
 
 interface GetPapersResponse {
   status: number;
@@ -22,40 +23,70 @@ const MainContainer = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [notFound, setNotFound] = useState<boolean>(false);
 
-  const requestHandleGetPapers = useCallback(async () => {
-    setLoading(true);
-    await handleGetPapers().then((res: GetPapersResponse) => {
-      if (res.data.Papers.length > 0) {
-        setNotFound(false);
-      } else {
-        setNotFound(true);
-      }
-      setLoading(false);
-    });
-  }, [login]);
+  const requestHandleGetPapers = useCallback(
+    async (hit?: boolean) => {
+      setLoading(true);
+      await handleGetPapers(hit && hit)
+        .then((res: GetPapersResponse) => {
+          if (res.data.Papers.length > 0) {
+            setNotFound(false);
+          } else {
+            setNotFound(true);
+          }
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    [login]
+  );
 
   const requestHandleGetMyPapers = useCallback(async () => {
     if (login) {
       setLoading(true);
       axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("accessToken")}`;
-      await handleGetMyPapers().then((res: GetPapersResponse) => {
-        if (res.data.Papers.length > 0) {
-          setNotFound(false);
-        } else {
-          setNotFound(true);
-        }
-        setLoading(false);
-      });
+      setTimeout(async () => {
+        await handleGetMyPapers()
+          .then((res: GetPapersResponse) => {
+            if (res.data.Papers.length > 0) {
+              setNotFound(false);
+            } else {
+              setNotFound(true);
+            }
+            setLoading(false);
+          })
+          .catch(async (err: Error) => {
+            if (err.message.indexOf("410")) {
+              if (await refresh()) {
+                await handleGetMyPapers().then((res: GetPapersResponse) => {
+                  if (res.data.Papers.length > 0) {
+                    setNotFound(false);
+                  } else {
+                    setNotFound(true);
+                  }
+                  setLoading(false);
+                });
+              }
+            }
+          });
+      }, 10);
     } else {
       setNotFound(true);
     }
   }, [login]);
 
   useEffect(() => {
-    if (tapState !== 2) {
-      requestHandleGetPapers();
-    } else {
-      requestHandleGetMyPapers();
+    switch (tapState) {
+      case 0:
+        requestHandleGetPapers();
+        break;
+      case 1:
+        requestHandleGetPapers(true);
+        break;
+      case 2:
+        requestHandleGetMyPapers();
+        break;
     }
   }, [tapState, login]);
 

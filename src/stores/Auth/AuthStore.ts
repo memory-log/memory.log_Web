@@ -12,6 +12,7 @@ class AuthStore {
   @observable page: boolean = true;
   @observable email: string = "";
   @observable name: string = "";
+  @observable profileImage: string = "";
 
   @action
   showModal() {
@@ -82,13 +83,14 @@ class AuthStore {
   };
 
   @action
-  getInfo = async (): Promise<GetMyInfoResponse> => {
+  getInfo = async (idx?: number): Promise<GetMyInfoResponse> => {
     try {
-      const response: GetMyInfoResponse = await AuthApi.GetInfo();
+      const response: GetMyInfoResponse = await AuthApi.GetInfo(idx);
 
       if (response.status === 200) {
         this.name = response.data.name;
-        this.email = response.data.email;
+        this.profileImage = response.data.profileImage;
+        this.email = response.data.email ? response.data.email : "";
         this.login = true;
       }
 

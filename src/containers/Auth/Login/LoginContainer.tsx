@@ -28,7 +28,6 @@ const LoginContainer = ({ changePage }: LoginContainerProps) => {
         showModal();
       })
       .catch((err: Error) => {
-        console.log("에러");
         Swal.fire({ icon: "error", title: "로그인 실패", text: "아이디 또는 비밀번호가 잘못되었습니다." });
       });
   }, [email, pw]);
@@ -43,7 +42,7 @@ const LoginContainer = ({ changePage }: LoginContainerProps) => {
     return () => {
       document.removeEventListener("keydown", listener);
     };
-  }, []);
+  }, [email, pw]);
 
   return (
     <>

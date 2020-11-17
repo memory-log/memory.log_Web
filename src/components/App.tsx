@@ -5,6 +5,7 @@ import ProfilePage from "../pages/ProfilePage";
 import WriteCommentPage from "../pages/WriteCommentPage";
 import CreatePaperPage from "../pages/CreatePaperPage";
 import SearchPaperPage from "../pages/SearchPaperPage";
+import GetPaperPage from "../pages/GetPaperPage";
 import AuthContainer from "../containers/Auth/AuthContainer";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <AuthContainer />
       <Switch>
         <Route exact path="/" component={MainPage} />
+        <Route path="/paper" component={GetPaperPage} />
         <Route path="/profile" component={ProfilePage} />
         <Route path="/create" component={CreatePaperPage} />
         <Route path="/write" component={WriteCommentPage} />
