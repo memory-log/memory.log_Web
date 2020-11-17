@@ -43,3 +43,9 @@ export interface GetCommentsResponse extends Response {
     paperComments: PaperCommentType[];
   }
 }
+
+export interface UploadImageResponse extends Response {
+  data: {
+    fileName: string;
+  }
+}
