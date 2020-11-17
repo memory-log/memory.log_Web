@@ -35,6 +35,8 @@ const WriteCommentContainer = ({}) => {
     if (e.target.files && e.target.files.length) {
       let file = e.target.files[0];
       reader.onloadend = () => {
+        handleImage(file);
+        uploadImage();
         setPreview(reader.result);
       };
       reader.readAsDataURL(file);

@@ -43,6 +43,7 @@ const ChangePositionContainer = ({}) => {
 
   const onSubmit = useCallback(() => {
     console.log(locationX, locationY);
+    console.log(imageUrl);
   }, [locationX, locationY]);
 
   return (
