@@ -111,6 +111,8 @@
       &-date {
         width: 100%;
         margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
 
         &-text {
           color: #0b0f2d;
@@ -119,12 +121,19 @@
           margin-bottom: 0.4rem;
         }
 
+        &-subtext {
+          padding-left: 0.2rem;
+          color: gray;
+          margin-bottom: 0.5rem;
+          font-size: 1rem;
+        }
+
         &-area {
           width: 100%;
           display: flex;
 
           &-input {
-            width: 10rem;
+            width: 13rem;
             height: 3rem;
             border-radius: 4px;
             border: 1px solid #dcdcdc;
@@ -168,6 +177,54 @@
             height: 5rem;
             box-shadow: 0 0 10px 2px #00000010;
             border-radius: 4px;
+          }
+        }
+      }
+
+      &-thumbnail {
+        margin-top: 2rem;
+        &-content {
+          margin-top: 1rem;
+          &-preview {
+            max-width: 15rem;
+            border: 1px solid #707070;
+            border-radius: 3px;
+            position: relative;
+            &-no {
+              width: 10rem;
+              height: 13rem;
+            }
+          }
+          &-upload {
+            position: absolute;
+            right: -10px;
+            bottom: -10px;
+            label {
+              display: inline-block;
+              color: #999;
+              font-size: inherit;
+              line-height: normal;
+              vertical-align: middle;
+              cursor: pointer;
+              border-radius: 50%;
+              padding: 10px;
+              background-color: #fff;
+              border: 1px solid rgb(150, 150, 150);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 23px;
+            }
+            input[type="file"] {
+              position: absolute;
+              width: 1px;
+              height: 1px;
+              padding: 0;
+              margin: -1px;
+              overflow: hidden;
+              clip: rect(0, 0, 0, 0);
+              border: 0;
+            }
           }
         }
       }
