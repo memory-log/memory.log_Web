@@ -48,7 +48,13 @@ const ChangePosition = ({ paperComments, handleOnMove, onSubmit, color, font, co
             </Draggable>
           </div>
           <div className="position-box-btnarea">
-            <Button onClick={() => onSubmit()} text="완료" style={{ height: "3.6rem", fontSize: "1.2rem" }} />
+            <Button
+              onClick={() => {
+                onSubmit();
+              }}
+              text="완료"
+              style={{ height: "3.6rem", fontSize: "1.2rem" }}
+            />
           </div>
         </div>
       </div>

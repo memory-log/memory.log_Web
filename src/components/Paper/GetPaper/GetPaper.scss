@@ -1,1 +1,121 @@
-/* your css code */
+.Get-Paper {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 6rem;
+
+  &-Container {
+    max-width: 35rem;
+    width: 100%;
+
+    img {
+      width: 10rem;
+      height: 8rem;
+      position: absolute;
+    }
+
+    &-Header {
+      display: flex;
+      align-items: center;
+
+      &-Before {
+        height: 1.8rem;
+        margin-right: 1rem;
+        cursor: pointer;
+      }
+
+      &-Title {
+        display: flex;
+        flex-direction: column;
+
+        &-Name {
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: #0b0f2d;
+          margin-bottom: 0.2rem;
+        }
+
+        &-Status {
+          font-size: 0.9rem;
+          font-weight: 500;
+          color: #7c7d85;
+        }
+      }
+    }
+
+    &-Content {
+      width: 100%;
+      height: 40rem;
+      background-color: #fcfcfc;
+      border: 1px solid #dcdcdc;
+      border-radius: 0.8rem;
+      margin-top: 2rem;
+      position: relative;
+      overflow: hidden;
+
+      &-Mapped {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+    }
+
+    &-Bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+
+      &-Button {
+        display: flex;
+        align-items: center;
+
+        &-Share {
+          cursor: pointer;
+          width: 2.5rem;
+          height: 2.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 0.3rem;
+          background-color: #e5e8ff;
+          transition: background-color 0.2s;
+
+          &:hover {
+            background-color: #b5beff;
+          }
+        }
+      }
+
+      &-Like {
+        display: flex;
+        align-items: center;
+        padding-right: 0.4rem;
+
+        &-Icon {
+          width: 1.4rem;
+          margin-right: 0.4rem;
+          cursor: pointer;
+
+          &:hover {
+            & path {
+              fill: #3c50e0;
+            }
+          }
+
+          &-Clicked {
+            & path {
+              fill: #3c50e0;
+            }
+          }
+        }
+
+        &-Text {
+          font-size: 1.5rem;
+          color: #3c50e0;
+        }
+      }
+    }
+  }
+}
