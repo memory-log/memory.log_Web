@@ -66,7 +66,7 @@ const ChangePositionContainer = ({}) => {
     }
     handlePaperCommentsCallback();
     history.push(
-      paperInfo?.scope === "ONLY_CODE" ? `/paper/?idx=${paperInfo.idx}&code=${paperInfo.code})}` : `/paper/?idx=${paperInfo?.idx}`
+      paperInfo?.scope === "ONLY_CODE" ? `/paper/?idx=${paperInfo.idx}&code=${paperInfo.code}` : `/paper/?idx=${paperInfo?.idx}`
     );
   }, [search]);
 
