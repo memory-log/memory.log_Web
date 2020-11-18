@@ -4,9 +4,10 @@ import { ReactComponent as Logo } from "../../../assets/images/logo.svg";
 import { ReactComponent as Title } from "../../../assets/images/title.svg";
 import { Link } from "react-router-dom";
 import taps from "../../../models/tapModel";
-import { ReactComponent as Profile } from "../../../assets/images/profile.svg";
+import defaultProfile from "../../../assets/images/profile.svg";
 import { ReactComponent as Search } from "../../../assets/images/search.svg";
 import HeaderProfile from "./HeaderProfile";
+import generateURL from "../../../lib/generateURL";
 
 interface HeaderProps {
   shadow: boolean;
@@ -22,6 +23,7 @@ interface HeaderProps {
   logOut: () => void;
   MyProfile: () => void;
   onClose: () => void;
+  profileImage: string;
 }
 
 const Header = ({
@@ -37,7 +39,8 @@ const Header = ({
   setShowOption,
   onClose,
   logOut,
-  MyProfile
+  MyProfile,
+  profileImage
 }: HeaderProps) => {
   return (
     <>
@@ -62,8 +65,10 @@ const Header = ({
                     작성하기
                   </button>
                   <div className="Header-Container-Content-Account-Profile">
-                    <Profile
+                    <img
+                      src={profileImage ? generateURL(profileImage) : defaultProfile}
                       className="Header-Container-Content-Account-Profile-Image"
+                      alt="profile"
                       onClick={() => {
                         setShowOption((prevState) => !prevState);
                       }}
