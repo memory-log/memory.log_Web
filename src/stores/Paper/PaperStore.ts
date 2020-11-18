@@ -1,8 +1,9 @@
 import { autobind } from "core-decorators";
 import { action, observable } from "mobx";
 import PaperAPI from "../../assets/api/PaperAPI";
+import UploadApi from "../../assets/api/UploadApi";
 import PaperType from "../../util/types/Paper";
-import { GetPaperResponse, GetPapersResponse } from "../../util/types/Response";
+import { CreatePaperResponse, GetPaperResponse, GetPapersResponse, UploadImageResponse } from "../../util/types/Response";
 
 interface SearchPaperResponse {
   status: number;
@@ -23,6 +24,42 @@ class PaperStore {
   @action
   handleGetPaperInfo(paperInfo: PaperType) {
     this.paperInfo = paperInfo;
+  }
+
+  @action
+  async handlePaperImage(thumbnail: File): Promise<UploadImageResponse> {
+    try {
+      const response: UploadImageResponse = await UploadApi.UploadImage(thumbnail);
+
+      return new Promise((resolve: (response: UploadImageResponse) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  }
+
+  @action
+  async handleCreatePaper(
+    endTime: Date,
+    scope: string,
+    title: string,
+    backgroundColor: string,
+    thumbnail?: string
+  ): Promise<CreatePaperResponse> {
+    try {
+      const response: CreatePaperResponse = await PaperAPI.CreatePaper(endTime, scope, title, backgroundColor, thumbnail);
+
+      return new Promise((resolve: (response: CreatePaperResponse) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
   }
 
   @action
