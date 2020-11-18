@@ -9,7 +9,7 @@ import { useCookies } from "react-cookie";
 
 const HeaderContainer = () => {
   const { store } = useStore();
-  const { showModal, login, getInfo, tryLogOut } = store.AuthStore;
+  const { showModal, login, getInfo, tryLogOut, profileImage } = store.AuthStore;
   const { tapState, tapClickHandler } = store.HeaderStore;
 
   const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
@@ -65,17 +65,15 @@ const HeaderContainer = () => {
   const getInfoCallback = useCallback(() => {
     if (!login && localStorage.getItem("accessToken")) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("accessToken")}`;
-      setTimeout(() => {
-        getInfo().catch(async (err: Error) => {
-          if (err.message.indexOf("410")) {
-            if (await refresh()) {
-              getInfo().catch((err: Error) => {
-                console.log("권한 없음");
-              });
-            }
+      getInfo().catch(async (err: Error) => {
+        if (err.message.indexOf("410")) {
+          if (await refresh()) {
+            getInfo().catch((err: Error) => {
+              console.log("권한 없음");
+            });
           }
-        });
-      }, 10);
+        }
+      });
     }
   }, [login]);
 
@@ -108,6 +106,7 @@ const HeaderContainer = () => {
         onClose={onClose}
         logOut={logOut}
         MyProfile={MyProfile}
+        profileImage={profileImage}
       />
     </>
   );
