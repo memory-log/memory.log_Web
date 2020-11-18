@@ -36,11 +36,15 @@ class PaperAPI {
         url += `?paper_idx=${idx}`;
       }
 
-      const config = {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`
-        }
-      };
+      let config = {};
+
+      if (localStorage.getItem("accessToken")) {
+        config = {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        };
+      }
 
       const { data } = await axios.get(url, config);
 
