@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { observer } from "mobx-react";
-import GetPaper from "../../../components/Paper/GetPaper/GetPaper";
+import GetPaper from "../../../components/Paper/GetPaper";
 import useQuery from "../../../lib/hooks/useQuery";
 import useStore from "../../../lib/hooks/useStore";
 import { GetCommentsResponse, GetPaperResponse } from "../../../util/types/Response";
@@ -9,7 +9,7 @@ import { useHistory, useLocation } from "react-router-dom";
 const GetPaperContainer = ({}) => {
   const { store } = useStore();
   const { handlePaperInfo, paperInfo, handleLikePaper } = store.PaperStore;
-  const { handlePaperComments, paperComments, initPaperComments } = store.PaperCommentStore;
+  const { handlePaperComments, paperComments, initPaperComments, selectedIdx } = store.PaperCommentStore;
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -77,10 +77,11 @@ const GetPaperContainer = ({}) => {
   return (
     <>
       <GetPaper
-        loading={loading}
         paperInfo={paperInfo}
         paperComments={paperComments}
         handleLikePaperCallback={handleLikePaperCallback}
+        selectedIdx={selectedIdx}
+        handlePaperCommentsCallback={handlePaperCommentsCallback}
       />
     </>
   );

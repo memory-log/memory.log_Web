@@ -6,7 +6,7 @@
   padding-top: 6rem;
 
   &-Container {
-    max-width: 35rem;
+    max-width: 55rem;
     width: 100%;
 
     img {
@@ -45,21 +45,89 @@
     }
 
     &-Content {
-      width: 100%;
-      height: 40rem;
-      background-color: #fcfcfc;
-      border: 1px solid #dcdcdc;
-      border-radius: 0.8rem;
-      margin-top: 2rem;
-      position: relative;
-      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      &-Canvas {
+        width: 100%;
+        max-width: 35rem;
+        height: 40rem;
+        background-color: #fcfcfc;
+        border: 1px solid #dcdcdc;
+        border-radius: 0.8rem;
+        margin-top: 2rem;
+        position: relative;
+        display: block;
+        overflow: hidden;
 
-      &-Mapped {
-        position: absolute;
+        &-Mapped {
+          position: absolute;
+          &-Select {
+            z-index: 100;
+          }
+        }
+      }
+
+      &-List {
+        width: 100%;
+        max-width: 15rem;
+        margin-top: 1.5rem;
+
+        &-Title {
+          width: 100%;
+          height: 3rem;
+          padding-left: 0.2rem;
+          margin-bottom: 1rem;
+          font-size: 1.2rem;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid #a3a3a7;
+        }
+
+        &-box {
+          height: 35rem;
+          overflow-y: auto;
+        }
+
+        &-Member {
+          width: 100%;
+          height: 2rem;
+          padding: 0 0.8rem;
+          margin-bottom: 0.4rem;
+          border-radius: 3px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          position: relative;
+
+          &-More {
+            display: none;
+          }
+
+          &-Option {
+            position: absolute;
+            width: 6rem;
+            height: 4rem;
+            background-color: #3c50e0;
+            right: 0rem;
+            bottom: -4rem;
+            z-index: 10;
+          }
+        }
+
+        &-Member:hover {
+          background-color: #e5e9fe;
+        }
+
+        &-Member:hover > &-Member-More {
+          display: block;
+        }
       }
     }
 
     &-Bottom {
+      max-width: 35rem;
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;

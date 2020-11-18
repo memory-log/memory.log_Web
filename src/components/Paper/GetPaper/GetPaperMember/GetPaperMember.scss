@@ -1,0 +1,58 @@
+/* your css code */
+
+.GetPaper {
+  &-Member {
+    width: 100%;
+    height: 2rem;
+    padding: 0 0.8rem;
+    margin-bottom: 0.4rem;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    cursor: pointer;
+
+    &-Active {
+      background-color: #e5e9fe;
+    }
+
+    &-More {
+      cursor: pointer;
+      display: none;
+      height: 100%;
+    }
+
+    &-Option {
+      position: absolute;
+      width: 6rem;
+      height: 4rem;
+      right: 0rem;
+      bottom: -4rem;
+      z-index: 10;
+      box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+
+      div {
+        width: 100%;
+        height: 2rem;
+        display: flex;
+        padding-left: 0.8rem;
+        align-items: center;
+        background-color: #fff;
+        cursor: pointer;
+      }
+
+      div:hover {
+        background-color: #e5e9fe;
+      }
+    }
+  }
+
+  &-Member:hover {
+    background-color: #e5e9fe;
+  }
+
+  &-Member:hover > &-Member-More {
+    display: block;
+  }
+}
