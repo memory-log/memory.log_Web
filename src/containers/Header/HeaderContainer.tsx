@@ -39,6 +39,7 @@ const HeaderContainer = () => {
   const logOut = () => {
     localStorage.clear();
     removeCookie("refreshToken");
+    history.push("/");
     setShowOption(false);
     tryLogOut();
   };
