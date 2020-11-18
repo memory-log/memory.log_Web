@@ -2,6 +2,26 @@ import axios from "axios";
 import { SERVER } from "../../config/config.json";
 
 class PaperAPI {
+  async CreatePaper(endTime: Date, scope: string, title: string, backgroundColor: string, thumbnail?: string) {
+    try {
+      let url = `${SERVER}/paper/createPaper`;
+
+      const body = {
+        backgroundColor,
+        endTime,
+        scope,
+        thumbnail,
+        title
+      };
+
+      const { data } = await axios.post(url, body);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
   async GetPapers(hit?: boolean, idx?: number, code?: string) {
     try {
       let url = `${SERVER}/paper/showPaper`;
@@ -16,7 +36,13 @@ class PaperAPI {
         url += `?paper_idx=${idx}`;
       }
 
-      const { data } = await axios.get(url);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+        }
+      };
+
+      const { data } = await axios.get(url, config);
 
       return data;
     } catch (error) {
@@ -28,7 +54,13 @@ class PaperAPI {
     try {
       const url = `${SERVER}/paper/getMyPaper`;
 
-      const { data } = await axios.get(url);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+        }
+      };
+
+      const { data } = await axios.get(url, config);
 
       return data;
     } catch (error) {

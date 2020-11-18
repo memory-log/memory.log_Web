@@ -31,7 +31,9 @@ const GetPaper = ({ loading, paperInfo, paperComments, handleLikePaperCallback }
             </Link>
             <div className="Get-Paper-Container-Header-Title">
               <p className="Get-Paper-Container-Header-Title-Name">To. {paperInfo?.member.name}</p>
-              <p className="Get-Paper-Container-Header-Title-Status">10명이 롤링페이퍼에 글을 남겼습니다.</p>
+              <p className="Get-Paper-Container-Header-Title-Status">
+                {paperComments.length}개의 글이 롤링페이퍼에 작성되었어요 😀
+              </p>
             </div>
           </div>
           <div className="Get-Paper-Container-Content">

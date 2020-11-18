@@ -8,6 +8,7 @@ export default interface PaperType {
   code: string;
   likeCount: number;
   endTime: Date;
+  thumbnail: string;
   like: boolean;
   createdAt: Date;
   updatedAt: Date;

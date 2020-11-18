@@ -11,8 +11,9 @@
     max-width: 35rem;
 
     &-title {
-      font-size: 1.8rem;
-      margin-top: 2rem;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-top: 1.4rem;
     }
 
     &-content {
@@ -23,7 +24,7 @@
         border-bottom: 1px solid #cccccc;
         padding-left: 0.2rem;
         font-size: 1.4rem;
-        margin-top: 3rem;
+        margin-top: 2rem;
         font-family: "NotoSansKR";
         font-weight: 600;
         &::placeholder {
@@ -118,14 +119,14 @@
           color: #0b0f2d;
           padding-left: 0.2rem;
           font-size: 1.2rem;
-          margin-bottom: 0.4rem;
+          margin-bottom: 0.2rem;
         }
 
         &-subtext {
           padding-left: 0.2rem;
           color: gray;
-          margin-bottom: 0.5rem;
-          font-size: 1rem;
+          margin-bottom: 1rem;
+          font-size: 0.9rem;
         }
 
         &-area {
@@ -169,12 +170,12 @@
           width: 100%;
           margin-top: 1rem;
           display: flex;
-          justify-content: space-between;
 
           &-color {
             cursor: pointer;
-            width: 5rem;
-            height: 5rem;
+            width: 3rem;
+            height: 3rem;
+            margin-right: 0.8rem;
             box-shadow: 0 0 10px 2px #00000010;
             border-radius: 4px;
           }
@@ -234,7 +235,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      margin-top: 4rem;
+      margin: 4rem 0 2rem;
     }
   }
 }

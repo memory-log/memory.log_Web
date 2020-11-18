@@ -19,7 +19,11 @@ const MainPaperItem = ({ paper }: MainPaperItemProps) => {
         className="Main-Paper-Item"
       >
         <div className="Main-Paper-Item-Thumbnail">
-          <div className="Main-Paper-Item-Thumbnail-Image" />
+          {paper.thumbnail ? (
+            <img src={generateURL(paper.thumbnail)} className="Main-Paper-Item-Thumbnail-Image" />
+          ) : (
+            <div className="Main-Paper-Item-Thumbnail-Image-Default Main-Paper-Item-Thumbnail-Image" />
+          )}
         </div>
         <div className="Main-Paper-Item-Info">
           <div className="Main-Paper-Item-Info-Content">

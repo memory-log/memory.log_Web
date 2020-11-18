@@ -49,7 +49,6 @@ const WriteCommentContainer = ({}) => {
       let file = e.target.files[0];
       reader.onloadend = () => {
         setImage(file);
-        uploadImage();
         setPreview(reader.result);
       };
       reader.readAsDataURL(file);
@@ -137,6 +136,12 @@ const WriteCommentContainer = ({}) => {
       handleImage(image);
     }
   }, [comment, font, color, image, write]);
+
+  useEffect(() => {
+    if (image) {
+      uploadImage();
+    }
+  }, [image]);
 
   useEffect(() => {
     return () => {
