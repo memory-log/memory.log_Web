@@ -7,42 +7,49 @@ import { Response, GetCommentsResponse, UploadImageResponse } from "../../util/t
 
 @autobind
 class PaperCommentStore {
-    @observable paperComments: PaperCommentType[] = [];
-    @observable color: string = "#707070";
-    @observable write: string = "text";
-    @observable font: string = "NotoSansKR";
-    @observable image: File | Blob | null = null;
-    @observable imageUrl: string = "";
-    @observable comment: string = "";
-    @observable locationX: number = 0;
-    @observable locationY: number = 0;
-
-    @action
-    async creaetePaperComment( 
-      color: string, 
-      comment: string, 
-      fontfamily: string, 
-      image: string, 
-      locationX: number, 
-      locationY: number, 
-      paperIdx: number
-      ){
-        try {
-          const response: Response = await PaperCommentAPI.CreateComment(paperIdx, locationX, locationY, comment, color, fontfamily, image);
-
-          return new Promise((resolve: (response: Response) => void, reject) => {
-            resolve(response);
-          });
-        } catch (error) {
-          return new Promise((resolve, reject: (error: Error) => void) => {
-            reject(error);
-          });
-        }
-  }
-
+  @observable paperComments: PaperCommentType[] = [];
+  @observable color: string = "#707070";
+  @observable write: string = "text";
+  @observable font: string = "NotoSansKR";
+  @observable image: File | Blob | null = null;
+  @observable imageUrl: string = "";
+  @observable comment: string = "";
+  @observable locationX: number = 0;
+  @observable locationY: number = 0;
 
   @action
-  async handlePaperComments(idx: number) {
+  async createPaperComment(
+    color: string,
+    comment: string,
+    fontfamily: string,
+    image: string,
+    locationX: number,
+    locationY: number,
+    paperIdx: number
+  ) {
+    try {
+      const response: Response = await PaperCommentAPI.CreateComment(
+        paperIdx,
+        locationX,
+        locationY,
+        comment,
+        color,
+        fontfamily,
+        image
+      );
+
+      return new Promise((resolve: (response: Response) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  }
+
+  @action
+  async handlePaperComments(idx: number): Promise<GetCommentsResponse> {
     try {
       const response: GetCommentsResponse = await PaperCommentAPI.GetComments(idx);
 
@@ -73,6 +80,10 @@ class PaperCommentStore {
         reject(error);
       });
     }
+  }
+
+  @action initPaperComments() {
+    this.paperComments = [];
   }
 
   @action
