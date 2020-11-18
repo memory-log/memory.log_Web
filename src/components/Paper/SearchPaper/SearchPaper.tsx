@@ -66,13 +66,7 @@ const SearchPaper = ({
                 </p>
               ) : null}
               <div className="Search-Paper-Container-List">
-                {loading ? (
-                  <>
-                    <MainPaperLoading />
-                  </>
-                ) : (
-                  search.map((paper, idx) => <SearchPaperItem key={idx} paper={paper} />)
-                )}
+                {loading ? <></> : search.map((paper, idx) => <SearchPaperItem key={idx} paper={paper} />)}
               </div>
             </>
           )}

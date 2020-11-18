@@ -52,12 +52,7 @@ const WriteComment = ({
           {paperInfo && paperInfo.member ? (
             <div className="write">
               <div className="write-box">
-                <div className="write-box-title">
-                  {paperInfo.member.name}님께
-                  <br />
-                  전달할 말을 적어주세요
-                </div>
-
+                <div className="write-box-title">{paperInfo.member.name}님께 전달할 말을 적어주세요.</div>
                 <div className="write-box-way">
                   <div className="write-box-way-text">작성방법</div>
                   <div className="write-box-way-area">
