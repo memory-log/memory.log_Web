@@ -5,7 +5,7 @@ import useStore from "../../lib/hooks/useStore";
 import { ModifyProfileImgResponse, Response, GetMyInfoResponse } from "../../util/types/Response";
 import Swal from "sweetalert2";
 import useQuery from "../../lib/hooks/useQuery";
-import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const ProfileContainer = ({}) => {
   const { store } = useStore();
@@ -14,7 +14,8 @@ const ProfileContainer = ({}) => {
 
   const [preview, setPreview] = useState<string | ArrayBuffer | null>("");
   const query = useQuery();
-  const { search } = useLocation();
+
+  const history = useHistory();
 
   const [changeName, setChangeName] = useState<string>(name);
   const [getProfileImg, setGetProfileImg] = useState<File>();
@@ -76,6 +77,12 @@ const ProfileContainer = ({}) => {
     }
   };
 
+  const goMain = () => {
+    if (!localStorage.getItem("accessToken")) {
+      history.push("/");
+    }
+  };
+
   const handleGetInfo = useCallback(async () => {
     await getInfo()
       .then((res: Response) => {
@@ -104,6 +111,10 @@ const ProfileContainer = ({}) => {
     handlerGetInfo();
     console.log("idx여부" + idxFact);
   }, [idxFact]);
+
+  useEffect(() => {
+    goMain();
+  }, []);
 
   return (
     <>
