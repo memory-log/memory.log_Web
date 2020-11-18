@@ -6,6 +6,7 @@ import useQuery from "../../../lib/hooks/useQuery";
 import { useBeforeunload } from "react-beforeunload";
 import { useHistory, withRouter } from "react-router-dom";
 import { DraggableData, DraggableEvent } from "react-draggable";
+import Swal from "sweetalert2";
 
 const ChangePositionContainer = ({}) => {
   const { store } = useStore();
@@ -17,7 +18,7 @@ const ChangePositionContainer = ({}) => {
   const { locationX, handleLocationX } = store.PaperCommentStore;
   const { locationY, handleLocationY } = store.PaperCommentStore;
   const { image, imageUrl, handleImageUrl } = store.PaperCommentStore;
-  const { creaetePaperComment } = store.PaperCommentStore;
+  const { createPaperComment } = store.PaperCommentStore;
 
   const history = useHistory();
   const query = useQuery();
@@ -39,8 +40,12 @@ const ChangePositionContainer = ({}) => {
       });
   }, [paperInfo]);
 
-  const creaetePaperCommenctCallBack = useCallback(() => {
-    creaetePaperComment(color, comment, font, imageUrl, locationX, locationY, Number(query.get("idx")!));
+  const createPaperCommentCallBack = useCallback(() => {
+    createPaperComment(color, comment, font, imageUrl, locationX, locationY, Number(query.get("idx")!)).catch((err) => {
+      if (err.message.indexOf("403")) {
+        Swal.fire({ icon: "error", title: "글 작성 실패", text: "마감일을 초과하였습니다." });
+      }
+    });
   }, [color, comment, font, imageUrl, locationX, locationY]);
 
   useEffect(() => {
@@ -48,9 +53,13 @@ const ChangePositionContainer = ({}) => {
   }, [handlePaperCommentsCallback]);
 
   const onSubmit = useCallback(() => {
-    console.log(locationX, locationY);
-    console.log(imageUrl);
-    creaetePaperCommenctCallBack();
+    createPaperCommentCallBack();
+    history.push(
+      query.get("code")
+        ? `/paper/?idx=${Number(query.get("idx"))}&code=${Number(query.get("code"))}`
+        : `/paper/?idx=${Number(query.get("idx"))}`
+    );
+    handlePaperCommentsCallback();
   }, [color, comment, font, imageUrl, locationX, locationY]);
 
   return (
