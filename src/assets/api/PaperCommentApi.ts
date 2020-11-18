@@ -84,6 +84,18 @@ class PaperCommentAPI {
       throw new Error(`${error}`);
     }
   }
+
+  async DeleteComment(paperCommentIdx: number) {
+    try {
+      const url = `${SERVER}/paperComment/delete/${paperCommentIdx}`;
+      
+      const { data } = await axios.delete(url);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
 }
 
 export default new PaperCommentAPI();
