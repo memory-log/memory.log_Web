@@ -11,6 +11,9 @@
     border-radius: 0.3rem;
     cursor: pointer;
     transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       background-color: #6577f8;

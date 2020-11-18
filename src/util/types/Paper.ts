@@ -7,7 +7,8 @@ export default interface PaperType {
   scope: string;
   code: string;
   likeCount: number;
-  end_time: any;
-  created_at: Date;
-  updated_at: Date;
+  endTime: Date;
+  like: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }
