@@ -12,6 +12,7 @@ class AuthStore {
   @observable page: boolean = true;
   @observable email: string = "";
   @observable name: string = "";
+  @observable userIdx?: number;
   @observable profileImage: string = "";
 
   @action
@@ -89,6 +90,7 @@ class AuthStore {
 
       if (response.status === 200) {
         this.name = response.data.name;
+        this.userIdx = response.data.idx;
         this.profileImage = response.data.profileImage;
         this.email = response.data.email ? response.data.email : "";
         this.login = true;

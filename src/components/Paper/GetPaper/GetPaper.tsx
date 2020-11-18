@@ -3,6 +3,7 @@ import generateURL from "../../../lib/generateURL";
 import PaperType from "../../../util/types/Paper";
 import PaperCommentType from "../../../util/types/PaperComment";
 import Button from "../../../components/common/Button";
+import GetPaperMemberContainer from "../../../containers/Paper/GetPaper/GetPaperMemberContainer";
 import "./GetPaper.scss";
 
 import { ReactComponent as Before } from "../../../assets/images/next.svg";
@@ -12,15 +13,20 @@ import { ReactComponent as Like } from "../../../assets/images/like.svg";
 import { Link } from "react-router-dom";
 
 interface GetPaperProps {
-  loading: boolean;
   paperInfo?: PaperType;
   paperComments: PaperCommentType[];
   handleLikePaperCallback: () => Promise<void>;
+  selectedIdx?: number;
+  handlePaperCommentsCallback: () => Promise<void>;
 }
 
-const GetPaper = ({ loading, paperInfo, paperComments, handleLikePaperCallback }: GetPaperProps) => {
-  console.log(paperComments);
-
+const GetPaper = ({
+  selectedIdx,
+  paperInfo,
+  paperComments,
+  handleLikePaperCallback,
+  handlePaperCommentsCallback
+}: GetPaperProps) => {
   return (
     <>
       <div className="Get-Paper">
@@ -37,20 +43,53 @@ const GetPaper = ({ loading, paperInfo, paperComments, handleLikePaperCallback }
             </div>
           </div>
           <div className="Get-Paper-Container-Content">
-            {paperComments.map((item: PaperCommentType, idx: number) => (
-              <div
-                className="Get-Paper-Container-Content-Mapped"
-                style={{
-                  transform: `translate(${item.location_x}px, ${item.location_y}px`,
-                  fontFamily: item.fontFamily,
-                  color: item.color
-                }}
-                key={idx}
-              >
-                {item.image ? <img src={generateURL(item.image)} /> : <div>{item.comment}</div>}
+            <div className="Get-Paper-Container-Content-Canvas">
+              {paperComments.map((item: PaperCommentType, idx: number) =>
+                item.image ? (
+                  <img
+                    className={`Get-Paper-Container-Content-Canvas-Mapped ${
+                      selectedIdx === item.idx && "Get-Paper-Container-Content-Canvas-Mapped-Select"
+                    }`}
+                    style={{
+                      border: selectedIdx === item.idx ? "1px solid black" : "",
+                      transform: `translate(${item.location_x}px, ${item.location_y}px`,
+                      fontFamily: item.fontFamily,
+                      color: item.color
+                    }}
+                    key={idx}
+                    src={generateURL(item.image)}
+                  />
+                ) : (
+                  <div
+                    className={`Get-Paper-Container-Content-Canvas-Mapped ${
+                      selectedIdx === item.idx && "Get-Paper-Container-Content-Canvas-Mapped-Select"
+                    }`}
+                    style={{
+                      border: selectedIdx === item.idx ? "1px solid black" : "",
+                      transform: `translate(${item.location_x}px, ${item.location_y}px`,
+                      fontFamily: item.fontFamily,
+                      color: item.color
+                    }}
+                    key={idx}
+                  >
+                    {item.comment}{" "}
+                  </div>
+                )
+              )}
+            </div>
+
+            <div className="Get-Paper-Container-Content-List">
+              <div className="Get-Paper-Container-Content-List-Title">참여자</div>
+              <div className="Get-Paper-Container-Content-List-box">
+                {paperComments.map((item: PaperCommentType, idx: number) => (
+                  <React.Fragment key={idx}>
+                    <GetPaperMemberContainer item={item} handlePaperCommentsCallback={handlePaperCommentsCallback} />
+                  </React.Fragment>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
+
           <div className="Get-Paper-Container-Bottom">
             <div className="Get-Paper-Container-Bottom-Button">
               <Link

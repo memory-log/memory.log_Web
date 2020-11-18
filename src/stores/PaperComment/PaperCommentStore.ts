@@ -17,6 +17,8 @@ class PaperCommentStore {
   @observable locationX: number = 0;
   @observable locationY: number = 0;
   @observable modifyIdx?: number;
+  @observable selectedIdx?: number;
+  @observable deleteIdx: number = 0;
 
   @action
   async createPaperComment(paperIdx: number) {
@@ -41,12 +43,28 @@ class PaperCommentStore {
     }
   }
 
+  @action 
+  async handleDeletePaperComment(deleteIdx: number) {
+    try {
+      const response: Response = await PaperCommentAPI.DeleteComment(deleteIdx);
+
+      return new Promise((resolve: (response: Response) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  }
+
   @action
   async handlePaperComments(idx: number): Promise<GetCommentsResponse> {
     try {
       const response: GetCommentsResponse = await PaperCommentAPI.GetComments(idx);
 
       this.paperComments = response.data.paperComments;
+      this.selectedIdx = undefined;
 
       return new Promise((resolve: (response: GetCommentsResponse) => void, reject) => {
         resolve(response);
@@ -173,6 +191,16 @@ class PaperCommentStore {
   @action
   handleModifyIdx(idx?: number) {
     this.modifyIdx = idx;
+  }
+
+  @action
+  handleSelectedIdx(idx: number) {
+    this.selectedIdx = idx;
+  }
+
+  @action
+  handleDeleteIdx(deleteIdx: number){
+    this.deleteIdx = deleteIdx;
   }
 }
 
