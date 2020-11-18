@@ -46,6 +46,12 @@ export interface GetCommentsResponse extends Response {
   };
 }
 
+export interface GetCommentResponse extends Response {
+  data: {
+    paperComment: PaperCommentType;
+  };
+}
+
 export interface UploadImageResponse extends Response {
   data: {
     fileName: string;

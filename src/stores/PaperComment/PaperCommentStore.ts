@@ -3,7 +3,7 @@ import { action, observable } from "mobx";
 import PaperCommentAPI from "../../assets/api/PaperCommentApi";
 import UploadApi from "../../assets/api/UploadApi";
 import PaperCommentType from "../../util/types/PaperComment";
-import { Response, GetCommentsResponse, UploadImageResponse } from "../../util/types/Response";
+import { Response, GetCommentsResponse, UploadImageResponse, GetCommentResponse } from "../../util/types/Response";
 
 @autobind
 class PaperCommentStore {
@@ -16,26 +16,19 @@ class PaperCommentStore {
   @observable comment: string = "";
   @observable locationX: number = 0;
   @observable locationY: number = 0;
+  @observable modifyIdx?: number;
 
   @action
-  async createPaperComment(
-    color: string,
-    comment: string,
-    fontfamily: string,
-    image: string,
-    locationX: number,
-    locationY: number,
-    paperIdx: number
-  ) {
+  async createPaperComment(paperIdx: number) {
     try {
       const response: Response = await PaperCommentAPI.CreateComment(
         paperIdx,
-        locationX,
-        locationY,
-        comment,
-        color,
-        fontfamily,
-        image
+        this.locationX,
+        this.locationY,
+        this.write === "text" ? this.comment : null,
+        this.color,
+        this.font,
+        this.write === "text" ? null : this.imageUrl
       );
 
       return new Promise((resolve: (response: Response) => void, reject) => {
@@ -87,6 +80,57 @@ class PaperCommentStore {
   }
 
   @action
+  async getComment(commentIdx: number): Promise<GetCommentResponse> {
+    try {
+      const response: GetCommentResponse = await PaperCommentAPI.GetComment(commentIdx);
+
+      if (response.data.paperComment.comment) {
+        this.handleComment(response.data.paperComment.comment);
+        this.handleColor(response.data.paperComment.color!);
+        this.handleFont(response.data.paperComment.fontFamily!);
+        this.handleWrite("text");
+      } else if (response.data.paperComment.image) {
+        this.handleImageUrl(response.data.paperComment.image);
+        this.handleWrite("image");
+      }
+
+      this.handleLocationX(response.data.paperComment.location_x);
+      this.handleLocationY(response.data.paperComment.location_y);
+
+      return new Promise((resolve: (response: GetCommentResponse) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  }
+
+  @action
+  async modifyPaperComment(commentIdx: number) {
+    try {
+      const response: Response = await PaperCommentAPI.ModifyComment(
+        commentIdx,
+        this.locationX,
+        this.locationY,
+        this.write === "text" ? this.comment : null,
+        this.color,
+        this.font,
+        this.write === "text" ? null : this.imageUrl
+      );
+
+      return new Promise((resolve: (response: Response) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  }
+
+  @action
   handleColor(color: string) {
     this.color = color;
   }
@@ -124,6 +168,11 @@ class PaperCommentStore {
   @action
   handleImageUrl(imageUrl: string) {
     this.imageUrl = imageUrl;
+  }
+
+  @action
+  handleModifyIdx(idx?: number) {
+    this.modifyIdx = idx;
   }
 }
 
