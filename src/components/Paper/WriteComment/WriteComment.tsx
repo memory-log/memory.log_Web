@@ -12,15 +12,15 @@ interface WriteCommentProps {
   handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   preview: string | ArrayBuffer | null;
   color: string;
-  handleColor: (color: string) => void;
+  setColor: React.Dispatch<React.SetStateAction<string>>;
   write: string;
-  handleWrite: (write: string) => void;
+  setWrite: React.Dispatch<React.SetStateAction<string>>;
   font: string;
-  handleFont: (font: string) => void;
+  setFont: React.Dispatch<React.SetStateAction<string>>;
   paperInfo?: PaperType;
   isPosition: boolean;
-  setIsPosition: React.Dispatch<React.SetStateAction<boolean>>;
-  handleComment: (comment: string) => void;
+  setComment: React.Dispatch<React.SetStateAction<string>>;
+  comment: string;
   canvasEl: React.RefObject<SignatureCanvas>;
   nextPosition: () => void;
 }
@@ -28,16 +28,16 @@ interface WriteCommentProps {
 const WriteComment = ({
   handleImageChange,
   preview,
+  comment,
+  setComment,
   color,
-  handleColor,
+  setColor,
   write,
-  handleWrite,
+  setWrite,
   font,
-  handleFont,
+  setFont,
   paperInfo,
   isPosition,
-  setIsPosition,
-  handleComment,
   canvasEl,
   nextPosition
 }: WriteCommentProps) => {
@@ -63,7 +63,7 @@ const WriteComment = ({
                         name="way"
                         value="text"
                         checked={write === "text"}
-                        onChange={(e) => handleWrite(e.target.value)}
+                        onChange={(e) => setWrite(e.target.value)}
                       />
                       <span className="write-box-way-area-select-radio" />
                     </label>
@@ -74,7 +74,7 @@ const WriteComment = ({
                         name="way"
                         value="image"
                         checked={write === "image"}
-                        onChange={(e) => handleWrite(e.target.value)}
+                        onChange={(e) => setWrite(e.target.value)}
                       />
                       <span className="write-box-way-area-select-radio" />
                     </label>
@@ -85,7 +85,7 @@ const WriteComment = ({
                         name="way"
                         value="hand"
                         checked={write === "hand"}
-                        onChange={(e) => handleWrite(e.target.value)}
+                        onChange={(e) => setWrite(e.target.value)}
                       />
                       <span className="write-box-way-area-select-radio" />
                     </label>
@@ -102,7 +102,7 @@ const WriteComment = ({
                           name="font"
                           value="NotoSansKR"
                           checked={font === "NotoSansKR"}
-                          onChange={(e) => handleFont(e.target.value)}
+                          onChange={(e) => setFont(e.target.value)}
                         />
                         <span className="write-box-way-area-select-radio" />
                       </label>
@@ -113,7 +113,7 @@ const WriteComment = ({
                           name="font"
                           value="휴먼편지체"
                           checked={font === "휴먼편지체"}
-                          onChange={(e) => handleFont(e.target.value)}
+                          onChange={(e) => setFont(e.target.value)}
                         />
                         <span className="write-box-way-area-select-radio" />
                       </label>
@@ -124,7 +124,7 @@ const WriteComment = ({
                           name="font"
                           value="나눔스퀘어_ac"
                           checked={font === "나눔스퀘어_ac"}
-                          onChange={(e) => handleFont(e.target.value)}
+                          onChange={(e) => setFont(e.target.value)}
                         />
                         <span className="write-box-way-area-select-radio" />
                       </label>
@@ -141,18 +141,14 @@ const WriteComment = ({
                     <div className="write-box-color-name">글자색</div>
                     <div className="write-box-color-area">
                       {writeColor.map((color: string, index: number) => (
-                        <div
-                          key={index}
-                          style={{ backgroundColor: color, cursor: "pointer" }}
-                          onClick={() => handleColor(color)}
-                        />
+                        <div key={index} style={{ backgroundColor: color, cursor: "pointer" }} onClick={() => setColor(color)} />
                       ))}
                       <label htmlFor="write-color-picker">
                         <input
                           id="write-color-picker"
                           className="write-box-color-area-picker"
                           type="color"
-                          onChange={(e) => handleColor(e.target.value)}
+                          onChange={(e) => setColor(e.target.value)}
                         />
                         <FiPlus />
                       </label>
@@ -167,7 +163,8 @@ const WriteComment = ({
                       className="write-box-textbox"
                       placeholder="글을 작성해주세요."
                       style={{ color: color, fontFamily: font }}
-                      onChange={(e) => handleComment(e.target.value)}
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
                     />
                   ) : write === "image" ? (
                     <div className="write-box-writing-profile">

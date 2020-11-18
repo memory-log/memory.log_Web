@@ -4,21 +4,34 @@ import WriteComment from "../../../components/Paper/WriteComment";
 import { withRouter, useHistory, useLocation } from "react-router";
 import useStore from "../../../lib/hooks/useStore";
 import useQuery from "../../../lib/hooks/useQuery";
-import { GetPaperResponse } from "../../../util/types/Response";
+import { GetPaperResponse, GetCommentResponse } from "../../../util/types/Response";
 import { useBeforeunload } from "react-beforeunload";
 import SignatureCanvas from "react-signature-canvas";
+import generateURL from "../../../lib/generateURL";
 
 const WriteCommentContainer = ({}) => {
   const { store } = useStore();
-  const { handlePaperInfo, paperInfo } = store.PaperStore;
+  const { handlePaperInfo, paperInfo, handleGetPaperInfo } = store.PaperStore;
 
-  const { color, handleColor } = store.PaperCommentStore;
-  const { write, handleWrite } = store.PaperCommentStore;
-  const { font, handleFont } = store.PaperCommentStore;
-  const { image, handleImage, uploadImage } = store.PaperCommentStore;
-  const { handleComment } = store.PaperCommentStore;
+  const {
+    handleColor,
+    handleImage,
+    uploadImage,
+    handleComment,
+    handleWrite,
+    handleFont,
+    getComment,
+    handleImageUrl,
+    modifyIdx,
+    handleModifyIdx
+  } = store.PaperCommentStore;
 
   const [isPosition, setIsPosition] = useState<boolean>(false);
+  const [comment, setComment] = useState<string>("");
+  const [image, setImage] = useState<File | Blob | null>();
+  const [font, setFont] = useState<string>("NotoSansKR");
+  const [color, setColor] = useState<string>("#707070");
+  const [write, setWrite] = useState<string>("text");
 
   const canvasEl = useRef<SignatureCanvas>(null);
 
@@ -35,7 +48,7 @@ const WriteCommentContainer = ({}) => {
     if (e.target.files && e.target.files.length) {
       let file = e.target.files[0];
       reader.onloadend = () => {
-        handleImage(file);
+        setImage(file);
         uploadImage();
         setPreview(reader.result);
       };
@@ -45,8 +58,24 @@ const WriteCommentContainer = ({}) => {
     }
   };
 
-  const handlePaperInfoCallback = useCallback(() => {
-    if (query.get("code") && query.get("idx")) {
+  const handlePaperInfoCallback = useCallback(async () => {
+    if (query.get("handleIdx")) {
+      handleModifyIdx(Number(query.get("handleIdx")));
+      await getComment(Number(query.get("handleIdx")))
+        .then((res) => {
+          if (!res.data.paperComment.comment) {
+            setWrite("image");
+          }
+          handleGetPaperInfo(res.data.paperComment.paper);
+          setComment(res.data.paperComment.comment || "");
+          setColor(res.data.paperComment.color || "#707070");
+          setFont(res.data.paperComment.fontFamily || "NotoSansKR");
+          setPreview(res.data.paperComment.image ? generateURL(res.data.paperComment.image) : "");
+        })
+        .catch(() => {
+          history.push("/");
+        });
+    } else if (query.get("code") && query.get("idx")) {
       handlePaperInfo(Number(query.get("idx")), query.get("code")!)
         .then((res: GetPaperResponse) => {
           if (!res.data.Papers || !res.data.Papers.member) {
@@ -78,6 +107,9 @@ const WriteCommentContainer = ({}) => {
   }, []);
 
   const nextPosition = useCallback(() => {
+    if (write === "text") {
+      handleImageUrl("");
+    }
     if (canvasEl.current) {
       const blobBin = atob(canvasEl.current.toDataURL().split(",")[1]);
       const array = [];
@@ -90,27 +122,48 @@ const WriteCommentContainer = ({}) => {
       uploadImageCallback();
     }
     setIsPosition(true);
-  }, [canvasEl, uploadImageCallback]);
+  }, [canvasEl, uploadImageCallback, write]);
 
   useEffect(() => {
     handlePaperInfoCallback();
   }, [handlePaperInfoCallback]);
 
+  useEffect(() => {
+    handleComment(comment);
+    handleFont(font);
+    handleColor(color);
+    handleWrite(write);
+    if (image) {
+      handleImage(image);
+    }
+  }, [comment, font, color, image, write]);
+
+  useEffect(() => {
+    return () => {
+      handleModifyIdx(undefined);
+      handleColor("#707070");
+      handleWrite("text");
+      handleFont("NotoSansKR");
+      handleImageUrl("");
+      handleComment("");
+    };
+  }, []);
+
   return (
     <>
       <WriteComment
         isPosition={isPosition}
-        setIsPosition={setIsPosition}
         paperInfo={paperInfo}
         handleImageChange={handleImageChange}
         preview={preview}
         color={color}
-        handleColor={handleColor}
+        setColor={setColor}
         write={write}
-        handleWrite={handleWrite}
+        setWrite={setWrite}
         font={font}
-        handleFont={handleFont}
-        handleComment={handleComment}
+        setFont={setFont}
+        comment={comment}
+        setComment={setComment}
         canvasEl={canvasEl}
         nextPosition={nextPosition}
       />
