@@ -88,6 +88,21 @@ class PaperStore {
       });
     }
   }
+
+  @action
+  async handleLikePaper(idx: number) {
+    try {
+      const response: Response = await PaperAPI.LikePaper(idx);
+
+      return new Promise((resolve: (response: Response) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  }
 }
 
 export default PaperStore;
