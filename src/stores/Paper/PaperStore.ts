@@ -21,6 +21,11 @@ class PaperStore {
   @observable paperInfo?: PaperType;
 
   @action
+  handleGetPaperInfo(paperInfo: PaperType) {
+    this.paperInfo = paperInfo;
+  }
+
+  @action
   async handleGetPapers(hit?: boolean): Promise<GetPapersResponse> {
     try {
       const response: GetPapersResponse = await PaperAPI.GetPapers(hit && hit);
