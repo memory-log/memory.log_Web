@@ -28,6 +28,12 @@ export interface GetMyInfoResponse extends Response {
   };
 }
 
+export interface CreatePaperResponse extends Response {
+  data: {
+    Paper: PaperType;
+  };
+}
+
 export interface GetPapersResponse extends Response {
   data: {
     Papers: PaperType[];
