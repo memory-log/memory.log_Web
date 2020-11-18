@@ -1,7 +1,7 @@
 import MemberType from "./Member";
 import PaperType from "./Paper";
 
-export default interface PaperCommentType {
+type PaperCommentType = {
     idx: number;
     member: MemberType;
     paper: PaperType;
@@ -14,3 +14,5 @@ export default interface PaperCommentType {
     updated_at?: Date;
     color?: string;
 }
+
+export default PaperCommentType;
