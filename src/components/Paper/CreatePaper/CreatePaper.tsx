@@ -5,25 +5,34 @@ import { makeColor } from "../../../models/colorTemplate";
 import { DatePicker } from "antd";
 import "antd/dist/antd.css";
 import { RiImageAddLine } from "react-icons/ri";
+import moment from "moment";
 
 interface CreatePaperProps {
+  scope: string;
+  title: string;
+  endTime: Date;
   preview: string | ArrayBuffer | null;
+  backgroundColor: string;
   setScope: React.Dispatch<React.SetStateAction<string>>;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   setEndTime: React.Dispatch<React.SetStateAction<Date>>;
   setBackgroundColor: React.Dispatch<React.SetStateAction<string>>;
   handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleCreatePaperCallback: () => Promise<void>;
+  handleComplete: () => void;
 }
 
 const CreatePaper = ({
   preview,
+  title,
+  scope,
+  endTime,
+  backgroundColor,
   setScope,
   setTitle,
   setEndTime,
   setBackgroundColor,
   handleImageChange,
-  handleCreatePaperCallback
+  handleComplete
 }: CreatePaperProps) => {
   return (
     <>
@@ -31,23 +40,28 @@ const CreatePaper = ({
         <div className="create-paper-box">
           <div className="create-paper-box-title">나만의 롤링페이퍼를 만들어보세요!</div>
           <div className="create-paper-box-content">
-            <input className="create-paper-box-content-name" placeholder="제목" onChange={(e) => setTitle(e.target.value)} />
+            <input
+              className="create-paper-box-content-name"
+              placeholder="제목"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
             <div className="create-paper-box-content-range">
               <div className="create-paper-box-content-range-text">공개범위</div>
               <div className="create-paper-box-content-range-area">
                 <label className="create-paper-box-content-range-area-select" onClick={() => setScope("PUBLIC")}>
                   전체공개
-                  <input type="radio" name="range" />
+                  <input type="radio" name="range" checked={scope === "PUBLIC"} onChange={(e) => setScope(e.target.value)} />
                   <span className="create-paper-box-content-range-area-select-radio" />
                 </label>
                 <label className="create-paper-box-content-range-area-select" onClick={() => setScope("ONLY_CODE")}>
                   일부공개
-                  <input type="radio" name="range" />
+                  <input type="radio" name="range" checked={scope === "ONLY_CODE"} onChange={(e) => setScope(e.target.value)} />
                   <span className="create-paper-box-content-range-area-select-radio" />
                 </label>
                 <label className="create-paper-box-content-range-area-select" onClick={() => setScope("PRIVATE")}>
                   나만보기
-                  <input type="radio" name="range" />
+                  <input type="radio" name="range" checked={scope === "PRIVATE"} onChange={(e) => setScope(e.target.value)} />
                   <span className="create-paper-box-content-range-area-select-radio" />
                 </label>
               </div>
@@ -57,6 +71,7 @@ const CreatePaper = ({
               <span className="create-paper-box-content-date-subtext">다른 사용자가 글을 작성 할 수 있는 기간입니다.</span>
               <div className="create-paper-box-content-date-area">
                 <DatePicker
+                  defaultValue={moment(endTime)}
                   style={{ borderRadius: "4px", border: "1px solid #dcdcdc", color: "#707070" }}
                   className="create-paper-box-content-date-area-input"
                   showTime
@@ -71,7 +86,7 @@ const CreatePaper = ({
                   <div
                     className="create-paper-box-content-backcolor-area-color"
                     key={index}
-                    style={{ backgroundColor: color }}
+                    style={{ backgroundColor: color, border: color === backgroundColor ? "2px solid black" : "" }}
                     onClick={() => setBackgroundColor(color)}
                   />
                 ))}
@@ -100,11 +115,7 @@ const CreatePaper = ({
             </div>
           </div>
           <div className="create-paper-box-btnarea">
-            <Button
-              text="롤링페이퍼 만들기"
-              style={{ height: "3.6rem", fontSize: "1.2rem" }}
-              onClick={() => handleCreatePaperCallback()}
-            />
+            <Button text="롤링페이퍼 만들기" style={{ height: "3.6rem", fontSize: "1.2rem" }} onClick={() => handleComplete()} />
           </div>
         </div>
       </div>

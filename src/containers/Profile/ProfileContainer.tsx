@@ -41,6 +41,7 @@ const ProfileContainer = ({}) => {
       .catch((err: Error) => {
         console.log("에러");
       });
+    handlerGetInfo();
   }, [changeName, getProfileImg, name]);
 
   const handlerGetInfo = useCallback(() => {

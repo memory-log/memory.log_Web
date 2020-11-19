@@ -77,7 +77,17 @@ class PaperCommentAPI {
         locationY
       };
 
-      const { data } = await axios.put(url, body);
+      let config = {};
+
+      if (localStorage.getItem("accessToken")) {
+        config = {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        };
+      }
+
+      const { data } = await axios.put(url, body, config);
 
       return data;
     } catch (error) {
@@ -88,8 +98,18 @@ class PaperCommentAPI {
   async DeleteComment(paperCommentIdx: number) {
     try {
       const url = `${SERVER}/paperComment/delete/${paperCommentIdx}`;
-      
-      const { data } = await axios.delete(url);
+
+      let config = {};
+
+      if (localStorage.getItem("accessToken")) {
+        config = {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        };
+      }
+
+      const { data } = await axios.delete(url, config);
 
       return data;
     } catch (error) {

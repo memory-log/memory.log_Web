@@ -27,6 +27,35 @@ class PaperStore {
   }
 
   @action
+  async handleModifyPaper(
+    paperIdx: number,
+    endTime: Date,
+    scope: string,
+    title: string,
+    backgroundColor: string,
+    thumbnail?: string
+  ): Promise<CreatePaperResponse> {
+    try {
+      const response: CreatePaperResponse = await PaperAPI.ModifyPaper(
+        paperIdx,
+        endTime,
+        scope,
+        title,
+        backgroundColor,
+        thumbnail
+      );
+
+      return new Promise((resolve: (response: CreatePaperResponse) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  }
+
+  @action
   async handlePaperImage(thumbnail: File): Promise<UploadImageResponse> {
     try {
       const response: UploadImageResponse = await UploadApi.UploadImage(thumbnail);
