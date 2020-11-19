@@ -81,6 +81,7 @@
         overflow: hidden;
         &-Print {
           height: auto !important;
+          width: 100%;
         }
 
         &-Mapped {
@@ -175,6 +176,20 @@
           &:hover {
             background-color: #b5beff;
           }
+        }
+
+        &-Delete {
+          margin-left: 0.8rem;
+          color: white;
+          cursor: pointer;
+          width: 2.5rem;
+          height: 2.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 0.3rem;
+          font-size: 1.4rem;
+          background-color: rgb(235, 134, 134);
         }
       }
 

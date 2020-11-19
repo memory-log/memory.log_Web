@@ -12,6 +12,7 @@ import { ReactComponent as PaperPlane } from "../../../assets/images/paper-plane
 import { ReactComponent as Like } from "../../../assets/images/like.svg";
 import { Link } from "react-router-dom";
 import PrintProvider, { Print, NoPrint } from "react-easy-print";
+import { BsTrash } from "react-icons/bs";
 
 interface GetPaperProps {
   paperInfo?: PaperType;
@@ -23,6 +24,7 @@ interface GetPaperProps {
   userIdx?: number;
   canvasEl: React.RefObject<HTMLDivElement>;
   printImage: string;
+  handlePaperDeleteCallback: () => void;
 }
 
 const GetPaper = ({
@@ -34,7 +36,8 @@ const GetPaper = ({
   copy,
   userIdx,
   canvasEl,
-  printImage
+  printImage,
+  handlePaperDeleteCallback
 }: GetPaperProps) => {
   return (
     <PrintProvider>
@@ -133,6 +136,12 @@ const GetPaper = ({
                 <div className="Get-Paper-Container-Bottom-Button-Share">
                   <PaperPlane onClick={() => copy()} style={{ width: "1.3rem" }} />
                 </div>
+
+                {userIdx === paperInfo?.member.idx && (
+                  <div onClick={() => handlePaperDeleteCallback()} className="Get-Paper-Container-Bottom-Button-Delete">
+                    <BsTrash />
+                  </div>
+                )}
               </div>
 
               <div className="Get-Paper-Container-Bottom-Like">

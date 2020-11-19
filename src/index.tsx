@@ -11,7 +11,7 @@ import { CookiesProvider } from "react-cookie";
 ReactDOM.render(
   <CookiesProvider>
     <Provider store={stores}>
-      <BrowserRouter>
+      <BrowserRouter basename={"/memory.log_Web"}>
         <App />
       </BrowserRouter>
     </Provider>
