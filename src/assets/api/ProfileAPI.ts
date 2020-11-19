@@ -11,7 +11,17 @@ class ProfileApi {
         profileImage
       };
 
-      const { data } = await axios.put(url, body);
+      let config = {};
+
+      if (localStorage.getItem("accessToken")) {
+        config = {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        };
+      }
+
+      const { data } = await axios.put(url, body, config);
 
       return data;
     } catch (error) {
@@ -26,13 +36,15 @@ class ProfileApi {
       const formData = new FormData();
       formData.append("file", files);
 
-      console.log(files);
+      let config = {};
 
-      const config = {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("accessToken")
-        }
-      };
+      if (localStorage.getItem("accessToken")) {
+        config = {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        };
+      }
 
       const { data } = await axios.post(url, formData, config);
 

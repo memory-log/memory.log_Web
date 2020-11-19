@@ -56,6 +56,21 @@ class PaperStore {
   }
 
   @action
+  async handlePaperDelete(idx: number): Promise<Response> {
+    try {
+      const response: Response = await PaperAPI.DeletePaper(idx);
+
+      return new Promise((resolve: (response: Response) => void, reject) => {
+        resolve(response);
+      });
+    } catch (error) {
+      return new Promise((resolve, reject: (error: Error) => void) => {
+        reject(error);
+      });
+    }
+  }
+
+  @action
   async handlePaperImage(thumbnail: File): Promise<UploadImageResponse> {
     try {
       const response: UploadImageResponse = await UploadApi.UploadImage(thumbnail);

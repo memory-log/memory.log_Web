@@ -56,11 +56,15 @@ class AuthApi {
       let url = "";
       idx ? (url = `${SERVER}/member/getOtherInfo?idx=${idx}`) : (url = `${SERVER}/member/getInfo`);
 
-      const config = {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`
-        }
-      };
+      let config = {};
+
+      if (localStorage.getItem("accessToken")) {
+        config = {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        };
+      }
 
       const { data } = await axios.get(url, config);
 

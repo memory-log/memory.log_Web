@@ -11,7 +11,7 @@ import { toPng } from "html-to-image";
 const GetPaperContainer = ({}) => {
   const { store } = useStore();
   const { userIdx } = store.AuthStore;
-  const { handlePaperInfo, paperInfo, handleLikePaper } = store.PaperStore;
+  const { handlePaperInfo, paperInfo, handleLikePaper, handlePaperDelete } = store.PaperStore;
   const { handlePaperComments, paperComments, initPaperComments, selectedIdx } = store.PaperCommentStore;
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -45,6 +45,23 @@ const GetPaperContainer = ({}) => {
     } else {
       history.push("/");
     }
+  }, [search]);
+
+  const handlePaperDeleteCallback = useCallback(async () => {
+    Swal.fire("경고", "정말로 삭제하시겠습니까?", "warning").then((value) => {
+      if (value) {
+        if (query.get("idx")) {
+          handlePaperDelete(Number(query.get("idx")))
+            .then((res: Response) => {
+              Swal.fire("성공", "삭제되었습니다.", "success");
+              history.push("/");
+            })
+            .catch((err) => {
+              history.push("/");
+            });
+        }
+      }
+    });
   }, [search]);
 
   const handlePaperCommentsCallback = useCallback(async () => {
@@ -122,6 +139,7 @@ const GetPaperContainer = ({}) => {
         copy={copy}
         handlePaperCommentsCallback={handlePaperCommentsCallback}
         printImage={printImage}
+        handlePaperDeleteCallback={handlePaperDeleteCallback}
       />
       <textarea
         style={{ width: 0, height: 0 }}

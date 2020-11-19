@@ -116,7 +116,17 @@ class PaperAPI {
     try {
       const url = `${SERVER}/paper/searchPaper?target=${target}`;
 
-      const { data } = await axios.get(url);
+      let config = {};
+
+      if (localStorage.getItem("accessToken")) {
+        config = {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        };
+      }
+
+      const { data } = await axios.get(url, config);
 
       return data;
     } catch (error) {
@@ -138,6 +148,27 @@ class PaperAPI {
       }
 
       const { data } = await axios.post(url, {}, config);
+
+      return data;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }
+
+  async DeletePaper(paperIdx: number) {
+    try {
+      const url = `${SERVER}/paperLike/deletePaper${paperIdx}`;
+      let config = {};
+
+      if (localStorage.getItem("accessToken")) {
+        config = {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        };
+      }
+
+      const { data } = await axios.delete(url, config);
 
       return data;
     } catch (error) {
