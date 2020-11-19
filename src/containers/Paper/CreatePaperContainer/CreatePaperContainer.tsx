@@ -62,21 +62,26 @@ const CreatePaperContainer = ({}) => {
           Swal.fire({ icon: "error", title: "사진등록 실패", text: "파일 이름에 특수기호 여부를 확인해 주세요." });
         });
     }
-    await handleModifyPaper(Number(query.get("idx")), endTime, scope, title, backgroundColor, fileName)
-      .then((res: CreatePaperResponse) => {
-        console.log(res);
-        history.push(
-          res.data.Paper.scope === "ONLY_CODE"
-            ? `/paper?idx=${res.data.Paper.idx}&code=${res.data.Paper.code}`
-            : `/paper?idx=${res.data.Paper.idx}`
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (!title) {
+      showModal();
+    } else {
+      await handleModifyPaper(Number(query.get("idx")), endTime, scope, title, backgroundColor, fileName)
+        .then((res: CreatePaperResponse) => {
+          console.log(res);
+          history.push(
+            res.data.Paper.scope === "ONLY_CODE"
+              ? `/paper?idx=${res.data.Paper.idx}&code=${res.data.Paper.code}`
+              : `/paper?idx=${res.data.Paper.idx}`
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [thumbnail, endTime, scope, title, backgroundColor]);
 
   const handleComplete = useCallback(() => {
+    showModal();
     if (query.get("idx")) {
       handleModifyPaperCallback();
     } else {
@@ -130,6 +135,14 @@ const CreatePaperContainer = ({}) => {
   useEffect(() => {
     handleGetPostInfoCallback();
   }, [handleGetPostInfoCallback]);
+
+  const showModal = () => {
+    if (!title) {
+      Swal.fire({ icon: "error", title: "작성 실패", text: "제목을 입력해주세요!" });
+    } else {
+      Swal.fire({ icon: "success", title: "작성 성공", text: "작성하기가 완료되었습니다!" });
+    }
+  };
 
   return (
     <>
