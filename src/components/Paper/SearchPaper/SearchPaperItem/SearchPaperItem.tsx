@@ -4,6 +4,7 @@ import { ReactComponent as Like } from "../../../../assets/images/like.svg";
 import PaperType from "../../../../util/types/Paper";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import generateURL from "../../../../lib/generateURL";
 
 interface SearchPaperItemProps {
   paper: PaperType;
@@ -17,7 +18,11 @@ const SearchPaperItem = ({ paper }: SearchPaperItemProps) => {
         to={paper.scope === "ONLY_CODE" ? `/paper?idx=${paper.idx}&code=${paper.code}` : `/paper?idx=${paper.idx}`}
       >
         <div className="Search-Paper-Item-Thumbnail">
-          <div className="Search-Paper-Item-Thumbnail-Image" />
+          {paper.thumbnail ? (
+            <img src={generateURL(paper.thumbnail)} className="Search-Paper-Item-Thumbnail-Image" />
+          ) : (
+            <div className="Search-Paper-Item-Thumbnail-Image-Default Search-Paper-Item-Thumbnail-Image" />
+          )}
         </div>
         <div className="Search-Paper-Item-Info">
           <div className="Search-Paper-Item-Info-Content">
