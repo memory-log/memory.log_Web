@@ -10,6 +10,7 @@ export default interface PaperType {
   endTime: Date;
   thumbnail: string;
   like: boolean;
+  backgroundColor: string;
   createdAt: Date;
   updatedAt: Date;
 }

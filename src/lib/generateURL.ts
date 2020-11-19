@@ -1,7 +1,7 @@
-import { SERVER } from "../config/config.json"
+import { SERVER } from "../config/config.json";
 
 const generateURL = (filename: string): string => {
-    return `${SERVER}/${filename}`
-}
+  return `${SERVER}/upload/${filename}`;
+};
 
 export default generateURL;

@@ -8,6 +8,7 @@ import defaultProfile from "../../../assets/images/profile.svg";
 import { ReactComponent as Search } from "../../../assets/images/search.svg";
 import HeaderProfile from "./HeaderProfile";
 import generateURL from "../../../lib/generateURL";
+import { NoPrint } from "react-easy-print";
 
 interface HeaderProps {
   shadow: boolean;
@@ -43,14 +44,14 @@ const Header = ({
   profileImage
 }: HeaderProps) => {
   return (
-    <>
+    <NoPrint>
       <div className={hide ? "Header-Hide Header" : shadow ? "Header-Shadow Header" : "Header"}>
         <div className="Header-Container">
           <div className="Header-Container-Content">
             <Link to="/">
               <div className="Header-Container-Content-Logo">
                 <Logo className="Header-Container-Content-Logo-Icon" />
-                <Title className="Header-Container-Content-Logo-Title" />
+                <Title className="Header-Container-Content-Logo-Tiktle" />
               </div>
             </Link>
             <div className="Header-Container-Content-Account">
@@ -109,7 +110,7 @@ const Header = ({
           )}
         </div>
       </div>
-    </>
+    </NoPrint>
   );
 };
 

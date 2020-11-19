@@ -91,6 +91,7 @@ class AuthStore {
       if (response.status === 200) {
         this.name = response.data.name;
         this.userIdx = response.data.idx;
+        console.log(this.userIdx);
         this.profileImage = response.data.profileImage;
         this.email = response.data.email ? response.data.email : "";
         this.login = true;

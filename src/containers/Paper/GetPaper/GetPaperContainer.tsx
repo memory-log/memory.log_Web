@@ -1,21 +1,31 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { observer } from "mobx-react";
 import GetPaper from "../../../components/Paper/GetPaper";
 import useQuery from "../../../lib/hooks/useQuery";
 import useStore from "../../../lib/hooks/useStore";
 import { GetCommentsResponse, GetPaperResponse } from "../../../util/types/Response";
 import { useHistory, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
+import { toPng } from "html-to-image";
 
 const GetPaperContainer = ({}) => {
   const { store } = useStore();
+  const { userIdx } = store.AuthStore;
   const { handlePaperInfo, paperInfo, handleLikePaper } = store.PaperStore;
   const { handlePaperComments, paperComments, initPaperComments, selectedIdx } = store.PaperCommentStore;
 
   const [loading, setLoading] = useState<boolean>(false);
 
+  const [printImage, setPrintImage] = useState<string>("");
+
   const query = useQuery();
   const history = useHistory();
-  const { search } = useLocation();
+  const location = useLocation();
+
+  const copyEl = useRef<HTMLTextAreaElement>(null);
+  const canvasEl = useRef<HTMLDivElement>(null);
+
+  const { search } = location;
 
   const handlePaperInfoCallback = useCallback(async () => {
     if (query.get("idx") || query.get("code")) {
@@ -65,6 +75,27 @@ const GetPaperContainer = ({}) => {
     }
   }, []);
 
+  const copy = useCallback(() => {
+    if (copyEl.current) {
+      copyEl.current.select();
+      copyEl.current.setSelectionRange(0, 9999);
+      document.execCommand("copy");
+      Swal.fire("공유", "클립보드에 복사되었습니다", "success");
+    }
+  }, [copyEl]);
+
+  const canvasElToSvg = useCallback(() => {
+    if (canvasEl.current) {
+      toPng(canvasEl.current)
+        .then((dataUrl) => {
+          setPrintImage(dataUrl);
+        })
+        .catch((error) => {
+          console.error("oops, something went wrong!", error);
+        });
+    }
+  }, [canvasEl]);
+
   useEffect(() => {
     handlePaperInfoCallback();
   }, [handlePaperInfoCallback]);
@@ -74,14 +105,29 @@ const GetPaperContainer = ({}) => {
     return () => initPaperComments();
   }, [handlePaperCommentsCallback]);
 
+  useEffect(() => {
+    window.addEventListener("beforeprint", canvasElToSvg);
+    return () => window.removeEventListener("beforeprint", canvasElToSvg);
+  }, [canvasElToSvg]);
+
   return (
     <>
       <GetPaper
+        canvasEl={canvasEl}
+        userIdx={userIdx}
         paperInfo={paperInfo}
         paperComments={paperComments}
         handleLikePaperCallback={handleLikePaperCallback}
         selectedIdx={selectedIdx}
+        copy={copy}
         handlePaperCommentsCallback={handlePaperCommentsCallback}
+        printImage={printImage}
+      />
+      <textarea
+        style={{ width: 0, height: 0 }}
+        ref={copyEl}
+        value={`${window.location.href}`}
+        onChange={() => console.log("loaded")}
       />
     </>
   );
