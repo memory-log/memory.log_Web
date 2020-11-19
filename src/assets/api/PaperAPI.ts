@@ -157,7 +157,7 @@ class PaperAPI {
 
   async DeletePaper(paperIdx: number) {
     try {
-      const url = `${SERVER}/paperLike/deletePaper${paperIdx}`;
+      const url = `${SERVER}/paper/deletePaper/${paperIdx}`;
       let config = {};
 
       if (localStorage.getItem("accessToken")) {

@@ -48,8 +48,13 @@ const GetPaperContainer = ({}) => {
   }, [search]);
 
   const handlePaperDeleteCallback = useCallback(async () => {
-    Swal.fire("경고", "정말로 삭제하시겠습니까?", "warning").then((value) => {
-      if (value) {
+    Swal.fire({
+      title: "경고",
+      text: "정말로 삭제하시겠습니까?",
+      icon: "warning",
+      showCancelButton: true
+    }).then((value) => {
+      if (value.isConfirmed) {
         if (query.get("idx")) {
           handlePaperDelete(Number(query.get("idx")))
             .then((res: Response) => {
